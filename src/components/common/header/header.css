@@ -1,0 +1,65 @@
+/*--------header------------*/
+header {
+  background:none; 
+  margin: 0 auto;
+}
+header .nav {
+  display: flex !important;
+}
+header li {
+  margin-right: 40px;
+}
+header ul {
+  padding: 30px 20px;
+}
+header ul li a{
+  color: #1eb2a6;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.headerTitle{
+  padding-right: 27rem;
+  color: #1eb2a6;
+  font-weight: 500;
+  transition: 0.5s;
+  text-align: left;
+}
+header ul li a:hover {
+  color: #0a7e74;
+}
+.toggle {
+  display: none;
+}
+/*--------header------------*/
+@media screen and (max-width: 768px) {
+  header {
+    margin: 0;
+    background-color: #1eb2a6;
+    position: relative;
+  }
+  header ul.flexSB {
+    display: none;
+  }
+  header ul li {
+    margin-bottom: 20px;
+  }
+  .toggle {
+    display: block;
+    background: none;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: -20px;
+  }
+  .mobile-nav {
+    position: absolute;
+    top: 2vh;
+    left: 0;
+    width: 100%;
+    background-color: #1eb2a6;
+  }
+  header ul li a{
+    color: white;
+  }
+}
