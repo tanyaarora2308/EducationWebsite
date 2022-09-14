@@ -1,6 +1,6 @@
 import React from "react"
-import AboutCard from "../about/AboutCard"
-import HAbout from "./HAbout"
+import HCourses from "./HCourses/HCourses"
+import HAbout from "./HAbout/HAbout"
 import HMain  from "./HMain/HMain"
 import HTestimonal from "./HTestimonal/HTestimonal"
 
@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <>
       <HMain />
-      <AboutCard />
       <HAbout />
+      <HCourses />
       <HTestimonal />
     </>
   )

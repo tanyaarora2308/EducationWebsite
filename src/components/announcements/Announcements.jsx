@@ -11,7 +11,7 @@ const Announcements = () => {
 
         <div className="container">
           {announcements.map((a) => (
-            <div class="col-md-6 item">
+            <div class="col-md-12 item">
               <div class="item-in">
                 <h4>{a.title}</h4>
                 <div class="seperator"></div>
@@ -19,7 +19,7 @@ const Announcements = () => {
                   {a.description}
                 </p>
                 <a href="#">
-                  Read More
+                  Date: {a.date}
                   <i class="fa fa-long-arrow-right"></i>
                 </a>
               </div>

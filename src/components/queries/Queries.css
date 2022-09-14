@@ -1,0 +1,8 @@
+.Queries{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100vh;
+    overflow: auto;
+    flex: 3 1 0;
+}

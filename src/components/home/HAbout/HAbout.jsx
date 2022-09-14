@@ -1,10 +1,10 @@
 import React from "react"
-import Heading from "../common/heading/Heading"
-import "./about.css"
-import { HCourses } from "../../dummydata"
-import Awrapper from "./Awrapper"
+import Heading from "../../common/heading/Heading"
+import "./HAbout.css"
+import  HStats  from "./HStats"
+import { hAbout } from "../../../dummydata"
 
-const AboutCard = () => {
+const HAbout = () => {
   return (
     <>
       <section className='aboutHome'>
@@ -15,7 +15,7 @@ const AboutCard = () => {
           <div className='right row'>
             <Heading subtitle='LEARN ANYTHING' title='Benefits About Online Learning Expertise' />
             <div className='items'>
-              {HCourses.map((val) => {
+              {hAbout.map((val) => {
                 return (
                   <div className='item flexSB'>
                     <div className='img'>
@@ -32,9 +32,9 @@ const AboutCard = () => {
           </div>
         </div>
       </section>
-      <Awrapper />
+      <HStats />
     </>
   )
 }
 
-export default AboutCard
+export default HAbout

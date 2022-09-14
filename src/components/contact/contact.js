@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./contact.css";
-// import phone from '../pics/phone.jpg'
-// import mail from '../pics/mail.png'
-// import address from '../pics/address.png'
 import { useHistory } from "react-router-dom";
 
 const Contact = () => {
