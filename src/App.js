@@ -7,7 +7,7 @@ import Queries from "./components/queries/Queries";
 import Contact from "./components/contact/contact";
 import Footer from "./components/common/footer/Footer";
 import Home from "./components/home/Home";
-import Auth from "./components/auth/Auth";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   return (

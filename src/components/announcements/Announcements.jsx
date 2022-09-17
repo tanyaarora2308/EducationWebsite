@@ -11,7 +11,7 @@ const Announcements = () => {
 
         <div className="container">
           {announcements.map((a) => (
-            <div class="col-md-12 item">
+            <div class="item">
               <div class="item-in">
                 <h4>{a.title}</h4>
                 <div class="seperator"></div>

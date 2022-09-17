@@ -228,3 +228,20 @@ export const testimonal = [
     cover: "./images/img4.jpg",
   },
 ];
+export const maths = [
+  {
+    id: 1,
+    link: "https://www.youtube.com/embed/?listType=playlist&list=F5A6AbojRus",
+    title:"Trigonometry"
+  },
+  {
+    id: 2,
+    link: "https://www.youtube.com/embed/?listType=playlist&list=PLTEtQdAPfgZmkL0EfsPHIy9xzqZ71s84u",
+    title:"Straight Lines",
+  },
+  {
+    id: 3,
+    link: "https://www.youtube.com/embed/?listType=playlist&list=PLTEtQdAPfgZmKGji5I-3loI6_uju4nikH",
+    title:"Permutations"
+  },
+];
