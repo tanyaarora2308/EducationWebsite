@@ -7,9 +7,7 @@ import Queries from "./components/queries/Queries";
 import Contact from "./components/contact/contact";
 import Footer from "./components/common/footer/Footer";
 import Home from "./components/home/Home";
-// import Login from "./components/auth/Login";
-import Login from "./components/Auth/Login";
-// import Signup from "./components/auth/Signup";
+import Auth from "./components/auth/Auth";
 
 function App() {
   return (
@@ -22,7 +20,7 @@ function App() {
           <Route exact path="/studyMaterial" component={StudyMaterial} />
           <Route exact path="/queries" component={Queries} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/Login" component={Login} />
+          <Route exact path="/Auth" component={Auth} />
         </Switch>
         <Footer />
       </Router>

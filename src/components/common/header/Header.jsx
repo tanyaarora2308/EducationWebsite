@@ -15,7 +15,7 @@ const Header = () => {
           >
             <h3 className="headerTitle">Coachify</h3>
             <li>
-              <Link to="/Login">Login</Link>
+              <Link to="/Auth">Register</Link>
             </li>
             <li>
               <Link to="/">Home</Link>

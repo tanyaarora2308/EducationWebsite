@@ -225,3 +225,40 @@
 		width: 100%;
 	}
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const SignUp = (props) => {
+	return (
+	  <>
+	  <div className="form-container sign-up-container">
+	  <form action="#">
+		<h1 className="font-effect-anaglyph">Create Account</h1>
+		<input type="text" placeholder="Name" />
+		<input type="email" placeholder="Email" />
+		<input type="password" placeholder="Password" />
+		<button className="signup">Sign Up</button>
+		<a
+		  onClick={() => {
+			setContainerActive(false);
+		  }}
+		>
+		  Swap
+		</a>
+	  </form>
+	</div>
+	  </>
+	);
+  };
