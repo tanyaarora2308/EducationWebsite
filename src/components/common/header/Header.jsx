@@ -15,6 +15,9 @@ const Header = () => {
           >
             <h3 className="headerTitle">Coachify</h3>
             <li>
+              <Link to="/Login">Login</Link>
+            </li>
+            <li>
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -24,20 +27,14 @@ const Header = () => {
               <Link to="/studyMaterial">Study Material</Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/journal">Journal</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/queries">Queries</Link>
             </li>
             <li>
               <Link to="/contact">Feedback</Link>
-            </li>
-            <li>
-              <Link to="/Login">Login</Link>
-            </li>
-            <li>
-              <Link to="/Signup">Sign Up</Link>
             </li>
           </ul>
           <button className="toggle" onClick={() => setClick(!click)}>

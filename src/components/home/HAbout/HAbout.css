@@ -1,6 +1,10 @@
 .aboutHome {
     height: auto;
   }
+  .flexSB1 {
+    display: flex;
+    justify-content: flex-end;
+  }
   .aboutHome #heading {
     text-align: left;
     padding: 0;

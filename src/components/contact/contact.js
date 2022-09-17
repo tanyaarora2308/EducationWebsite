@@ -88,7 +88,7 @@ const Contact = () => {
                 <span>CONTACT</span>
                 <span>US</span>
               </div>
-              <span style={{color:"white", fontSize:"1rem", paddingTop:"9%"}}>We value your feedback an we're always open to suggestions!</span>
+              <span style={{color:"#1eb2a6", fontSize:"1rem", paddingTop:"9%"}}>We value your feedback an we're always open to suggestions!</span>
               <div class="app-contact">CONTACT INFO : +91 7011-301-240</div>
             </div>
             <div class="screen-body-item">

@@ -1,7 +1,13 @@
 /*--------header------------*/
 header {
-  background:none; 
+  height: 6rem;
   margin: 0 auto;
+}
+.flexSB {
+  /* background-color: bisque; */
+  /* background-color: white; */
+  display: flex;
+  justify-content: flex-end;
 }
 header .nav {
   display: flex !important;
@@ -11,9 +17,10 @@ header li {
   margin-right: 40px;
 }
 header ul {
-  padding: 30px 20px;
+  padding: 30px 22px;
 }
 header ul li a{
+  text-decoration: none;
   color: #1eb2a6;
   font-weight: 500;
   transition: 0.5s;

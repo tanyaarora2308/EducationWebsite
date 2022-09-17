@@ -1,11 +1,24 @@
-import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Maths from "./Maths";
+import Nav from "./Nav";
+import Chemistry from "./Chemistry";
+import Main from "./Main";
+import "./Main.css"
 
-const StudyMaterial = () => {
+
+function StudyMaterial() {
   return (
     <>
-    Youtube Section
+      <Router>
+        <Main/>
+        <Nav />
+        <Switch>
+          <Route exact path="/maths" component={Maths} />
+          <Route exact path="/chemistry" component={Chemistry} />
+        </Switch>
+      </Router>
     </>
-  )
+  );
 }
 
-export default StudyMaterial
+export default StudyMaterial;
