@@ -9,14 +9,14 @@ header {
   display: flex;
   justify-content: flex-end;
 }
-header .nav {
+.flexSB header .nav {
   display: flex !important;
 }
-header li {
+.flexSB li {
   font-size: 0.9rem;
   margin-right: 40px;
 }
-header ul {
+.flexSB  ul {
   padding: 30px 22px;
 }
 header ul li a{

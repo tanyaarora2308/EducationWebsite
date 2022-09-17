@@ -31,7 +31,7 @@ const Auth = () => {
                       setContainerActive(false);
                     }}
                   >
-                    Swap
+                    Account already exists? Login!
                   </a>
                 </form>
               </div>
@@ -47,7 +47,7 @@ const Auth = () => {
                 <a href="#">Forgot your password?</a>
                 <button className="signin">Sign In</button>
                 <a onClick={() => setContainerActive(!containerActive)}>
-                  Swap!
+                  New user? Register!
                 </a>
               </form>
             </div>

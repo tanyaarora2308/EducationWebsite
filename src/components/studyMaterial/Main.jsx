@@ -1,9 +1,10 @@
 import React from "react";
+import Heading from "../common/heading/Heading";
 
 const Main = () => {
   return (
-    <div>
-      <h1>STUDY MATERIAL</h1>
+    <div className="studyMaterial">
+      <Heading title="STUDY MATERIAL" />
     </div>
   );
 };

@@ -8,18 +8,21 @@ const Nav = () => {
   return (
     <>
       <header>
-        <nav className="flexSB1">
+        <nav className="flexSB2">
           <ul
-            className={click ? "mobile-nav" : "flexSB1 "}
+            className={click ? "mobile-nav" : "flexSB2 "}
             onClick={() => setClick(false)}
           >
-            <li>
-              <Link to="/maths">Maths</Link>
-            </li>
-            <li>
-              <Link to="/chemistry">Chemistry</Link>
-            </li>
-            
+              <li>
+                <Link to="/maths" id="style-2" data-replace="Maths">
+                  <span>Maths</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/chemistry" id="style-2" data-replace="Chemistry">
+                  <span>Chemistry</span>
+                </Link>
+              </li>
           </ul>
           <button className="toggle" onClick={() => setClick(!click)}>
             {click ? (

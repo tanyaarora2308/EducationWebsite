@@ -7,28 +7,87 @@ header {
   header .nav {
     display: flex !important;
   }
-  header li {
-    font-size: 0.9rem;
+  .flexSB2 li {
+    font-size: 1.2rem !important;
     margin-right: 40px;
   }
-  header ul {
-    padding: 30px 22px;
+
+  .flexSB2 a {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
   }
-  header ul li a{
+  
+  .flexSB2 a::before,
+  .flexSB2 a::after {
+   content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+  }
+  .flexSB2 a::before {
+    background-color: #54b3d6;
+    height: 2px;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .flexSB2 a::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+    color: #54b3d6;
+  }
+  
+  .flexSB2 a:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+  }
+  .flexSB2 a:hover::after {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .flexSB2 a span {
+    display: inline-block;
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  .flexSB2 a:hover span {
+    transform: translate3d(-200%, 0, 0);
+  }
+  
+  .flexSB2 a {
+    text-decoration: none;
+    /* color: #18272F; */
+    font-weight: 700;
+    vertical-align: top;
+  }
+
+  /* header ul li a{
     text-decoration: none;
     color: #1eb2a6;
     font-weight: 500;
+    padding:0;
     transition: 0.5s;
-  }
-  .headerTitle{
-    padding-right: 27rem;
+  } */
+  .headerTitle1{
+    text-align: center;
     color: #1eb2a6;
     font-weight: 500;
     transition: 0.5s;
-    text-align: left;
   }
   header ul li a:hover {
     color: #0a7e74;
+  }
+  .flexSB2{
+    /* background-color: bisque; */
+    /* background-color: white; */
+    justify-content: center;
+    display: flex;
   }
   .toggle {
     display: none;
@@ -40,7 +99,7 @@ header {
       background-color: #1eb2a6;
       position: relative;
     }
-    header ul.flexSB {
+    header ul.flexSB2 {
       display: none;
     }
     header ul li {

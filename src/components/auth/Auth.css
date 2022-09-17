@@ -6,7 +6,7 @@
     align-items: center;
 	display: flex;
 	justify-content: center;
-    
+	align-items: center;
 }
 
 .signForms h1 {
@@ -88,7 +88,6 @@
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
-	display: f;
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
@@ -107,15 +106,17 @@
 	width: 50%;
 	z-index: 2;
 }
-
+.sign-up-container a, .sign-in-container a{
+	display: none;
+}
 .signForms .box.right-panel-active .sign-in-container {
 	transform: translateX(100%);
 }
 
 .signForms .sign-up-container {
 	left: 0;
-	padding-top: 5em;
 	width: 50%;
+	padding-top: 4em;
 	opacity: 0;
 	z-index: 1;
 }
@@ -230,7 +231,7 @@
 	}
 	.sign-up-container {
 		left: 0;
-		width: 100%;
+		width: 32%;
 		opacity: 1;
 		z-index: 1;
 	}
@@ -258,5 +259,7 @@
 		color: #1eb2a6;
 		text-shadow: 2px 2px 2px  rgb(48, 49, 49);
 	}
-		
+	.sign-up-container a, .sign-in-container a{
+		display: block;
+	}
 	}
