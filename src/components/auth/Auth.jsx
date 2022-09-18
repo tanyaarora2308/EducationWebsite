@@ -44,6 +44,12 @@ const Auth = () => {
                 <h1 className="font-effect-anaglyph">Sign in</h1>
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
+                <label for="userType" style={{textAlign:"left",color:"grey",paddingTop:" 10px",
+    paddingBottom: "10px"}}>Choose user type:</label>
+                <select name="userType" placeholder="User Type" style={{padding:"10px 20px"}} class="selectBox">
+                <option value="student">Student</option>
+                  <option value="admin">Admin</option>
+                </select>
                 <a href="#">Forgot your password?</a>
                 <button className="signin">Sign In</button>
                 <a onClick={() => setContainerActive(!containerActive)}>

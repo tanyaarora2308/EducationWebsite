@@ -3,7 +3,7 @@ import Maths from "./Maths";
 import Nav from "./Nav";
 import Chemistry from "./Chemistry";
 import Main from "./Main";
-import "./Main.css"
+import "./Main.scss"
 
 
 function StudyMaterial() {

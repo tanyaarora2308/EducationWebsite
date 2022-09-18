@@ -26,7 +26,6 @@ const Header = () => {
             <li>
               <Link to="/studyMaterial">Study Material</Link>
             </li>
-
             {/* <li>
               <Link to="/journal">Journal</Link>
             </li> */}
@@ -35,6 +34,12 @@ const Header = () => {
             </li>
             <li>
               <Link to="/contact">Feedback</Link>
+            </li>
+            <li>
+              <Link to="/announcementForm">AnnouncementForm</Link>
+            </li>
+            <li>
+              <Link to="/assignmentForm">AssignmentForm</Link>
             </li>
           </ul>
           <button className="toggle" onClick={() => setClick(!click)}>

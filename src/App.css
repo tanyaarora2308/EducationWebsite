@@ -46,7 +46,7 @@ a {
 li {
   list-style-type: none;
 }
-.row {
+.hero .row {
   width: 50%;
 }
 button {

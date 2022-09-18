@@ -221,6 +221,14 @@
 	height: 40px;
 	width: 40px;
 }
+.selectBox {
+	width: 120px;
+	border: none;
+	color: #1eb2a6;
+	background-color: #eee;
+	border-radius: 5px;
+	box-shadow: 4px 4px #ccc;
+  }
 
 @media only screen and (max-width : 768px) {
 	.signForms{

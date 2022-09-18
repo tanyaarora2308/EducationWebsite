@@ -10,9 +10,9 @@ const HAbout = () => {
       <section className='aboutHome'>
         <div className='container flexSB1'>
           <div className='left row'>
-            <img src='./images/about.webp' alt='' />
+            <img src='https://media.istockphoto.com/photos/studying-on-campus-picture-id1318948090?k=20&m=1318948090&s=612x612&w=0&h=-cUbSJGfBNCu8pJQi_2TPRZCGJHaEgjuX9fdg66MaWc=' alt='' />
           </div>
-          <div className='right row'>
+          <div className='right' style={{width:"50%"}}>
             <Heading subtitle='LEARN ANYTHING' title='Benefits About Online Learning Expertise' />
             <div className='items'>
               {hAbout.map((val) => {

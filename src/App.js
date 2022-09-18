@@ -8,6 +8,8 @@ import Contact from "./components/contact/contact";
 import Footer from "./components/common/footer/Footer";
 import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
+import announcementForm from "./components/adminPages/announcementForm";
+import AssignmentForm from "./components/adminPages/AssignmentForm";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route exact path="/queries" component={Queries} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/Auth" component={Auth} />
+          <Route exact path="/announcementForm" component={announcementForm} />
+          <Route exact path="/assignmentForm" component={AssignmentForm} />
         </Switch>
         <Footer />
       </Router>
