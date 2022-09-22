@@ -1,12 +1,14 @@
 import React from "react";
-import Heading from "../common/heading/Heading";
+import Back from "../common/Back";
 
 
 const Main = () => {
   return (
+    <>
+    <Back title="STUDY MATERIAL" />
     <div className="studyMaterial">
-      <Heading title="STUDY MATERIAL" />
     </div>
+    </>
   );
 };
 

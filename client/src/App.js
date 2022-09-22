@@ -12,6 +12,7 @@ import Blog from "./components/blog/Blog";
 import announcementForm from "./components/adminPages/announcementForm";
 import studyMaterialForm from "./components/adminPages/studyMaterialForm";
 import Feedback from "./components/FeedbackDisplay/Feedback";
+import AdminHome from "./components/adminPages/AdminHome";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/studyMaterialForm" component={studyMaterialForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
+          <Route exact path="/adminHome" component={AdminHome} />
         </Switch>
         <Footer />
       </Router>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./contact.css";
+import Back from "../common/Back";
 import { useHistory } from "react-router-dom";
 
 const Contact = () => {
@@ -68,6 +69,7 @@ const Contact = () => {
 
   return (
     <div class="background">
+      <Back title="Feedback"/>
       <div class="container">
         <div class="screen">
           <div class="screen-header">

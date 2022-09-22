@@ -1,14 +1,14 @@
 import React from "react";
-import Heading from "../common/heading/Heading";
 import "./Announcements.scss";
 import { announcements } from "../../dummydata";
+import Back from "../common/Back";
 
 const Announcements = () => {
   return (
     <>
+    <Back title="ANNOUNCEMENTS" />
       <section className="announcements">
-        <Heading title="ANNOUNCEMENTS" />
-
+        
         <div className="container">
           {announcements.map((a) => (
             <div class="item">

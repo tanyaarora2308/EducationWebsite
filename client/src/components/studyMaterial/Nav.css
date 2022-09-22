@@ -1,11 +1,13 @@
 /*--------header------------*/
 header {
+  background-color: #f8f8f8;
     height: 6rem;
     background:none; 
     margin: 0 auto;
   }
   header .nav {
     display: flex !important;
+    background-color: #f8f8f8;
   }
   .flexSB2 li {
     font-size: 1.2rem !important;

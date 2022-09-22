@@ -106,7 +106,7 @@
 	width: 50%;
 	z-index: 2;
 }
-.sign-up-container a, .sign-in-container a{
+.sign-up-container .mobile-auth, .sign-in-container .mobile-auth{
 	display: none;
 }
 .signForms .box.right-panel-active .sign-in-container {
@@ -267,7 +267,7 @@
 		color: #1eb2a6;
 		text-shadow: 2px 2px 2px  rgb(48, 49, 49);
 	}
-	.sign-up-container a, .sign-in-container a{
+	.sign-up-container .mobile-auth, .sign-in-container .mobile-auth{
 		display: block;
 	}
 	}

@@ -1,14 +1,21 @@
 import React from "react";
 import UploadQues from "./UploadQues";
 import Questions from "./Questions";
-import "./Queries.css"
+import Back from "../common/Back";
+import "./Queries.css";
 
 const Queries = () => {
   return (
-    <div className="Queries container">
-      <UploadQues />
-      <Questions />
-    </div>
+    <>
+      <Back title="QUERIES" />
+      <div className="Queries">
+        <div className="container">
+        <UploadQues />
+        <Questions />
+        </div>
+        
+      </div>
+    </>
   );
 };
 

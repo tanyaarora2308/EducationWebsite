@@ -1,32 +1,31 @@
 import React from "react";
 import "./Main.scss";
 import { maths } from "../../dummydata";
-import Heading from "../common/heading/Heading";
 
 const Maths = () => {
   return (
-<section className="testimonal">
-  <div className="container">
-    <div className="content grid2">
-      {maths.map((val) => (
-        <figure class="image-block">
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="405"
-            src={`https://www.youtube.com/embed/?listType=playlist&list=${val.link}`}
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-          <figcaption>
-            <p>{val.title}</p>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-  </div>
-</section>
+    <section>
+      <div className="container">
+        <div className="content grid2">
+          {maths.map((val) => (
+            <figure class="image-block">
+              <iframe
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="405"
+                src={`https://www.youtube.com/embed/?listType=playlist&list=${val.link}`}
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+              <figcaption>
+                <p>{val.title}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -63,5 +62,3 @@ export default Maths;
 // };
 
 // export default Maths;
-
-

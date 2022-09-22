@@ -6,12 +6,12 @@
   
   
   .background {
-    /* background-color: #a8cbd2; */
+    background-color: #f8f8f8;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     letter-spacing: 1.4px;
     display: flex;
-    min-height: 100vh;
+    margin-top: 40%;
   }
   
   .container {

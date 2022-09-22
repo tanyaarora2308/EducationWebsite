@@ -20,7 +20,7 @@ const UploadQues = () => {
     <div className="QuesShare">
       <HelpIcon sx={{color: "#1eb2a6"}} fontSize="large"/>
       <div>
-        <input type="text" placeholder="Your question here" />
+        <input type="text" placeholder="Your question here" style={{padding:"3rem"}}/>
         <div className="QuesShareOptions">
           <div className="option" style={{ color: "var(--photo)" }}
           onClick={()=>imageRef.current.click()}
