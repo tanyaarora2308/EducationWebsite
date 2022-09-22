@@ -26,9 +26,9 @@ const Header = () => {
             <li>
               <Link to="/studyMaterial">Study Material</Link>
             </li>
-            {/* <li>
-              <Link to="/journal">Journal</Link>
-            </li> */}
+            <li>
+              <Link to="/blog">Journal</Link>
+            </li>
             <li>
               <Link to="/queries">Queries</Link>
             </li>
@@ -39,7 +39,10 @@ const Header = () => {
               <Link to="/announcementForm">AnnouncementForm</Link>
             </li>
             <li>
-              <Link to="/assignmentForm">AssignmentForm</Link>
+              <Link to="/feedbackdisplay">All Feedbacks</Link>
+            </li>
+            <li>
+              <Link to="/studyMaterialForm">StudyMaterialForm</Link>
             </li>
           </ul>
           <button className="toggle" onClick={() => setClick(!click)}>

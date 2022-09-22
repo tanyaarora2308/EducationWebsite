@@ -8,8 +8,10 @@ import Contact from "./components/contact/contact";
 import Footer from "./components/common/footer/Footer";
 import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
+import Blog from "./components/blog/Blog";
 import announcementForm from "./components/adminPages/announcementForm";
-import AssignmentForm from "./components/adminPages/AssignmentForm";
+import studyMaterialForm from "./components/adminPages/studyMaterialForm";
+import Feedback from "./components/FeedbackDisplay/Feedback";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/Auth" component={Auth} />
           <Route exact path="/announcementForm" component={announcementForm} />
-          <Route exact path="/assignmentForm" component={AssignmentForm} />
+          <Route exact path="/blog" component={Blog} />
+          <Route exact path="/studyMaterialForm" component={studyMaterialForm} />
+          <Route exact path="/feedbackdisplay" component={Feedback} />
         </Switch>
         <Footer />
       </Router>

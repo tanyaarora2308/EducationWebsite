@@ -1,0 +1,56 @@
+.blog img {
+    width: 100%;
+    height: 100%;
+  }
+  .blog .text {
+    padding: 40px 30px;
+  }
+  .blog h1 {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 20px 0;
+    transition: 0.5s;
+  }
+  .blog h1:hover {
+    color: #1eb2a6;
+    cursor: pointer;
+  }
+  .blog span {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1eb2a6;
+  }
+  .blog span label {
+    margin-left: 10px;
+    color: grey;
+    font-size: 14px;
+  }
+  .blog span:nth-last-child(1) label {
+    color: #1eb2a6;
+  }
+  .blog p {
+    color: grey;
+  }
+
+  .column11 {
+    float: left;
+    width: 30%;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row11:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .column11 {
+      width: 100%;
+    }
+  }
