@@ -1,0 +1,71 @@
+/*--------header------------*/
+.header_common header {
+  height: 6rem;
+  margin: 0 auto;
+}
+.header_common .flexSB {
+  display: flex;
+  justify-content: flex-end;
+}
+.header_common .flexSB header .nav {
+  display: flex !important;
+}
+.header_common .flexSB li {
+  font-size: 0.9rem;
+  margin-right: 40px;
+}
+.header_common .flexSB  ul {
+  padding: 30px 22px;
+}
+.header_common header ul li a{
+  text-decoration: none;
+  color: #1eb2a6;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.header_common .headerTitle{
+  padding-right: 64rem;
+  color: #1eb2a6;
+  font-weight: 500;
+  transition: 0.5s;
+  text-align: left;
+}
+.header_common header ul li a:hover {
+  color: #0a7e74;
+}
+.header_common .toggle {
+  display: none;
+}
+/*--------header------------*/
+@media screen and (max-width: 768px) {
+  .header_common header {
+    margin: 0;
+    background-color: #1eb2a6;
+    position: relative;
+  }
+  .header_common header ul.flexSB {
+    display: none;
+  }
+  .header_common header ul li {
+    margin-bottom: 20px;
+  }
+  .header_common .toggle {
+    display: block;
+    background: none;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: -20px;
+  }
+  .header_common .mobile-nav {
+    position: absolute;
+    top: 2vh;
+    left: 0;
+    width: 100%;
+    background-color: #1eb2a6;
+  }
+  .header_common header ul li a{
+    color: white;
+  }
+}

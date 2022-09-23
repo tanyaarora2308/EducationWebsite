@@ -7,7 +7,7 @@ header {
   }
   header .nav {
     display: flex !important;
-    background-color: #f8f8f8;
+    
   }
   .flexSB2 li {
     font-size: 1.2rem !important;

@@ -1,11 +1,17 @@
 import "./Form.css";
+import Back from "../common/Back"
 
 const studyMaterialForm = () => {
   return (
-    <div id="loginform">
-      <h2 id="headerTitle">Post Study Material</h2>
-      <Form />
-    </div>
+      <>
+        <Back title="Post Study Material" />
+        <div className="announcementForm">
+          <div id="loginform">
+            <h2 id="headerTitle">Post Study Material</h2>
+            <Form />
+          </div>
+        </div>
+      </>
   );
 };
 

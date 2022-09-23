@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import AuthRoute from "./Routes/AuthRoute.js"
 import QueryRoute from "./Routes/QueryRoute.js"
 import FeedbackRoute from "./Routes/FeedbackRoute.js"
+import AnnouncementRoute from "./Routes/AnnouncementRoute.js"
+import AssignmentRoute from "./Routes/AssignmentRoute.js"
 
 const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -28,3 +30,5 @@ mongoose
   app.use('/auth',AuthRoute)
   app.use('/query', QueryRoute)
   app.use('/feedback', FeedbackRoute)
+  app.use('/announcements', AnnouncementRoute)
+  app.use('/assignments', AssignmentRoute)

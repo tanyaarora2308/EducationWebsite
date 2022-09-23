@@ -80,6 +80,6 @@
       width: 100%;
     }
     .awrapper {
-      height: 50vh;
+      display: none;
     }
   }

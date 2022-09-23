@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "./header/Header";
 import "./Auth.css";
 
 const Auth = () => {
-  const [userType,setUserType] = useState("student");
+  const initialState = {
+    name: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  };
+  const [userType, setUserType] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
+  const [data, setData] = useState(initialState);
+  const [confirmPass, setConfirmPass] = useState(true);
   const signUpButton = () => {
     setContainerActive(true);
   };
@@ -16,102 +26,171 @@ const Auth = () => {
     const userType = e.target.value;
     setUserType(e.target.value);
     console.log(userType);
-    // if(userType === "admin") setAdmin(true);
+  };
+
+  const handleInputChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    setConfirmPass(true);
+    e.preventDefault();
+    if (containerActive) {
+      data.password === data.confirmpass
+        ? dispatch(signUp(data, navigate))
+        : setConfirmPass(false);
+    } else {
+      dispatch(logIn(data, navigate));
+    }
+  };
+
+  const resetForm = () => {
+    setData(initialState);
+    setConfirmPass(confirmPass);
   };
 
   return (
-    <div className="signForms">
-      <div
-        className={`box  ${containerActive && "right-panel-active"}`}
-        id="container"
-      >
-        {containerActive ? (
-          <>
-            <div className="sign-up-container">
-              <div>
+    <>
+      <Header />
+      <div className="signForms">
+        <div
+          className={`box  ${containerActive && "right-panel-active"}`}
+          id="container"
+        >
+          {containerActive ? (
+            <>
+              <div className="sign-up-container">
+                <div>
+                  <form action="#" onSubmit={handleSubmit}>
+                    <h1 className="font-effect-anaglyph">Create Account</h1>
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      name="name"
+                      value={data.name}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      value={data.email}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={data.password}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      name="confirmpassword"
+                      value={data.confirmpassword}
+                      onChange={handleInputChange}
+                    />
+                    <span
+                      style={{
+                        color: "red",
+                        fontWeight: "600",
+                        fontSize: "12px",
+                        // alignSelf: "flex-end",
+                        // marginRight: "5px",
+                        display: confirmPass ? "none" : "block",
+                      }}
+                    >
+                      *Confirm password is not same
+                    </span>
+                    <button className="signup">Sign Up</button>
+                    <a
+                      onClick={() => {
+                        setContainerActive(false);
+                      }}
+                      className="mobile-auth"
+                    >
+                      Account already exists? Login!
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="form-container sign-in-container">
                 <form action="#">
-                  <h1 className="font-effect-anaglyph">Create Account</h1>
-                  <input type="text" placeholder="Name" />
-                  <input type="email" placeholder="Email" />
-                  <input type="password" placeholder="Password" />
-                  <button className="signup">Sign Up</button>
-                  <a
-                    onClick={() => {
-                      setContainerActive(false);
+                  <h1 className="font-effect-anaglyph">Sign in</h1>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={handleInputChange}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={handleInputChange}
+                  />
+                  <label
+                    for="userType"
+                    style={{
+                      textAlign: "left",
+                      color: "grey",
+                      paddingTop: " 10px",
+                      paddingBottom: "10px",
                     }}
+                  >
+                    Choose user type:
+                  </label>
+                  <select
+                    name="userType"
+                    value={userType}
+                    onChange={handleChange}
+                    placeholder="User Type"
+                    style={{ padding: "10px 20px" }}
+                    class="selectBox"
+                  >
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <a href="#">Forgot your password?</a>
+                  <Link to={userType === "admin" ? "/adminHome" : "/"}>
+                    <button className="signin">Sign In</button>
+                  </Link>
+                  <a
+                    onClick={() => setContainerActive(!containerActive)}
                     className="mobile-auth"
                   >
-                    Account already exists? Login!
+                    New user? Register!
                   </a>
                 </form>
               </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="form-container sign-in-container">
-              <form action="#">
-                <h1 className="font-effect-anaglyph">Sign in</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <label
-                  for="userType"
-                  style={{
-                    textAlign: "left",
-                    color: "grey",
-                    paddingTop: " 10px",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Choose user type:
-                </label>
-                <select
-                  name="userType"
-                  value={userType}
-                  onChange={handleChange}
-                  placeholder="User Type"
-                  style={{ padding: "10px 20px" }}
-                  class="selectBox"
-                >
-                  <option value="student">Student</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <a href="#">Forgot your password?</a>
-                <Link to = {userType === "admin"?  "/adminHome" : "/"} >
-                  <button className="signin">
-                    Sign In
-                  </button>
-                </Link>
-                <a onClick={() => setContainerActive(!containerActive)} className="mobile-auth">
-                  New user? Register!
-                </a>
-              </form>
-            </div>
-          </>
-        )}
+            </>
+          )}
 
-        <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-left">
-              <h1 className="font-effect-3d">Come On!</h1>
-              <p className="font-effect-emboss">Start Your Journey With Us</p>
-              <button className="ghost" onClick={signInButton} id="signIn">
-                Sign In
-              </button>
-            </div>
-            <div className="overlay-panel overlay-right">
-              <h1 className="font-effect-3d">No Account?</h1>
-              <p className="font-effect-emboss mobile-auth">
-                No Problem! Just Sign Up Here
-              </p>
-              <button className="ghost " onClick={signUpButton} id="signUp">
-                Sign Up
-              </button>
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-panel overlay-left">
+                <h1 className="font-effect-3d">Come On!</h1>
+                <p className="font-effect-emboss">Start Your Journey With Us</p>
+                <button className="ghost" onClick={signInButton} id="signIn">
+                  Sign In
+                </button>
+              </div>
+              <div className="overlay-panel overlay-right">
+                <h1 className="font-effect-3d">No Account?</h1>
+                <p className="font-effect-emboss mobile-auth">
+                  No Problem! Just Sign Up Here
+                </p>
+                <button className="ghost " onClick={signUpButton} id="signUp">
+                  Sign Up
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Auth;

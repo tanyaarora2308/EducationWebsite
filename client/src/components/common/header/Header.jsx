@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./header.css";
+import "./header_common.css";
 
 const Header = () => {
   const [click, setClick] = useState(false);
 
   return (
     <>
-      <header>
+      <header className="header_common">
         <nav className="flexSB">
           <ul
             className={click ? "mobile-nav" : "flexSB "}

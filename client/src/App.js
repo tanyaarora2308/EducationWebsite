@@ -11,14 +11,14 @@ import Auth from "./components/Auth/Auth";
 import Blog from "./components/blog/Blog";
 import announcementForm from "./components/adminPages/announcementForm";
 import studyMaterialForm from "./components/adminPages/studyMaterialForm";
-import Feedback from "./components/FeedbackDisplay/Feedback";
+import Feedback from "./components/adminPages/FeedbackDisplay/Feedback";
 import AdminHome from "./components/adminPages/AdminHome";
 
 function App() {
   return (
     <>
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/announcements" component={Announcements} />
