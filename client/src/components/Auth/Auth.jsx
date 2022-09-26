@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Header from "./header/Header";
 import "./Auth.css";
 
@@ -32,17 +31,17 @@ const Auth = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    setConfirmPass(true);
-    e.preventDefault();
-    if (containerActive) {
-      data.password === data.confirmpass
-        ? dispatch(signUp(data, navigate))
-        : setConfirmPass(false);
-    } else {
-      dispatch(logIn(data, navigate));
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   setConfirmPass(true);
+  //   e.preventDefault();
+  //   if (containerActive) {
+  //     data.password === data.confirmpass
+  //       ? dispatch(signUp(data, navigate))
+  //       : setConfirmPass(false);
+  //   } else {
+  //     dispatch(logIn(data, navigate));
+  //   }
+  // };
 
   const resetForm = () => {
     setData(initialState);
@@ -61,7 +60,7 @@ const Auth = () => {
             <>
               <div className="sign-up-container">
                 <div>
-                  <form action="#" onSubmit={handleSubmit}>
+                  <form action="#" >
                     <h1 className="font-effect-anaglyph">Create Account</h1>
                     <input
                       type="text"
