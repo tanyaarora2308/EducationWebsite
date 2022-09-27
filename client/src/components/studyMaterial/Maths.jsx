@@ -8,7 +8,7 @@ const Maths = () => {
       <div className="container">
         <div className="content grid2">
           {maths.map((val) => (
-            <figure class="image-block">
+            <figure className="image-block">
               <iframe
                 id="ytplayer"
                 type="text/html"
@@ -37,8 +37,8 @@ export default Maths;
 //       <div className="container">
 //         <div className="content grid2">
 //           {maths.map((val) => (
-//             <div class="flex justify-center items-center h-screen">
-//               <div class="max-w-sm rounded overflow-hidden shadow-lg">
+//             <div className="flex justify-center items-center h-screen">
+//               <div className="max-w-sm rounded overflow-hidden shadow-lg">
 //                 <iframe
 //                   id="ytplayer"
 //                   type="text/html"
@@ -49,8 +49,8 @@ export default Maths;
 //                   allowfullscreen
 //                 ></iframe>
 
-//                 <div class="px-6 py-4">
-//                   <div class=" text-xl mb-2" style={{textAlign:"center"}}><b>{val.title}</b></div>
+//                 <div className="px-6 py-4">
+//                   <div className=" text-xl mb-2" style={{textAlign:"center"}}><b>{val.title}</b></div>
 //                 </div>
 //               </div>
 //             </div>

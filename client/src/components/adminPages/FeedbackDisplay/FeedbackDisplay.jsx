@@ -4,7 +4,7 @@ import { feedbacks } from "../../../dummydata"
 const FeedbackDisplay = () => {
   return (
     <>
-    <div class="row11">
+    <div className="row11">
       {feedbacks.map((val) => (
         <div className='items shadow column11'>
           <div className='text'>

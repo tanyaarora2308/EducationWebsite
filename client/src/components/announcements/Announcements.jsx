@@ -1,26 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Announcements.scss";
 import { announcements } from "../../dummydata";
+import axios from "axios";
 import Back from "../common/Back";
+import { useState } from "react";
 
 const Announcements = () => {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const returnedData = await axios.get("http://localhost:5000/announcements");
+    console.log(returnedData);
+    setData(returnedData.data);
+  };
+
+  // console.log(data);
+
+  useEffect(() => {
+    getData();
+  }, [data]);
+
+  
   return (
     <>
-    <Back title="ANNOUNCEMENTS" />
+      <Back title="ANNOUNCEMENTS" />
       <section className="announcements">
-        
         <div className="container">
-          {announcements.map((a) => (
-            <div class="item">
-              <div class="item-in">
+          {data && data.map((a) => (
+            <div className="item">
+              <div className="item-in">
                 <h4>{a.title}</h4>
-                <div class="seperator"></div>
-                <p>
-                  {a.description}
-                </p>
+                <div className="seperator"></div>
+                <p>{a.description}</p>
                 <a href="#">
-                  Date: {a.date}
-                  <i class="fa fa-long-arrow-right"></i>
+                  Date: {a.createdAt}
+                  <i className="fa fa-long-arrow-right"></i>
                 </a>
               </div>
             </div>

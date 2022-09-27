@@ -48,73 +48,93 @@ const Contact = () => {
   };
   // Submitting the new data to backend
 
-   const SubmitNewData = async (e)=>{
-       e.preventDefault()
-      const {name, email, mobile, message} = userdata
-      const res= await fetch('/contact', {
-          method:"POST",
-          headers: { "Content-Type" : "application/json"},
-          body: JSON.stringify({ name , email, mobile, message })
-      })
+  const SubmitNewData = async (e) => {
+    e.preventDefault();
+    const { name, email, mobile, message } = userdata;
+    const res = await fetch("/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, mobile, message }),
+    });
 
-      const data = await res.json()
-      if(!data ){
-          console.log('Message not sent');
-      }
-      else{
-          alert('Message Delivered Successfully !!!')
-          setuserdata({...userdata, message:''})
-      }
-   }
+    const data = await res.json();
+    if (!data) {
+      console.log("Message not sent");
+    } else {
+      alert("Message Delivered Successfully !!!");
+      setuserdata({ ...userdata, message: "" });
+    }
+  };
 
   return (
-    <div class="background">
-      <Back title="Feedback"/>
-      <div class="container">
-        <div class="screen">
-          <div class="screen-header">
-            <div class="screen-header-left">
-              <div class="screen-header-button close"></div>
-              <div class="screen-header-button maximize"></div>
-              <div class="screen-header-button minimize"></div>
+    <div className="background">
+      <Back title="Feedback" />
+      <div className="container">
+        <div className="screen">
+          <div className="screen-header">
+            <div className="screen-header-left">
+              <div className="screen-header-button close"></div>
+              <div className="screen-header-button maximize"></div>
+              <div className="screen-header-button minimize"></div>
             </div>
-            <div class="screen-header-right">
-              <div class="screen-header-ellipsis"></div>
-              <div class="screen-header-ellipsis"></div>
-              <div class="screen-header-ellipsis"></div>
+            <div className="screen-header-right">
+              <div className="screen-header-ellipsis"></div>
+              <div className="screen-header-ellipsis"></div>
+              <div className="screen-header-ellipsis"></div>
             </div>
           </div>
-          <div class="screen-body">
-            <div class="screen-body-item left">
-              <div class="app-title">
+          <div className="screen-body">
+            <div className="screen-body-item left">
+              <div className="app-title">
                 <span>CONTACT</span>
                 <span>US</span>
               </div>
-              <span style={{color:"#1eb2a6", fontSize:"1rem", paddingTop:"9%"}}>We value your feedback an we're always open to suggestions!</span>
-              <div class="app-contact">CONTACT INFO : +91 7011-301-240</div>
+              <span
+                style={{ color: "#1eb2a6", fontSize: "1rem", paddingTop: "9%" }}
+              >
+                We value your feedback an we're always open to suggestions!
+              </span>
+              <div className="app-contact">CONTACT INFO : +91 7011-301-240</div>
             </div>
-            <div class="screen-body-item">
-            <form className='mt-3' method='POST'>
-              <div class="app-form">
-                <div class="app-form-group">
-                  <input
-                    class="app-form-control"
-                    placeholder="NAME"
-                    value={userdata.name}
-                    name='name' 
-                    onChange={handleInputs}
-                  />
+            <div className="screen-body-item">
+              <form className="mt-3" method="POST">
+                <div className="app-form">
+                  <div className="app-form-group">
+                    <input
+                      className="app-form-control"
+                      placeholder="NAME"
+                      value={userdata.name}
+                      name="name"
+                      onChange={handleInputs}
+                    />
+                  </div>
+                  <div className="app-form-group">
+                    <input
+                      className="app-form-control"
+                      placeholder="EMAIL"
+                      value={userdata.email}
+                      name="email"
+                    />
+                  </div>
+                  <div className="app-form-group message">
+                    <input
+                      className="app-form-control"
+                      placeholder="MESSAGE"
+                      value={userdata.message}
+                      onChange={handleInputs}
+                      name="message"
+                    />
+                  </div>
+                  <div className="app-form-group buttons">
+                    <button
+                      className="app-form-button"
+                      type="submit"
+                      onClick={SubmitNewData}
+                    >
+                      SEND
+                    </button>
+                  </div>
                 </div>
-                <div class="app-form-group">
-                  <input class="app-form-control" placeholder="EMAIL" value={userdata.email} name='email'/>
-                </div>
-                <div class="app-form-group message">
-                  <input class="app-form-control" placeholder="MESSAGE" value={userdata.message} onChange={handleInputs} name='message'/>
-                </div>
-                <div class="app-form-group buttons">
-                  <button class="app-form-button" type="submit" onClick={SubmitNewData}>SEND</button>
-                </div>
-              </div>
               </form>
             </div>
           </div>

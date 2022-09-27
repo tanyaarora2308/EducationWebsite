@@ -8,7 +8,7 @@ const Chemisrty = () => {
       <div className="container">
         <div className="content grid2">
           {chemistry.map((val) => (
-            <figure class="image-block">
+            <figure className="image-block">
               <iframe
                 id="ytplayer"
                 type="text/html"

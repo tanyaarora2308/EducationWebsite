@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./header/Header";
 import "./Auth.css";
+import axios from "axios";
 
 const Auth = () => {
   const initialState = {
@@ -13,7 +14,8 @@ const Auth = () => {
   const [userType, setUserType] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
   const [data, setData] = useState(initialState);
-  const [confirmPass, setConfirmPass] = useState(true);
+  // const [confirmpassword, setConfirmPassword] = useState(true);
+
   const signUpButton = () => {
     setContainerActive(true);
   };
@@ -24,28 +26,51 @@ const Auth = () => {
   const handleChange = (e) => {
     const userType = e.target.value;
     setUserType(e.target.value);
-    console.log(userType);
   };
 
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = (e) => {
-  //   setConfirmPass(true);
+  // const PostData = async (e) => {
+  //   // setConfirmPass(true);
   //   e.preventDefault();
-  //   if (containerActive) {
-  //     data.password === data.confirmpass
-  //       ? dispatch(signUp(data, navigate))
-  //       : setConfirmPass(false);
-  //   } else {
-  //     dispatch(logIn(data, navigate));
-  //   }
+
+  //   var options = {
+  //     method: "POST",
+  //     url: "localhost:5000/auth/register",
+  //     headers: {
+  //       Accept: "*/*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     data: { name: "Shailender", email: "shail@gmail.com", password: "shail" },
+  //   };
+
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+
   // };
+
+  const submitHandler=(e) => {
+    e.preventDefault();
+    axios.post("http://localhost:5000/auth/register", data).then(response =>{
+      console.log(response);
+    }).catch(error => {
+      console.log(error)
+    })
+    // console.log(data);
+  }
+
 
   const resetForm = () => {
     setData(initialState);
-    setConfirmPass(confirmPass);
+    // setConfirmPass(confirmPass);
   };
 
   return (
@@ -60,7 +85,7 @@ const Auth = () => {
             <>
               <div className="sign-up-container">
                 <div>
-                  <form action="#" >
+                  <form method="POST" onSubmit={submitHandler}>
                     <h1 className="font-effect-anaglyph">Create Account</h1>
                     <input
                       type="text"
@@ -95,14 +120,14 @@ const Auth = () => {
                         color: "red",
                         fontWeight: "600",
                         fontSize: "12px",
-                        // alignSelf: "flex-end",
-                        // marginRight: "5px",
-                        display: confirmPass ? "none" : "block",
+                        // display: confirmPass ? "none" : "block",
                       }}
                     >
-                      *Confirm password is not same
+                      {/* *Confirm password is not same */}
                     </span>
-                    <button className="signup">Sign Up</button>
+                    <button className="signup" type="submit">
+                      Sign Up
+                    </button>
                     <a
                       onClick={() => {
                         setContainerActive(false);
@@ -131,7 +156,7 @@ const Auth = () => {
                     onChange={handleInputChange}
                   />
                   <label
-                    for="userType"
+                    htmlFor="userType"
                     style={{
                       textAlign: "left",
                       color: "grey",
@@ -147,7 +172,7 @@ const Auth = () => {
                     onChange={handleChange}
                     placeholder="User Type"
                     style={{ padding: "10px 20px" }}
-                    class="selectBox"
+                    className="selectBox"
                   >
                     <option value="student">Student</option>
                     <option value="admin">Admin</option>

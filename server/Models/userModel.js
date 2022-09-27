@@ -18,28 +18,20 @@ const UserSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
 },
 { timestamps: true },
 );
 
-UserSchema.methods.generateAuthToken = async function () {
-  try {
-    let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
-    this.tokens = this.tokens.concat({ token: token });
-    await this.save();
-    return token;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// UserSchema.methods.generateAuthToken = async function () {
+//   try {
+//     let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+//     this.tokens = this.tokens.concat({ token: token });
+//     await this.save();
+//     return token;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 const UserModel = mongoose.model("Users", UserSchema);
 export default UserModel;

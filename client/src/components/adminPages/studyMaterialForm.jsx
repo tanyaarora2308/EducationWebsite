@@ -25,13 +25,13 @@ const Form = (props) => (
 );
 
 const FormButton = (props) => (
-  <div id="button" class="row">
+  <div id="button" className="row">
     <button>{props.title}</button>
   </div>
 );
 
 const FormInput = (props) => (
-  <div class="row">
+  <div className="row">
     <label>{props.description}</label>
     <input type={props.type} placeholder={props.placeholder} />
   </div>
