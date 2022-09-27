@@ -9,7 +9,7 @@ const HMain = () => {
         <div className="container">
           <div className="row">
             <Heading
-              subtitle="Welcome To Coachify"
+              subtitle="COACHIFY"
               title="Fostering brilliance and hard work in young minds."
             />
             <p>

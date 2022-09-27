@@ -34,10 +34,10 @@
   }
   .hero #heading h3{
     text-transform: capitalize;
-    font-size: 26px;
+    font-size: 30px;
     color: #d3970e;
     text-align: left;
-    padding-top: 19rem;
+    padding-top: 17rem;
     font-weight: 900;
   }
 }

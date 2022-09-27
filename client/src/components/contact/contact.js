@@ -1,69 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./contact.css";
+import swal from 'sweetalert';
+import axios from"axios";
 import Back from "../common/Back";
-import { useHistory } from "react-router-dom";
 
 const Contact = () => {
-  const history = useHistory();
-  const [userdata, setuserdata] = useState({
+  const initialState = {
+    userId:"",
     name: "",
     email: "",
-    mobile: "",
-    message: "",
-  });
-
-  // const callContact = async () =>{
-  //    try{
-  //         const res = await fetch('/getdata', {
-  //             method: "GET",
-  //             headers: {
-  //                 "Content-Type": "application/json",
-  //             },
-  //              })
-  //             const data = await res.json();
-  //             console.log(data)
-  //             setuserdata({...userdata, name:data.name, email:data.email, mobile:data.mobile})
-
-  //             if(!res.status === 200){
-  //                 const error = new Error(res.error)
-  //                 throw error;
-  //             }
-  //       }
-  //       catch(err){
-  //             console.log(err)
-  //             history.push('/login')
-  //             }
-  // }
-  //  useEffect(() => {
-  //    callContact()
-  //  }, [])
-
-  // storing data in contact us form
+    message:""
+  };
+  const [data, setData] = useState(initialState);
 
   const handleInputs = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setuserdata({ ...userdata, [name]: value });
+    setData({ ...data, [e.target.name]: e.target.value });
   };
-  // Submitting the new data to backend
-
-  const SubmitNewData = async (e) => {
-    e.preventDefault();
-    const { name, email, mobile, message } = userdata;
-    const res = await fetch("/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, mobile, message }),
+  const submitHandler = (e) => {
+    swal("Your feedback has been submitted!", {
+      buttons: false,
+      timer: 1000,
     });
 
-    const data = await res.json();
-    if (!data) {
-      console.log("Message not sent");
-    } else {
-      alert("Message Delivered Successfully !!!");
-      setuserdata({ ...userdata, message: "" });
-    }
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/feedback", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -99,11 +66,20 @@ const Contact = () => {
             <div className="screen-body-item">
               <form className="mt-3" method="POST">
                 <div className="app-form">
+                <div className="app-form-group">
+                    <input
+                      className="app-form-control"
+                      placeholder="USER ID"
+                      value={data.userId}
+                      onChange={handleInputs}
+                      name="userId"
+                    />
+                  </div>
                   <div className="app-form-group">
                     <input
                       className="app-form-control"
                       placeholder="NAME"
-                      value={userdata.name}
+                      value={data.name}
                       name="name"
                       onChange={handleInputs}
                     />
@@ -112,15 +88,16 @@ const Contact = () => {
                     <input
                       className="app-form-control"
                       placeholder="EMAIL"
-                      value={userdata.email}
+                      value={data.email}
                       name="email"
+                      onChange={handleInputs}
                     />
                   </div>
                   <div className="app-form-group message">
                     <input
                       className="app-form-control"
                       placeholder="MESSAGE"
-                      value={userdata.message}
+                      value={data.message}
                       onChange={handleInputs}
                       name="message"
                     />
@@ -129,7 +106,7 @@ const Contact = () => {
                     <button
                       className="app-form-button"
                       type="submit"
-                      onClick={SubmitNewData}
+                      onClick={submitHandler}
                     >
                       SEND
                     </button>

@@ -1,7 +1,7 @@
 .aboutHome {
     height: auto;
   }
-  .flexSB1 {
+  .aboutHome .flexSB1 {
     display: flex;
     justify-content: flex-end;
   }
@@ -15,6 +15,7 @@
     object-fit: cover;
   }
   .aboutHome .right {
+    width: 50%;
     padding: 80px 50px;
   }
   .aboutHome .items {
@@ -27,7 +28,7 @@
     transition: 0.5s;
   }
   .aboutHome .img {
-    width: 200px;
+    width: 100px;
   }
   .aboutHome img {
     width: 70px;
@@ -81,5 +82,9 @@
     }
     .awrapper {
       display: none;
+    }
+    .aboutHome .right {
+      width: 100%;
+      padding: 0;
     }
   }

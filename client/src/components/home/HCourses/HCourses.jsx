@@ -1,9 +1,17 @@
 import React from "react";
 import Heading from "../../common/heading/Heading";
 import "./HCourses.css";
+import swal from 'sweetalert';
 import { coursesCard } from "../../../dummydata";
 
 const HCourses = () => {
+  const enrollButton = () => {
+    swal("Contact us at +91 70113 01240! ", {
+      buttons: false,
+      timer: 2000,
+    });
+  };
+
   return (
     <>
       <section className="homeAbout">
@@ -55,7 +63,7 @@ const HCourses = () => {
                       {val.priceAll} / {val.pricePer}
                     </h3>
                   </div>
-                  <button className="outline-btn">ENROLL NOW !</button>
+                  <button className="outline-btn" onClick={enrollButton}>ENROLL NOW !</button>
                 </div>
               ))}
             </div>

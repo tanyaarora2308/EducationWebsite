@@ -1,4 +1,5 @@
 import "./App.css";
+import swal from 'sweetalert';
 import Header from "./components/common/header/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Announcements from "./components/announcements/Announcements";

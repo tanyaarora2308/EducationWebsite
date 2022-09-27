@@ -154,6 +154,9 @@ p {
   box-shadow: 0 5px 25px -2px rgb(0 0 0 / 6%);
   background-color: #fff;
 }
+.swal-overlay {
+	background-color: rgba(148, 201, 188, 0.45);
+  }
 @media screen and (max-width: 768px) {
   .grid3,
   .grid {

@@ -41,7 +41,7 @@
     gap: 1rem;
 }
 
-.QuesShare>div>input{
+.QuesShare>div>textarea, .QuesShare>div>input{
     background-color: rgba(40, 52, 62, 0.07);
     border-radius: 10px;
     padding: 10px;

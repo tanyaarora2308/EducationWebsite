@@ -1,10 +1,43 @@
 import React, { useState, useRef } from "react";
 import "./UploadQues.css";
+import swal from 'sweetalert';
+import axios from "axios";
 import { UilScenery } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
-import HelpIcon from '@mui/icons-material/Help';
+import HelpIcon from "@mui/icons-material/Help";
 
 const UploadQues = () => {
+  const initialState = {
+    userId: "",
+    desc: "",
+  };
+  const [data, setData] = useState(initialState);
+
+  const handleInputChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/query/", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const uploadQuestionButton = () => {
+    setData(initialState);
+    swal("Your question has been posted!", {
+      buttons: false,
+      timer: 1000,
+    });
+  };
+
+
   const [image, setImage] = useState(null);
   const imageRef = useRef();
 
@@ -17,22 +50,39 @@ const UploadQues = () => {
     }
   };
   return (
+    <form onSubmit={submitHandler}>
     <div className="QuesShare">
-      <HelpIcon sx={{color: "#1eb2a6"}} fontSize="large"/>
+      <HelpIcon sx={{ color: "#1eb2a6" }} fontSize="large" />
       <div>
-        <input type="text" placeholder="Your question here" style={{padding:"3rem"}}/>
+        <input
+          type="text"
+          placeholder="Your User ID"
+          name="userId"
+          value={data.userId}
+          onChange={handleInputChange}
+        />
+        <textarea
+          type="text"
+          placeholder="Your question here"
+          style={{ padding: "3rem" }}
+          name="desc"
+          value={data.desc}
+          onChange={handleInputChange}
+        />
         <div className="QuesShareOptions">
-          <div className="option" style={{ color: "var(--photo)" }}
-          onClick={()=>imageRef.current.click()}
+          <div
+            className="option"
+            style={{ color: "var(--photo)" }}
+            onClick={() => imageRef.current.click()}
           >
-            <UilScenery sx={{color: "#1eb2a6"}}/> 
+            <UilScenery sx={{ color: "#1eb2a6" }} />
             Add Question Picture
           </div>
           {/* <div className="option" style={{ color: "var(--video)" }}>
             <UilPlayCircle sx={{color: "#1eb2a6"}}/>
             Add Question Video
           </div>{" "} */}
-          <button className="button ps-button">Share</button>
+          <button className="button ps-button" type="submit" onClick={uploadQuestionButton}>Share</button>
           <div style={{ display: "none" }}>
             <input
               type="file"
@@ -42,18 +92,15 @@ const UploadQues = () => {
             />
           </div>
         </div>
-      {image && (
-
-        <div className="previewImage">
-          <UilTimes onClick={()=>setImage(null)}/>
-          <img src={image.image} alt="" />
-        </div>
-
-      )}
-
-
+        {image && (
+          <div className="previewImage">
+            <UilTimes onClick={() => setImage(null)} />
+            <img src={image.image} alt="" />
+          </div>
+        )}
       </div>
     </div>
+    </form>
   );
 };
 

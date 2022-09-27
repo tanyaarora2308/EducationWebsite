@@ -8,7 +8,7 @@ const Question = ({ data }) => {
     <div className="Question">
       <div className="detail">
         <span>
-          <b>Question by {data.name}: </b>
+          <b>Question by user {data.userId}: </b>
         </span><br/><br/>
         <span>{data.desc}</span>
       </div>

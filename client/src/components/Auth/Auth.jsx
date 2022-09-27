@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./header/Header";
+import swal from 'sweetalert';
 import "./Auth.css";
 import axios from "axios";
 
@@ -32,41 +33,32 @@ const Auth = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  // const PostData = async (e) => {
-  //   // setConfirmPass(true);
-  //   e.preventDefault();
-
-  //   var options = {
-  //     method: "POST",
-  //     url: "localhost:5000/auth/register",
-  //     headers: {
-  //       Accept: "*/*",
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: { name: "Shailender", email: "shail@gmail.com", password: "shail" },
-  //   };
-
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-
-  // };
-
-  const submitHandler=(e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/auth/register", data).then(response =>{
-      console.log(response);
-    }).catch(error => {
-      console.log(error)
-    })
-    // console.log(data);
-  }
+    axios
+      .post("http://localhost:5000/auth/register", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const signUpClick = () => {
+    setData(initialState);
+    swal("Signed Up Successfully!", {
+      buttons: false,
+      timer: 1000,
+    });
+  };
 
+  const signInClick = () => {
+    setData(initialState);
+    swal("Logged in Successfully!", {
+      buttons: false,
+      timer: 1000,
+    });
+  };
 
   const resetForm = () => {
     setData(initialState);
@@ -125,7 +117,11 @@ const Auth = () => {
                     >
                       {/* *Confirm password is not same */}
                     </span>
-                    <button className="signup" type="submit">
+                    <button
+                      className="signup"
+                      type="submit"
+                      onClick={signUpClick}
+                    >
                       Sign Up
                     </button>
                     <a
@@ -179,7 +175,7 @@ const Auth = () => {
                   </select>
                   <a href="#">Forgot your password?</a>
                   <Link to={userType === "admin" ? "/adminHome" : "/"}>
-                    <button className="signin">Sign In</button>
+                    <button className="signin" >Sign In</button>
                   </Link>
                   <a
                     onClick={() => setContainerActive(!containerActive)}
