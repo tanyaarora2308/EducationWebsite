@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./header/Header";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import "./Auth.css";
 import axios from "axios";
 
@@ -15,7 +15,8 @@ const Auth = () => {
   const [userType, setUserType] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
   const [data, setData] = useState(initialState);
-  // const [confirmpassword, setConfirmPassword] = useState(true);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const signUpButton = () => {
     setContainerActive(true);
@@ -35,6 +36,8 @@ const Auth = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setFormErrors(validate(data));
+    setIsSubmit(true);
     axios
       .post("http://localhost:5000/auth/register", data)
       .then((response) => {
@@ -46,10 +49,13 @@ const Auth = () => {
   };
   const signUpClick = () => {
     setData(initialState);
-    swal("Signed Up Successfully!", {
-      buttons: false,
-      timer: 1000,
-    });
+    {
+      isSubmit &&
+        swal("Signed Up Successfully!", {
+          buttons: false,
+          timer: 1000,
+        });
+    }
   };
 
   const signInClick = () => {
@@ -60,9 +66,34 @@ const Auth = () => {
     });
   };
 
-  const resetForm = () => {
-    setData(initialState);
-    // setConfirmPass(confirmPass);
+
+  useEffect(() => {
+    console.log(formErrors);
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(data);
+    }
+  }, [formErrors]);
+
+
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = "Username is required!";
+    }
+    if (!values.email) {
+      errors.email = "Email is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "This is not a valid email format!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4) {
+      errors.password = "Password must be more than 4 characters";
+    } else if (values.password.length > 10) {
+      errors.password = "Password cannot exceed more than 10 characters";
+    }
+    return errors;
   };
 
   return (
@@ -86,13 +117,15 @@ const Auth = () => {
                       value={data.name}
                       onChange={handleInputChange}
                     />
+                    <span>{formErrors.name}</span>
                     <input
-                      type="email"
+                      type="text"
                       placeholder="Email"
                       name="email"
                       value={data.email}
                       onChange={handleInputChange}
                     />
+                    <span>{formErrors.email}</span>
                     <input
                       type="password"
                       placeholder="Password"
@@ -100,27 +133,20 @@ const Auth = () => {
                       value={data.password}
                       onChange={handleInputChange}
                     />
+                    <span>{formErrors.password}</span>
                     <input
                       type="password"
                       placeholder="Confirm Password"
                       name="confirmpassword"
+                      pattern={data.password}
                       value={data.confirmpassword}
                       onChange={handleInputChange}
                     />
-                    <span
-                      style={{
-                        color: "red",
-                        fontWeight: "600",
-                        fontSize: "12px",
-                        // display: confirmPass ? "none" : "block",
-                      }}
-                    >
-                      {/* *Confirm password is not same */}
-                    </span>
+                    {/* <span className="errorMessage">Passwords don't match!</span> */}
                     <button
                       className="signup"
                       type="submit"
-                      onClick={signUpClick}
+                      // onClick={signUpClick}
                     >
                       Sign Up
                     </button>
@@ -175,7 +201,7 @@ const Auth = () => {
                   </select>
                   <a href="#">Forgot your password?</a>
                   <Link to={userType === "admin" ? "/adminHome" : "/"}>
-                    <button className="signin" >Sign In</button>
+                    <button className="signin">Sign In</button>
                   </Link>
                   <a
                     onClick={() => setContainerActive(!containerActive)}
