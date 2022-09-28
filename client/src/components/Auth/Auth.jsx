@@ -7,17 +7,20 @@ import axios from "axios";
 import FormInput from "../common/formInput";
 
 const Auth = () => {
-  const initialState = {
+  const registerInitialState = {
     name: "",
     email: "",
     password: "",
     confirmpassword: "",
   };
-  const [focused, setFocused] = useState(false);
-  const [data, setData] = useState(initialState);
-  const handleFocus = (e) => {
-    setFocused(true);
+  const loginInitialState = {
+    email: "",
+    password: "",
+    userType: "",
   };
+  const [registerData, setRegisterData] = useState(registerInitialState);
+  const [loginData, setLoginData] = useState(loginInitialState);
+
   const SignUpInputs = [
     {
       id: 1,
@@ -26,7 +29,7 @@ const Auth = () => {
       placeholder: "Name",
       errorMessage:
         "Name should be 3-16 characters and shouldn't include any special character!",
-      pattern: "^[A-Za-z0-9]{3,16}$",
+      pattern: "^[A-Za -z0-9]{3,16}$",
       required: true,
     },
     {
@@ -53,7 +56,7 @@ const Auth = () => {
       type: "password",
       placeholder: "Confirm Password",
       errorMessage: "Passwords don't match!",
-      pattern: data.password,
+      pattern: registerData.password,
       required: true,
     },
   ];
@@ -63,7 +66,6 @@ const Auth = () => {
       name: "email",
       type: "email",
       placeholder: "Email",
-      errorMessage: "Please enter a valid email address!",
       required: true,
     },
     {
@@ -71,12 +73,10 @@ const Auth = () => {
       name: "password",
       type: "password",
       placeholder: "Password",
-      errorMessage: "Incorrect password",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
   ];
-  const [userType, setUserType] = useState("student");
+  const [LoginUserTypeState, setLoginUserTypeState] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
 
   const signUpButton = () => {
@@ -86,49 +86,87 @@ const Auth = () => {
     setContainerActive(false);
   };
 
-  const handleChange = (e) => {
-    const userType = e.target.value;
-    setUserType(e.target.value);
+  const handleloginUserTypeChange = (e) => {
+    setLoginUserTypeState(e.target.value);
+    console.log(LoginUserTypeState);
   };
 
-  const handleInputChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleRegisterInputChange = (e) => {
+    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
-    // e.preventDefault();
-    setData(initialState);
-    if (data.name && data.password && data.confirmpassword && data.email)
+  const handleLoginInputChange = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+
+  const RegisterHandler = (e) => {
+    e.preventDefault();
+    setRegisterData(registerInitialState);
+    if (
+      registerData.name &&
+      registerData.password &&
+      registerData.confirmpassword &&
+      registerData.email
+    ) {
       axios
-        .post("http://localhost:5000/auth/register", data)
+        .post("http://localhost:5000/auth/register", registerData)
         .then((response) => {
           console.log(response);
+          if (response.status == 200)
+            swal("Signed Up Successfully!", {
+              buttons: false,
+              timer: 1000,
+            });
+
+          if (response.statusCode == 400) {
+            throw new Error(response.status);
+          }
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          swal("User already exists!", {
+            buttons: false,
+            timer: 1000,
+          });
         });
+    }
   };
 
-  const signUpClick = () => {
-    setData(initialState);
-    data.name &&
-      data.password &&
-      data.confirmpassword &&
-      data.email &&
-      swal("Signed Up Successfully!", {
-        buttons: false,
-        timer: 1000,
-      });
-    // window.location.reload(false);
-  };
-
-  const signInClick = () => {
-    setData(initialState);
-    data.name != "" &&
-      data.password != "" &&
-      swal("Logged in Successfully!", {
-        buttons: false,
-        timer: 1000,
+  const LoginHandler = (e) => {
+    e.preventDefault();
+    setLoginData({ ...loginData, userType: LoginUserTypeState });
+    console.log(loginData);
+    setLoginData(loginInitialState);
+    axios
+      .post("http://localhost:5000/auth/login", loginData)
+      .then((response) => {
+        if (response.status == 200) {
+          swal("Logged in Successfully!", {
+            buttons: false,
+            timer: 1000,
+          });
+          // if (LoginUserTypeState == "admin")
+            // window.location.href = "http://localhost:3000/adminHome";
+          // else window.location.href = "http://localhost:3000/";
+        } else if (response.status == 400) {
+          swal("Email or password not entered", {
+            buttons: false,
+            timer: 1000,
+          });
+        } else if (response.status == 404) {
+          swal("User does not exist", {
+            buttons: false,
+            timer: 1000,
+          });
+        } else if (response.status == 401) {
+          swal("Invalid credentials!", {
+            buttons: false,
+            timer: 1000,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -144,20 +182,20 @@ const Auth = () => {
             <>
               <div className="sign-up-container">
                 <div>
-                  <form method="POST" onSubmit={submitHandler}>
+                  <form>
                     <h1 className="font-effect-anaglyph">Create Account</h1>
                     {SignUpInputs.map((input) => (
                       <FormInput
                         key={input.id}
                         {...input}
-                        value={data[input.name]}
-                        onChange={handleInputChange}
+                        value={registerData[input.name]}
+                        onChange={handleRegisterInputChange}
                       />
                     ))}
                     <button
                       className="signup"
                       type="submit"
-                      onClick={signUpClick}
+                      onClick={RegisterHandler}
                     >
                       Sign Up
                     </button>
@@ -176,18 +214,18 @@ const Auth = () => {
           ) : (
             <>
               <div className="form-container sign-in-container">
-                <form action="#">
+                <form>
                   <h1 className="font-effect-anaglyph">Sign in</h1>
                   {SignInInputs.map((input) => (
                     <FormInput
                       key={input.id}
                       {...input}
-                      value={data[input.name]}
-                      onChange={handleInputChange}
+                      value={loginData[input.name]}
+                      onChange={handleLoginInputChange}
                     />
                   ))}
                   <label
-                    htmlFor="userType"
+                    htmlFor="LoginUserTypeState"
                     style={{
                       textAlign: "left",
                       color: "grey",
@@ -199,8 +237,8 @@ const Auth = () => {
                   </label>
                   <select
                     name="userType"
-                    value={userType}
-                    onChange={handleChange}
+                    value={LoginUserTypeState}
+                    onChange={handleloginUserTypeChange}
                     placeholder="User Type"
                     style={{ padding: "10px 20px" }}
                     className="selectBox"
@@ -209,8 +247,12 @@ const Auth = () => {
                     <option value="admin">Admin</option>
                   </select>
                   <a href="#">Forgot your password?</a>
-                  <Link to={userType === "admin" ? "/adminHome" : "/"}>
-                    <button className="signin" onClick={signInClick}>
+                  <Link>
+                    <button
+                      className="signin"
+                      onClick={LoginHandler}
+                      type="submit"
+                    >
                       Sign In
                     </button>
                   </Link>
