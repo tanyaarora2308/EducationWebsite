@@ -9,6 +9,7 @@ export const registerUser = async (req, res) => {
   const hashedPass = await bcrypt.hash(password, salt);
 
   try {
+    const oldUser = await 
     const newUser = new UserModel({
       name,
       email,
