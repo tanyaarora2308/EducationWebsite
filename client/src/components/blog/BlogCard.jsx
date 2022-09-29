@@ -13,7 +13,6 @@ const BlogCard = () => {
     setData(returnedData.data);
   };
 
-  // console.log(data);
 
   useEffect(() => {
     getData();

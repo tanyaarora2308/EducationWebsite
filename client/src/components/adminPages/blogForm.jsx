@@ -47,7 +47,7 @@ const Form = (props) => {
       })
       .catch((error) => {
         // console.log(error.response.data.message);
-        swal(error.response.data.message, {
+        swal(error.response.data, {
           buttons: false,
           timer: 1000,
         });

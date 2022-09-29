@@ -35,22 +35,27 @@ const Form = (props) => {
     axios
       .post("http://localhost:5000/assignments/", data)
       .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
+        if (response.status == 200)
+        swal("Assignment Posted!", {
+          buttons: false,
+          timer: 1000,
+        });
+      else if (response.status == 400) {
+        throw new Error(response.status);
+      }
+    })
+    .catch((error) => {
+
+      console.log(error);
+      swal(error.response.data, {
+        buttons: false,
+        timer: 1000,
       });
-  };
-  const studyMaterialSubmit = () => {
-    setData(initialState);
-    swal("Posted Successfully!", {
-      buttons: false,
-      timer: 1000,
     });
-  };
+};
   return (
     <>
-      <form onSubmit={submitHandler}>
+      <form>
         <div className="row">
           <label>Title</label>
           <input
@@ -85,7 +90,7 @@ const Form = (props) => {
           type="submit"
           title="Submit"
           id="button"
-          onClick={studyMaterialSubmit}
+          onClick={submitHandler}
         >
           Submit
         </button>

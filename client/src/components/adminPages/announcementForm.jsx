@@ -31,26 +31,32 @@ const Form = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setData(initialState);
     axios
       .post("http://localhost:5000/announcements/", data)
       .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+        if (response.status == 200)
+        swal("Announcement Posted!", {
+          buttons: false,
+          timer: 1000,
+        });
+      else if (response.status == 400) {
+        throw new Error(response.status);
+      }
+    })
+    .catch((error) => {
 
-  const announcementSubmit = () =>{
-    setData(initialState);
-    swal("Posted Successfully!", {
-      buttons: false,
-      timer: 1000,
+      console.log(error);
+      swal(error.response.data, {
+        buttons: false,
+        timer: 1000,
+      });
     });
-  }
+};
+
   return (
     <>
-      <form onSubmit={submitHandler}>
+      <form>
         <div className="row">
           <label>Title</label>
           <input
@@ -71,7 +77,7 @@ const Form = (props) => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" title="Submit" id="button" onClick={announcementSubmit}>
+        <button type="submit" title="Submit" id="button" onClick={submitHandler}>
           Submit
         </button>
       </form>
