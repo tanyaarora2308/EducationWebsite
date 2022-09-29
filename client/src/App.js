@@ -14,6 +14,7 @@ import announcementForm from "./components/adminPages/announcementForm";
 import studyMaterialForm from "./components/adminPages/studyMaterialForm";
 import Feedback from "./components/adminPages/FeedbackDisplay/Feedback";
 import AdminHome from "./components/adminPages/AdminHome";
+import blogForm from "./components/adminPages/blogForm";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/announcementForm" component={announcementForm} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/studyMaterialForm" component={studyMaterialForm} />
+          <Route exact path="/blogForm" component={blogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/adminHome" component={AdminHome} />
         </Switch>

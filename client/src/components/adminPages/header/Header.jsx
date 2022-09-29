@@ -29,6 +29,9 @@ const Header = () => {
             <li>
               <Link to="/studyMaterialForm">StudyMaterialForm</Link>
             </li>
+            <li>
+              <Link to="/blogForm">BlogForm</Link>
+            </li>
           </ul>
           <button className="toggle" onClick={() => setClick(!click)}>
             {click ? (

@@ -8,6 +8,7 @@ import QueryRoute from "./Routes/QueryRoute.js"
 import FeedbackRoute from "./Routes/FeedbackRoute.js"
 import AnnouncementRoute from "./Routes/AnnouncementRoute.js"
 import AssignmentRoute from "./Routes/AssignmentRoute.js"
+import BlogRoute from "./Routes/BlogRoute.js"
 
 const app = express();
 app.use(cors());
@@ -34,3 +35,4 @@ mongoose
   app.use('/feedback', FeedbackRoute)
   app.use('/announcements', AnnouncementRoute)
   app.use('/assignments', AssignmentRoute)
+  app.use('/blogs', BlogRoute)
