@@ -36,7 +36,7 @@ const Auth = () => {
     {
       id: 2,
       name: "email",
-      // type: "email",
+      type: "email",
       placeholder: "Email",
       errorMessage: "It should be a valid email address!",
       required: true,
@@ -123,8 +123,8 @@ const Auth = () => {
           }
         })
         .catch((error) => {
-          console.log(error.response.data);
-          swal("User already exists!", {
+          // console.log(error.response.data.message);
+          swal(error.response.data.message, {
             buttons: false,
             timer: 1000,
           });
