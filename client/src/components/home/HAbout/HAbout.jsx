@@ -1,5 +1,5 @@
 import React from "react"
-import Heading from "../../common/heading/Heading"
+import Heading from "../../common/Heading"
 import "./HAbout.css"
 import  HStats  from "./HStats"
 import { hAbout } from "../../../dummydata"

@@ -1,8 +1,5 @@
-import React from "react";
-import { feedbacks } from "../../../dummydata";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const FeedbackDisplay = () => {
   const [data, setData] = useState([]);

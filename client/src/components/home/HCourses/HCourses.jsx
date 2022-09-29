@@ -1,5 +1,5 @@
 import React from "react";
-import Heading from "../../common/heading/Heading";
+import Heading from "../../common/Heading";
 import "./HCourses.css";
 import swal from 'sweetalert';
 import { coursesCard } from "../../../dummydata";

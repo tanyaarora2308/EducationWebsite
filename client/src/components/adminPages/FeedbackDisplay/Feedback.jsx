@@ -1,6 +1,6 @@
 import React from "react"
 import Back from "../../common/Back"
-import Heading from "../../common/heading/Heading"
+import Heading from "../../common/Heading"
 import FeedbackDisplay from "./FeedbackDisplay"
 import "./FeedbackDisplay.css"
 

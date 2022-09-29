@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Header from "./header/Header";
 import swal from "sweetalert";
 import "./Auth.css";
@@ -7,6 +7,7 @@ import axios from "axios";
 import FormInput from "../common/formInput";
 
 const Auth = () => {
+  const history = useHistory();
   const registerInitialState = {
     name: "",
     email: "",
@@ -35,7 +36,7 @@ const Auth = () => {
     {
       id: 2,
       name: "email",
-      type: "email",
+      // type: "email",
       placeholder: "Email",
       errorMessage: "It should be a valid email address!",
       required: true,
@@ -47,7 +48,7 @@ const Auth = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
     {
@@ -76,7 +77,7 @@ const Auth = () => {
       required: true,
     },
   ];
-  const [LoginUserTypeState, setLoginUserTypeState] = useState("student");
+  const [userTypeState, setuserTypeState] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
 
   const signUpButton = () => {
@@ -87,8 +88,8 @@ const Auth = () => {
   };
 
   const handleloginUserTypeChange = (e) => {
-    setLoginUserTypeState(e.target.value);
-    console.log(LoginUserTypeState);
+    setuserTypeState(e.target.value);
+    console.log(userTypeState);
   };
 
   const handleRegisterInputChange = (e) => {
@@ -117,8 +118,7 @@ const Auth = () => {
               buttons: false,
               timer: 1000,
             });
-
-          if (response.statusCode == 400) {
+          else if (response.status == 400) {
             throw new Error(response.status);
           }
         })
@@ -134,8 +134,8 @@ const Auth = () => {
 
   const LoginHandler = (e) => {
     e.preventDefault();
-    setLoginData({ ...loginData, userType: LoginUserTypeState });
-    console.log(loginData);
+    setLoginData({ ...loginData, userType: userTypeState });
+    // console.log(loginData);
     setLoginData(loginInitialState);
     axios
       .post("http://localhost:5000/auth/login", loginData)
@@ -145,28 +145,16 @@ const Auth = () => {
             buttons: false,
             timer: 1000,
           });
-          // if (LoginUserTypeState == "admin")
-            // window.location.href = "http://localhost:3000/adminHome";
-          // else window.location.href = "http://localhost:3000/";
-        } else if (response.status == 400) {
-          swal("Email or password not entered", {
-            buttons: false,
-            timer: 1000,
-          });
-        } else if (response.status == 404) {
-          swal("User does not exist", {
-            buttons: false,
-            timer: 1000,
-          });
-        } else if (response.status == 401) {
-          swal("Invalid credentials!", {
-            buttons: false,
-            timer: 1000,
-          });
-        }
+          if (userTypeState == "admin") history.push("/adminHome");
+          else history.push("/");
+        } else throw new Error(response.message);
       })
       .catch((error) => {
-        console.log(error);
+        swal(error.response.data, {
+          buttons: false,
+          timer: 1000,
+        });
+        console.log(error.response.data);
       });
   };
 
@@ -225,7 +213,7 @@ const Auth = () => {
                     />
                   ))}
                   <label
-                    htmlFor="LoginUserTypeState"
+                    htmlFor="userTypeState"
                     style={{
                       textAlign: "left",
                       color: "grey",
@@ -237,7 +225,7 @@ const Auth = () => {
                   </label>
                   <select
                     name="userType"
-                    value={LoginUserTypeState}
+                    value={userTypeState}
                     onChange={handleloginUserTypeChange}
                     placeholder="User Type"
                     style={{ padding: "10px 20px" }}

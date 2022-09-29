@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./header_auth.css";
 
 const Header = () => {
-  const [click, setClick] = useState(false);
   return (
     <>
       <header className="header_admin">

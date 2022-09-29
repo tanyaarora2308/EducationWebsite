@@ -2,13 +2,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Maths from "./Maths";
 import Nav from "./Nav";
 import Chemistry from "./Chemistry";
-import Heading from "../common/heading/Heading"
-// import Main from "./Main";
+import Heading from "../common/Heading"
 import Back from "../common/Back";
-import "./Main.scss";
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
+import "./Main.scss";
+
 
 function StudyMaterial() {
   const [data, setData] = useState([]);

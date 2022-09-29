@@ -21,10 +21,10 @@ const Header = () => {
               <Link to="/queries">Queries</Link>
             </li>
             <li>
-              <Link to="/announcementForm">AnnouncementForm</Link>
+              <Link to="/feedbackdisplay">View Feedbacks</Link>
             </li>
             <li>
-              <Link to="/feedbackdisplay">View Feedbacks</Link>
+              <Link to="/announcementForm">AnnouncementForm</Link>
             </li>
             <li>
               <Link to="/studyMaterialForm">StudyMaterialForm</Link>

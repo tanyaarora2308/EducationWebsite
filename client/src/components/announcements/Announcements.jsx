@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./Announcements.scss";
-import { announcements } from "../../dummydata";
 import axios from "axios";
 import Back from "../common/Back";
-import { useState } from "react";
 
 const Announcements = () => {
   const [data, setData] = useState([]);
