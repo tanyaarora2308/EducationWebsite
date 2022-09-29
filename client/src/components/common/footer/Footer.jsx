@@ -15,7 +15,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="box last">
-            <h3>Have any Questions?</h3><br/>
+            <h3>&nbsp Have any Questions?</h3><br/>
             <ul>
               <li>
                 <i className="fa fa-map"></i>
