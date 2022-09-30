@@ -9,7 +9,7 @@ const Questions = () => {
 
   const getData = async () => {
     const returnedData = await axios.get("http://localhost:5000/query/");
-    console.log(returnedData);
+    // console.log(returnedData);
     setData(returnedData.data);
   };
 
@@ -21,8 +21,8 @@ const Questions = () => {
 
   return (
     <div className="Questions">
-      {data.map((query, id) => {
-        return <Question data={query} id={id} />;
+      {[...data].reverse().map((query, id,_id) => {
+        return <Question data={query} id={id}/>;
       })}
     </div>
   );

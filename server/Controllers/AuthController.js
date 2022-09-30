@@ -1,4 +1,6 @@
 import UserModel from "../Models/userModel.js";
+import jwt from "jsonwebtoken";
+import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 
 // Registering a new User
@@ -24,8 +26,23 @@ export const registerUser = async (req, res) => {
       password: hashedPass,
       confirmpassword,
     });
-    await newUser.save();
-    res.status(200).json(newUser);
+
+    if (newUser) {
+      res.status(201).json({
+        _id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        password:newUser.password,
+        confirmpassword:newUser.confirmpassword,
+        token: generateToken(newUser._id),
+      })
+    } else {
+      res.status(400)
+      throw new Error('Invalid user data')
+    }
+
+  //   await newUser.save();
+  //   res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,7 +58,12 @@ export const loginUser = async (req, res) => {
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
       validity
-        ? res.status(200).json(user)
+        ? res.status(200).json({
+          _id: user.id,
+          name: user.name,
+          email: user.email,
+          token: generateToken(user._id),
+        })
         : res.status(401).json("Invalid credentials!");
     } else {
       res.status(404).json("User does not exist");
@@ -65,3 +87,8 @@ export const getAllUsers = async (req, res) => {
       res.status(500).json(error);
     });
 };
+
+
+const generateToken = (id) =>{
+  return jwt.sign({id},process.env.JWT_KEY,{expiresIn:"2m"})
+}

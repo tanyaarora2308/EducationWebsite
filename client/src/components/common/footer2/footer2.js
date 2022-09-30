@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer2.css";
+// import
 export default function Footer() {
   return (
     <div className="top">

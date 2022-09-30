@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/* @import "waveImage" from ../../../images/wave.png; */
 .top {
   margin-top: 6em;
   display: flex;
@@ -8,7 +9,7 @@
 .footer {
   position: relative;
   width: 100%;
-  background: #3edbcd;
+  background: #59e3d7;
   min-height: 100px;
   padding: 20px 50px;
   display: flex;
@@ -31,7 +32,7 @@
   left: 0;
   width: 100%;
   height: 100px;
-  background: url("https://srv2.imgonline.com.ua/result_img/imgonline-com-ua-ReplaceColor-DmC27TPHqhv.jpg");
+  background: url(../../../images/wave.png);
   background-size: 1000px 100px;
 }
 

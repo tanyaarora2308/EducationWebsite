@@ -31,26 +31,28 @@ const Form = (props) => {
   };
 
   const submitHandler = (e) => {
+    // console.log(data);
     e.preventDefault();
     setData(initialState);
     axios
       .post("http://localhost:5000/blogs/", data)
       .then((response) => {
-        if (response.status == 200)
-          swal("Blog Posted!", {
-            buttons: false,
-            timer: 1000,
-          });
+        if (response.status == 200) 
+        // console.log(response);
+        swal("Blog Posted!", {
+          buttons: false,
+          timer: 1000,
+        });
         else if (response.status == 400) {
           throw new Error(response.status);
         }
       })
       .catch((error) => {
-        // console.log(error.response.data.message);
-        swal(error.response.data, {
-          buttons: false,
-          timer: 1000,
-        });
+        console.log(error);
+        // swal(error.response.data, {
+        //   buttons: false,
+        //   timer: 1000,
+        // });
       });
   };
   return (

@@ -5,7 +5,7 @@ export const postAssignment = async (req, res) => {
   const { title, videoUrl, assignmentUrl } = req.body;
   const newAssignment = new AssignmentModel(req.body);
   if (!title) return res.status(400).json("Title not entered.");
-  if (!videoUrl || !assignmentUrl)
+  if (!videoUrl && !assignmentUrl)
     return res.status(400).json("Video or Assignment Link Empty");
   try {
     await newAssignment.save();

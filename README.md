@@ -1,4 +1,4 @@
-WEBSITE FOR A COACHING CENTRE
+WEBSITE FOR A COACHING CENTRE.
 
 # Getting Started with Create React App
 

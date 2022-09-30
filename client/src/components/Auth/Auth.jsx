@@ -102,7 +102,7 @@ const Auth = () => {
 
   const RegisterHandler = (e) => {
     e.preventDefault();
-    setRegisterData(registerInitialState);
+    // setRegisterData(registerInitialState);
     if (
       registerData.name &&
       registerData.password &&
@@ -136,7 +136,7 @@ const Auth = () => {
     e.preventDefault();
     setLoginData({ ...loginData, userType: userTypeState });
     // console.log(loginData);
-    setLoginData(loginInitialState);
+    // setLoginData(loginInitialState);
     axios
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
