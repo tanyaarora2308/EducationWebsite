@@ -22,7 +22,7 @@ const BlogCard = () => {
       <div className="row11 blogCard">
         {data && data.map((val) => (
           <div className=" column11">
-            <a href="#" class="data-card">
+            <a href="#" class="data-card" key={val._id}>
               <h3>{val.id}</h3>
               <h4></h4>
               <p>{val.title}</p>

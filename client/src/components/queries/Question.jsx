@@ -8,6 +8,7 @@ const Question = ({ data }) => {
     <div className="Question">
       <div className="detail">
         <span>
+        <span className="date">Posted on: {data.createdAt.slice(0,10)}</span><br/><br/>
           <b>Question by user {data.userId}: </b>
         </span><br/><br/>
         <span>{data.desc}</span>
@@ -20,6 +21,7 @@ const Question = ({ data }) => {
             cursor:"pointer"
           }}/>
         {/* <img src={Comment} alt="" /> */}
+        
       </div>
     </div>
   );

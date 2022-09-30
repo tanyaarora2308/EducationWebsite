@@ -18,6 +18,7 @@ const UploadQues = () => {
   };
 
   const submitHandler = (e) => {
+    setData(initialState);
     e.preventDefault();
     axios
       .post("http://localhost:5000/query/", data)
@@ -29,13 +30,6 @@ const UploadQues = () => {
       });
   };
 
-  const uploadQuestionButton = () => {
-    setData(initialState);
-    swal("Your question has been posted!", {
-      buttons: false,
-      timer: 1000,
-    });
-  };
 
 
   const [image, setImage] = useState(null);
@@ -50,7 +44,7 @@ const UploadQues = () => {
     }
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form>
     <div className="QuesShare">
       <HelpIcon sx={{ color: "#1eb2a6" }} fontSize="large" />
       <div>
@@ -70,19 +64,15 @@ const UploadQues = () => {
           onChange={handleInputChange}
         />
         <div className="QuesShareOptions">
-          <div
+          {/* <div
             className="option"
             style={{ color: "var(--photo)" }}
             onClick={() => imageRef.current.click()}
           >
             <UilScenery sx={{ color: "#1eb2a6" }} />
             Add Question Picture
-          </div>
-          {/* <div className="option" style={{ color: "var(--video)" }}>
-            <UilPlayCircle sx={{color: "#1eb2a6"}}/>
-            Add Question Video
-          </div>{" "} */}
-          <button className="button ps-button" type="submit" onClick={uploadQuestionButton}>Share</button>
+          </div> */}
+          <button className="button ps-button" type="submit" onClick={submitHandler}>Share</button>
           <div style={{ display: "none" }}>
             <input
               type="file"

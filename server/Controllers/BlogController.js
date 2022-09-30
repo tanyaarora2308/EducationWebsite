@@ -4,7 +4,7 @@ import blogModel from "../Models/blogModel.js";
 export const postBlog = async (req, res) => {
   const newBlog = new blogModel(req.body);
   const { id, title, link } = req.body;
-  if (!id || !videoUrl || !assignmentUrl)
+  if (!id || !title || !link)
     return res.status(400).json("Please fill in all the fields.");
   try {
     await newBlog.save();
