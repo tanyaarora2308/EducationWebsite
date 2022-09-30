@@ -1,6 +1,5 @@
 import UserModel from "../Models/userModel.js";
 import jwt from "jsonwebtoken";
-import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 
 // Registering a new User
@@ -28,6 +27,7 @@ export const registerUser = async (req, res) => {
     });
 
     if (newUser) {
+      await newUser.save();
       res.status(201).json({
         _id: newUser.id,
         name: newUser.name,
@@ -41,7 +41,7 @@ export const registerUser = async (req, res) => {
       throw new Error('Invalid user data')
     }
 
-  //   await newUser.save();
+    
   //   res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
