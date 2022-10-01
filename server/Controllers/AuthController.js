@@ -32,17 +32,16 @@ export const registerUser = async (req, res) => {
         _id: newUser.id,
         name: newUser.name,
         email: newUser.email,
-        password:newUser.password,
-        confirmpassword:newUser.confirmpassword,
+        password: newUser.password,
+        confirmpassword: newUser.confirmpassword,
         token: generateToken(newUser._id),
-      })
+      });
     } else {
-      res.status(400)
-      throw new Error('Invalid user data')
+      res.status(400);
+      throw new Error("Invalid user data");
     }
 
-    
-  //   res.status(200).json(newUser);
+    //   res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -55,15 +54,17 @@ export const loginUser = async (req, res) => {
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
+    // const token = await user.generateAuthToken();
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
       validity
         ? res.status(200).json({
-          _id: user.id,
-          name: user.name,
-          email: user.email,
-          token: generateToken(user._id),
-        })
+            // user
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id),
+          })
         : res.status(401).json("Invalid credentials!");
     } else {
       res.status(404).json("User does not exist");
@@ -75,6 +76,7 @@ export const loginUser = async (req, res) => {
 
 //Logout User
 export const logoutUser = (req, res) => {
+  sessionStorage.removeItem('UserDetails');
   res.redirect("/");
 };
 
@@ -88,7 +90,8 @@ export const getAllUsers = async (req, res) => {
     });
 };
 
-
-const generateToken = (id) =>{
-  return jwt.sign({id},process.env.JWT_KEY,{expiresIn:"2m"})
-}
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_KEY,
+    //  { expiresIn: "2m" }
+     );
+};

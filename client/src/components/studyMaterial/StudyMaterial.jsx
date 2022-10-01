@@ -3,27 +3,52 @@ import Maths from "./Maths";
 import Nav from "./Nav";
 import Chemistry from "./Chemistry";
 import Heading from "../common/Heading";
+import Error from "../common/Error";
 import Back from "../common/Back";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./Main.scss";
+import Header from "../common/header/Header";
 
 function StudyMaterial() {
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
+
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const returnedData = await axios.get("http://localhost:5000/assignments");
-    console.log(returnedData);
-    setData(returnedData.data);
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
+    axios
+      .get("/assignments", { headers: headers })
+      .then((response) => {
+        console.log(response);
+        setData(response.data);
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     getData();
   }, [data]);
+
   return (
     <>
-      {/* <Router>
+    <Header/>
+      {authenticated ? (
+        <>
+          {/* <Router>
         <Back title="STUDY MATERIAL" />
         <div style={{backgroundColor:"#f8f8f8",padding:"2rem 1rem"}}>
         <Nav />
@@ -33,64 +58,55 @@ function StudyMaterial() {
         </Switch>
         </div>
       </Router> */}
-      <Back title="STUDY MATERIAL" />
-      <section className="studyMaterialSection"style={{ backgroundColor: "#f8f8f8", padding: "2rem 1rem",textAlign:"center" }}>
-      <div class="box">
-    <form name="search">
-      <label>Search: </label>
-        <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();"  onChange={(e) => setQuery(e.target.value.toLowerCase())}/>
-    </form>
-
-</div>
-        {/* <input
-          className="search"
-          placeholder="Search..."
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
-        /> */}
-        <Heading title="YOUTUBE PLAYLISTS" />
-        <div className="container">
-
-
-          
-          <div className="content grid2">
-            {data
-              .filter((x) => x.title.toLowerCase().includes(query))
-              .map((val) => (
-                <figure className="image-block">
-                  <iframe
-                    id="ytplayer"
-                    type="text/html"
-                    width="100%"
-                    height="405"
-                    src={`https://www.youtube.com/embed/?listType=playlist&list=${val.videoUrl}`}
-                    frameborder="0"
-                    allowfullscreen
-                  ></iframe>
-                  <figcaption>
-                    <p>{val.title}</p>
-                  </figcaption>
-                </figure>
-              ))}
-
-            {/* {data.map((val) => (
-              <figure className="image-block">
-                <iframe
-                  id="ytplayer"
-                  type="text/html"
-                  width="100%"
-                  height="405"
-                  src={`https://www.youtube.com/embed/?listType=playlist&list=${val.videoUrl}`}
-                  frameborder="0"
-                  allowfullscreen
-                ></iframe>
-                <figcaption>
-                  <p>{val.title}</p>
-                </figcaption>
-              </figure>
-            ))} */}
-          </div>
-        </div>
-      </section>
+          <Back title="STUDY MATERIAL" />
+          <section
+            className="studyMaterialSection"
+            style={{
+              backgroundColor: "#f8f8f8",
+              padding: "2rem 1rem",
+              textAlign: "center",
+            }}
+          >
+            <div class="box">
+              <form name="search">
+                <label>Search: </label>
+                <input
+                  type="text"
+                  class="input"
+                  name="txt"
+                  onmouseout="this.value = ''; this.blur();"
+                  onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                />
+              </form>
+            </div>
+            <Heading title="YOUTUBE PLAYLISTS" />
+            <div className="container">
+              <div className="content grid2">
+                {data
+                  .filter((x) => x.title.toLowerCase().includes(query))
+                  .map((val) => (
+                    <figure className="image-block">
+                      <iframe
+                        id="ytplayer"
+                        type="text/html"
+                        width="100%"
+                        height="405"
+                        src={`https://www.youtube.com/embed/?listType=playlist&list=${val.videoUrl}`}
+                        frameborder="0"
+                        allowfullscreen
+                      ></iframe>
+                      <figcaption>
+                        <p>{val.title}</p>
+                      </figcaption>
+                    </figure>
+                  ))}
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <Error />
+      )}
     </>
   );
 }

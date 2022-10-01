@@ -1,6 +1,6 @@
 import QueryModel from "../Models/queryModel.js";
-import mongoose from "mongoose";
-import UserModel from "../Models/userModel.js";
+// import mongoose from "mongoose";
+// import UserModel from "../Models/userModel.js";
 
 // Create new Query
 export const postQuery = async (req, res) => {
@@ -20,7 +20,7 @@ export const getQuery = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const query = await QueryModel.findById(id)
+    const query = await QueryModel.findById(id);
     res.status(200).json(query);
   } catch (error) {
     res.status(500).json(error);
@@ -33,7 +33,7 @@ export const updateQuery = async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const query = await QueryModel.findById(queryID)
+    const query = await QueryModel.findById(queryID);
     if (query.userId === userId) {
       await query.updateOne({ $set: req.body });
       res.status(200).json("Query Updated");
@@ -63,12 +63,30 @@ export const deleteQuery = async (req, res) => {
   }
 };
 
-
 //Show all queries
 export const showAllQueries = async (req, res) => {
-  QueryModel.find({}).then((queries) => {
-    res.status(200).json(queries);
-  }).catch((error) => {
-    res.status(500).json(error);
-  })
+  QueryModel.find({})
+    .then((queries) => {
+      res.status(200).json(queries);
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
 };
+
+// Answer a query
+// export const answerQuery = async (req, res) => {
+//   try {
+//     const { comment, quesID, userId} = req.body;
+//     const newComment = {
+//       userId,
+//       comment
+//     };
+//     const question = await QueryModel.find(quesID);
+//     question.comments.push(newComment);
+//     await question.save();
+//     res.status(200).json(question);
+//   } catch (error){
+//     res.status(500).json(error);
+//   }
+// };

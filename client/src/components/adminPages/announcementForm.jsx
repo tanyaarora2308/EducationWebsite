@@ -1,19 +1,35 @@
 import "./Form.css";
 import Back from "../common/Back";
-import { useState } from "react";
-import swal from 'sweetalert';
+import { React, useEffect, useState } from "react";
+import Error from "../common/Error"
+import Header from "./header/Header"
+import swal from "sweetalert";
 import axios from "axios";
 
 const announcementForm = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
+
   return (
     <>
-      <Back title="Post Announcements" />
-      <div className="announcementForm">
-        <div id="loginform">
-          <h2 id="headerTitle">Post Announcement</h2>
-          <Form />
-        </div>
-      </div>
+      <Header />
+      {authenticated ? (
+        <>
+          <Back title="Post Announcements" />
+          <div className="announcementForm">
+            <div id="loginform">
+              <h2 id="headerTitle">Post Announcement</h2>
+              <Form />
+            </div>
+          </div>
+        </>
+      ) : (
+        <Error />
+      )}
     </>
   );
 };
@@ -36,23 +52,22 @@ const Form = (props) => {
       .post("http://localhost:5000/announcements/", data)
       .then((response) => {
         if (response.status == 200)
-        swal("Announcement Posted!", {
+          swal("Announcement Posted!", {
+            buttons: false,
+            timer: 1000,
+          });
+        else if (response.status == 400) {
+          throw new Error(response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(error.response.data, {
           buttons: false,
           timer: 1000,
         });
-      else if (response.status == 400) {
-        throw new Error(response.status);
-      }
-    })
-    .catch((error) => {
-
-      console.log(error);
-      swal(error.response.data, {
-        buttons: false,
-        timer: 1000,
       });
-    });
-};
+  };
 
   return (
     <>
@@ -77,13 +92,17 @@ const Form = (props) => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" title="Submit" id="button" onClick={submitHandler}>
+        <button
+          type="submit"
+          title="Submit"
+          id="button"
+          onClick={submitHandler}
+        >
           Submit
         </button>
       </form>
     </>
   );
 };
-
 
 export default announcementForm;

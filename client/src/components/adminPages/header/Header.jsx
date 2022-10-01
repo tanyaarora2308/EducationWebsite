@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./header_admin.css";
+import "./Header.css";
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -14,9 +14,6 @@ const Header = () => {
             onClick={() => setClick(false)}
           >
             <h3 className="headerTitle">Coachify</h3>
-            <li>
-              <Link to="/Auth">Register</Link>
-            </li>
             <li>
               <Link to="/queries">Queries</Link>
             </li>
@@ -33,6 +30,9 @@ const Header = () => {
               <Link to="/blogForm">BlogForm</Link>
             </li>
           </ul>
+          <Link to="/Auth">
+            <button className="button1 ps-button1">Register!</button>
+          </Link>
           <button className="toggle" onClick={() => setClick(!click)}>
             {click ? (
               <i className="fa fa-times"> </i>

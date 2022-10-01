@@ -1,5 +1,4 @@
 import "./App.css";
-import swal from 'sweetalert';
 import Header from "./components/common/header/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Announcements from "./components/announcements/Announcements";
@@ -11,7 +10,7 @@ import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
 import Blog from "./components/blog/Blog";
 import announcementForm from "./components/adminPages/announcementForm";
-import studyMaterialForm from "./components/adminPages/studyMaterialForm";
+import StudyMaterialForm from "./components/adminPages/StudyMaterialForm";
 import Feedback from "./components/adminPages/FeedbackDisplay/Feedback";
 import AdminHome from "./components/adminPages/AdminHome";
 import blogForm from "./components/adminPages/blogForm";
@@ -20,7 +19,6 @@ function App() {
   return (
     <>
       <Router>
-        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/announcements" component={Announcements} />
@@ -30,7 +28,7 @@ function App() {
           <Route exact path="/Auth" component={Auth} />
           <Route exact path="/announcementForm" component={announcementForm} />
           <Route exact path="/blog" component={Blog} />
-          <Route exact path="/studyMaterialForm" component={studyMaterialForm} />
+          <Route exact path="/studyMaterialForm" component={StudyMaterialForm} />
           <Route exact path="/blogForm" component={blogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/adminHome" component={AdminHome} />

@@ -3,12 +3,12 @@ import HCourses from "./HCourses/HCourses";
 import HAbout from "./HAbout/HAbout";
 import HMain from "./HMain/HMain";
 import HTestimonal from "./HTestimonal/HTestimonal";
-import Header from "./header/Header";
+import Header from "../common/header/Header";
 
 const Home = () => {
   return (
     <>
-      <Header />
+    <Header/>
       <HMain />
       <HAbout />
       <HCourses />

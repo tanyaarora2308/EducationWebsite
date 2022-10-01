@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Header from "./header/Header";
+import Header from "../common/header/Header"
 import swal from "sweetalert";
 import "./Auth.css";
 import axios from "axios";
@@ -8,6 +8,27 @@ import FormInput from "../common/formInput";
 
 const Auth = () => {
   const history = useHistory();
+  
+
+  useEffect(() => {
+    axios.get('/user/1')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }, []);
+
+  //Blocks back arrow key in browser
+  useEffect( () => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener('popstate', function (event){
+        window.history.pushState(null, document.title,  window.location.href);
+    });
+  }, []);
+
+
   const registerInitialState = {
     name: "",
     email: "",
@@ -141,6 +162,8 @@ const Auth = () => {
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
         if (response.status == 200) {
+          // sessionStorage.setItem("token",`Bearer ${response.data.token}`)
+          sessionStorage.setItem("UserDetails",JSON.stringify(response.data))
           swal("Logged in Successfully!", {
             buttons: false,
             timer: 1000,

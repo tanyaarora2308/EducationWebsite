@@ -1,19 +1,35 @@
+import { React, useEffect, useState } from "react";
+import Error from "../common/Error";
+import Header from "./header/Header";
 import "./Form.css";
-import { useState } from "react";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 import Back from "../common/Back";
 
-const studyMaterialForm = () => {
+const StudyMaterialForm = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
   return (
     <>
-      <Back title="Post Study Material" />
-      <div className="announcementForm">
-        <div id="loginform">
-          <h2 id="headerTitle">Post Study Material</h2>
-          <Form />
-        </div>
-      </div>
+      <Header />
+      {authenticated ? (
+        <>
+          <Back title="Post Study Material" />
+          <div className="announcementForm">
+            <div id="loginform">
+              <h2 id="headerTitle">Post Study Material</h2>
+              <Form />
+            </div>
+          </div>
+        </>
+      ) : (
+        <Error />
+      )}
     </>
   );
 };
@@ -36,23 +52,22 @@ const Form = (props) => {
       .post("http://localhost:5000/assignments/", data)
       .then((response) => {
         if (response.status == 200)
-        swal("Assignment Posted!", {
+          swal("Assignment Posted!", {
+            buttons: false,
+            timer: 1000,
+          });
+        else if (response.status == 400) {
+          throw new Error(response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(error.response.data, {
           buttons: false,
           timer: 1000,
         });
-      else if (response.status == 400) {
-        throw new Error(response.status);
-      }
-    })
-    .catch((error) => {
-
-      console.log(error);
-      swal(error.response.data, {
-        buttons: false,
-        timer: 1000,
       });
-    });
-};
+  };
   return (
     <>
       <form>
@@ -99,4 +114,4 @@ const Form = (props) => {
   );
 };
 
-export default studyMaterialForm;
+export default StudyMaterialForm;

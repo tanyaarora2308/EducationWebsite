@@ -5,14 +5,31 @@ const FeedbackDisplay = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const returnedData = await axios.get("http://localhost:5000/feedback/");
-    console.log(returnedData);
-    setData(returnedData.data);
+
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
+    axios
+      .get("/feedback", { headers: headers })
+      .then((response) => {
+        console.log(response);
+        setData(response.data);
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   };
 
   useEffect(() => {
     getData();
   }, [data]);
+
+  
+
   return (
     <>
       <div className="row11">

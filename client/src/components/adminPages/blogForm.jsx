@@ -1,21 +1,39 @@
 import "./Form.css";
 import Back from "../common/Back";
-import { useState } from "react";
+import { React, useEffect, useState } from "react";
+import Error from "../common/Error"
+import Header from "./header/Header"
 import swal from "sweetalert";
 import axios from "axios";
 
 const blogForm = () => {
+
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
+
   return (
     <>
-      <Back title="Post Blogs" />
+    <Header />
+      {authenticated ? (
+        <>
+          <Back title="Post Blogs" />
       <div className="announcementForm">
         <div id="loginform">
           <h2 id="headerTitle">Post Blogs</h2>
           <Form />
         </div>
       </div>
+        </>
+      ) : (
+        <Error />
+      )}
     </>
   );
+
 };
 
 const Form = (props) => {
