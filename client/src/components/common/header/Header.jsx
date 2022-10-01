@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
-  // const [click, setClick] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
 
   return (
     <>
@@ -28,9 +33,16 @@ const Header = () => {
           <li>
             <Link to="/contact">Feedback</Link>
           </li>
-          <Link to="/Auth">
-            <button className="button1 ps-button1">Register!</button>
-          </Link>
+          {authenticated && <Link to="/Auth">
+            <button className="button1 ps-button1" onClick={() => sessionStorage.removeItem('UserDetails')}>
+              Logout
+            </button>
+          </Link>}
+          {!authenticated && <Link to="/Auth">
+            <button className="button1 ps-button1">
+              Register!
+            </button>
+          </Link>}
         </nav>
       </header>
     </>

@@ -86,35 +86,8 @@ const Contact = () => {
                   <div className="screen-body-item">
                     <form className="mt-3" method="POST">
                       <div className="app-form">
-                        <div className="app-form-group">
-                          <input
-                            className="app-form-control"
-                            placeholder="USER ID"
-                            value={data.userId}
-                            onChange={handleInputs}
-                            name="userId"
-                          />
-                        </div>
-                        <div className="app-form-group">
-                          <input
-                            className="app-form-control"
-                            placeholder="NAME"
-                            value={data.name}
-                            name="name"
-                            onChange={handleInputs}
-                          />
-                        </div>
-                        <div className="app-form-group">
-                          <input
-                            className="app-form-control"
-                            placeholder="EMAIL"
-                            value={data.email}
-                            name="email"
-                            onChange={handleInputs}
-                          />
-                        </div>
                         <div className="app-form-group message">
-                          <input
+                          <textarea
                             className="app-form-control"
                             placeholder="MESSAGE"
                             value={data.message}

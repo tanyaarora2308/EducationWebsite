@@ -16,8 +16,8 @@ const Error = () => {
           <span class="screen-reader-text">4</span>
         </span>
       </section>
-      <p>Oops! Looks like our developer fell asleep</p><br/>
-      <p>Just kidding, Login to access this page </p>
+      <p>Oops! Looks like our developer fell asleep :(</p><br/>
+      <p>Just kidding, Please login to access this page. </p>
       <div class="link-container">
         <Link
           to="/auth"
