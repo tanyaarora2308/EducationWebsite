@@ -9,11 +9,11 @@ import Footer from "./components/common/footer2/footer2";
 import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
 import Blog from "./components/blog/Blog";
-import announcementForm from "./components/adminPages/announcementForm";
+import AnnouncementForm from "./components/adminPages/AnnouncementForm";
 import StudyMaterialForm from "./components/adminPages/StudyMaterialForm";
 import Feedback from "./components/adminPages/FeedbackDisplay/Feedback";
 import AdminHome from "./components/adminPages/AdminHome";
-import blogForm from "./components/adminPages/blogForm";
+import BlogForm from "./components/adminPages/BlogForm";
 
 function App() {
   return (
@@ -26,10 +26,10 @@ function App() {
           <Route exact path="/queries" component={Queries} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/Auth" component={Auth} />
-          <Route exact path="/announcementForm" component={announcementForm} />
+          <Route exact path="/announcementForm" component={AnnouncementForm} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/studyMaterialForm" component={StudyMaterialForm} />
-          <Route exact path="/blogForm" component={blogForm} />
+          <Route exact path="/blogForm" component={BlogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/adminHome" component={AdminHome} />
         </Switch>

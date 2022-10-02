@@ -45,7 +45,7 @@ function StudyMaterial() {
 
   return (
     <>
-    <Header/>
+      <Header />
       {authenticated ? (
         <>
           {/* <Router>
@@ -81,10 +81,11 @@ function StudyMaterial() {
             </div>
             <Heading title="YOUTUBE PLAYLISTS" />
             <div className="container">
-              <div className="content grid2">
+              <div className="row11">
                 {data
                   .filter((x) => x.title.toLowerCase().includes(query))
                   .map((val) => (
+                    <div className="items column11">
                     <figure className="image-block">
                       <iframe
                         id="ytplayer"
@@ -99,6 +100,7 @@ function StudyMaterial() {
                         <p>{val.title}</p>
                       </figcaption>
                     </figure>
+                    </div>
                   ))}
               </div>
             </div>

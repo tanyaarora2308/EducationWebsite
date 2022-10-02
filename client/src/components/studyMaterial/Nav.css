@@ -87,7 +87,7 @@ header {
   }
   .flexSB2{
     /* background-color: bisque; */
-    /* background-color: white; */
+    /* background-color:white; */
     justify-content: center;
     display: flex;
   }
@@ -124,7 +124,7 @@ header {
       background-color: #1eb2a6;
     }
     header ul li a{
-      color: white;
+      color:white;
     }
   }
   

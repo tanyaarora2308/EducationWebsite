@@ -1,8 +1,16 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import DarkModeIcon from '@mui/icons-material/DarkMode';import "./Header.css";
 
 const Header = () => {
+  function invert() {
+    document.body.style.filter = "hue-rotate(150deg)";
+    let media = document.querySelectorAll("img, picture, video");
+    media.forEach((mediaItem) => {
+      mediaItem.style.filter = " hue-rotate(150deg)";
+    });
+  }
+
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     const value =
@@ -33,16 +41,25 @@ const Header = () => {
           <li>
             <Link to="/contact">Feedback</Link>
           </li>
-          {authenticated && <Link to="/Auth">
-            <button className="button1 ps-button1" onClick={() => sessionStorage.removeItem('UserDetails')}>
-              Logout
-            </button>
-          </Link>}
-          {!authenticated && <Link to="/Auth">
-            <button className="button1 ps-button1">
-              Register!
-            </button>
-          </Link>}
+          {authenticated && (
+            <Link to="/Auth">
+              <button
+                className="button1 ps-button1"
+                onClick={() => sessionStorage.removeItem("UserDetails")}
+              >
+                Logout
+              </button>
+            </Link>
+          )}
+          {!authenticated && (
+            <Link to="/Auth">
+              <button className="button1 ps-button1">Register!</button>
+            </Link>
+          )}
+          <li>
+          <DarkModeIcon onClick={() => invert()} style={{ color: "#1eb2a6" }}/>
+          </li>
+          
         </nav>
       </header>
     </>

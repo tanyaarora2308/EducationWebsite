@@ -1,12 +1,12 @@
 import "./Form.css";
 import Back from "../common/Back";
 import { React, useEffect, useState } from "react";
-import Error from "../common/Error"
-import Header from "./header/Header"
+import Error from "../common/Error";
+import Header from "./header/Header";
 import swal from "sweetalert";
 import axios from "axios";
 
-const announcementForm = () => {
+const AnnouncementForm = () => {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     const value =
@@ -48,8 +48,13 @@ const Form = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     setData(initialState);
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
     axios
-      .post("http://localhost:5000/announcements/", data)
+      .post("http://localhost:5000/announcements/", data, { headers: headers })
       .then((response) => {
         if (response.status == 200)
           swal("Announcement Posted!", {
@@ -105,4 +110,4 @@ const Form = (props) => {
   );
 };
 
-export default announcementForm;
+export default AnnouncementForm;

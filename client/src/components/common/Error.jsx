@@ -17,7 +17,7 @@ const Error = () => {
         </span>
       </section>
       <p>Oops! Looks like our developer fell asleep :(</p><br/>
-      <p>Just kidding, Please login to access this page. </p>
+      <p>Just kidding, You need to login to access this page. </p>
       <div class="link-container">
         <Link
           to="/auth"

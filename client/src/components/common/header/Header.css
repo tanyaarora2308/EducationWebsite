@@ -9,7 +9,7 @@
   padding:10px 10px;
   align-items: center;
   justify-content: center;
-  color: white;
+  color:white;
   border:none;
   border-radius: 0.5rem;
   background: #1eb2a6;
@@ -84,7 +84,7 @@
     background-color: #1eb2a6;
   }
   .header_home .button1{
-    background-color: white;
+    background-color:white;
     color:#1eb2a6;
   }
 }

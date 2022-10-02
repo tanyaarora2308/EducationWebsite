@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
   const [click, setClick] = useState(false);
 
   return (
@@ -30,9 +36,21 @@ const Header = () => {
               <Link to="/blogForm">BlogForm</Link>
             </li>
           </ul>
-          <Link to="/Auth">
-            <button className="button1 ps-button1">Register!</button>
-          </Link>
+          {authenticated && (
+            <Link to="/Auth">
+              <button
+                className="button1 ps-button1"
+                onClick={() => sessionStorage.removeItem("UserDetails")}
+              >
+                Logout
+              </button>
+            </Link>
+          )}
+          {!authenticated && (
+            <Link to="/Auth">
+              <button className="button1 ps-button1">Register!</button>
+            </Link>
+          )}
           <button className="toggle" onClick={() => setClick(!click)}>
             {click ? (
               <i className="fa fa-times"> </i>

@@ -15,9 +15,8 @@ const Contact = () => {
   }, [sessionStorage.getItem("UserDetails")]);
 
   const initialState = {
-    userId: "",
-    name: "",
-    email: "",
+    name: JSON.parse(sessionStorage.getItem("UserDetails")).name,
+    email: JSON.parse(sessionStorage.getItem("UserDetails")).email,
     message: "",
   };
   const [data, setData] = useState(initialState);
@@ -26,14 +25,20 @@ const Contact = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const submitHandler = (e) => {
+    console.log(data);
     swal("Your feedback has been submitted!", {
       buttons: false,
       timer: 1000,
     });
 
     e.preventDefault();
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
     axios
-      .post("http://localhost:5000/feedback", data)
+      .post("http://localhost:5000/feedback", data, { headers: headers })
       .then((response) => {
         console.log(response);
       })
@@ -44,7 +49,7 @@ const Contact = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       {authenticated ? (
         <>
           <div className="background">
@@ -76,7 +81,7 @@ const Contact = () => {
                         paddingTop: "9%",
                       }}
                     >
-                      We value your feedback an we're always open to
+                      We value your feedback and we're always open to
                       suggestions!
                     </span>
                     <div className="app-contact">

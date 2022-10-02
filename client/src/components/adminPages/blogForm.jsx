@@ -6,7 +6,7 @@ import Header from "./header/Header"
 import swal from "sweetalert";
 import axios from "axios";
 
-const blogForm = () => {
+const BlogForm = () => {
 
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
@@ -52,8 +52,13 @@ const Form = (props) => {
     // console.log(data);
     e.preventDefault();
     setData(initialState);
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
     axios
-      .post("http://localhost:5000/blogs/", data)
+      .post("http://localhost:5000/blogs/", data, { headers: headers })
       .then((response) => {
         if (response.status == 200) 
         // console.log(response);
@@ -119,4 +124,4 @@ const Form = (props) => {
   );
 };
 
-export default blogForm;
+export default BlogForm;

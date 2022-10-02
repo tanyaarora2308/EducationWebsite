@@ -48,8 +48,13 @@ const Form = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
     axios
-      .post("http://localhost:5000/assignments/", data)
+      .post("http://localhost:5000/assignments/", data, { headers: headers })
       .then((response) => {
         if (response.status == 200)
           swal("Assignment Posted!", {
