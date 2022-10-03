@@ -15,8 +15,8 @@ const Contact = () => {
   }, [sessionStorage.getItem("UserDetails")]);
 
   const initialState = {
-    name: JSON.parse(sessionStorage.getItem("UserDetails")).name,
-    email: JSON.parse(sessionStorage.getItem("UserDetails")).email,
+    name: JSON.parse(sessionStorage.getItem("UserDetails"))?.name,
+    email: JSON.parse(sessionStorage.getItem("UserDetails"))?.email,
     message: "",
   };
   const [data, setData] = useState(initialState);

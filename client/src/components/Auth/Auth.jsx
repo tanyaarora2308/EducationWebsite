@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Header from "../common/header/Header"
+import Header from "../common/header/Header";
 import swal from "sweetalert";
 import "./Auth.css";
 import axios from "axios";
@@ -8,37 +8,25 @@ import FormInput from "../common/formInput";
 
 const Auth = () => {
   const history = useHistory();
-  
-
-  useEffect(() => {
-    axios.get('/user/1')
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }, []);
 
   //Blocks back arrow key in browser
-  useEffect( () => {
+  useEffect(() => {
     window.history.pushState(null, document.title, window.location.href);
-    window.addEventListener('popstate', function (event){
-        window.history.pushState(null, document.title,  window.location.href);
+    window.addEventListener("popstate", function (event) {
+      window.history.pushState(null, document.title, window.location.href);
     });
   }, []);
-
 
   const registerInitialState = {
     name: "",
     email: "",
     password: "",
     confirmpassword: "",
+    userType: "",
   };
   const loginInitialState = {
     email: "",
     password: "",
-    userType: "",
   };
   const [registerData, setRegisterData] = useState(registerInitialState);
   const [loginData, setLoginData] = useState(loginInitialState);
@@ -98,7 +86,6 @@ const Auth = () => {
       required: true,
     },
   ];
-  const [userTypeState, setuserTypeState] = useState("student");
   const [containerActive, setContainerActive] = useState(false);
 
   const signUpButton = () => {
@@ -106,11 +93,6 @@ const Auth = () => {
   };
   const signInButton = () => {
     setContainerActive(false);
-  };
-
-  const handleloginUserTypeChange = (e) => {
-    setuserTypeState(e.target.value);
-    console.log(userTypeState);
   };
 
   const handleRegisterInputChange = (e) => {
@@ -123,12 +105,12 @@ const Auth = () => {
 
   const RegisterHandler = (e) => {
     e.preventDefault();
-    // setRegisterData(registerInitialState);
     if (
       registerData.name &&
       registerData.password &&
       registerData.confirmpassword &&
-      registerData.email
+      registerData.email &&
+      registerData.userType
     ) {
       axios
         .post("http://localhost:5000/auth/register", registerData)
@@ -144,7 +126,6 @@ const Auth = () => {
           }
         })
         .catch((error) => {
-          // console.log(error.response.data.message);
           swal(error.response.data.message, {
             buttons: false,
             timer: 1000,
@@ -155,21 +136,20 @@ const Auth = () => {
 
   const LoginHandler = (e) => {
     e.preventDefault();
-    setLoginData({ ...loginData, userType: userTypeState });
-    // console.log(loginData);
-    // setLoginData(loginInitialState);
+    console.log(loginData);
     axios
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
+        if (response.data.userType == "admin") history.push("/adminHome");
+        else history.push("/");
         if (response.status == 200) {
+          console.log(response);
           // sessionStorage.setItem("token",`Bearer ${response.data.token}`)
-          sessionStorage.setItem("UserDetails",JSON.stringify(response.data))
+          sessionStorage.setItem("UserDetails", JSON.stringify(response.data));
           swal("Logged in Successfully!", {
             buttons: false,
             timer: 1000,
           });
-          if (userTypeState == "admin") history.push("/adminHome");
-          else history.push("/");
         } else throw new Error(response.message);
       })
       .catch((error) => {
@@ -203,6 +183,17 @@ const Auth = () => {
                         onChange={handleRegisterInputChange}
                       />
                     ))}
+                    <select
+                      name="userType"
+                      value={registerData.userType}
+                      onChange={handleRegisterInputChange}
+                      placeholder="User Type"
+                      style={{ padding: "10px 20px" }}
+                      className="selectBox"
+                    >
+                      <option value="student">Student</option>
+                      <option value="admin">Admin</option>
+                    </select>
                     <button
                       className="signup"
                       type="submit"
@@ -235,28 +226,6 @@ const Auth = () => {
                       onChange={handleLoginInputChange}
                     />
                   ))}
-                  <label
-                    htmlFor="userTypeState"
-                    style={{
-                      textAlign: "left",
-                      color: "grey",
-                      paddingTop: " 10px",
-                      paddingBottom: "10px",
-                    }}
-                  >
-                    Choose user type:
-                  </label>
-                  <select
-                    name="userType"
-                    value={userTypeState}
-                    onChange={handleloginUserTypeChange}
-                    placeholder="User Type"
-                    style={{ padding: "10px 20px" }}
-                    className="selectBox"
-                  >
-                    <option value="student">Student</option>
-                    <option value="admin">Admin</option>
-                  </select>
                   <a href="#">Forgot your password?</a>
                   <Link>
                     <button

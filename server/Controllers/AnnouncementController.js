@@ -27,6 +27,25 @@ export const getAnnouncement = async (req, res) => {
   }
 };
 
+
+export const deleteAnnouncement = async (req, res) => {
+  const id = req.params.id;
+  const { userId } = req.body;
+
+  try {
+    const announcement = await AnnouncementModel.findById(id);
+    if (announcement.userId === userId) {
+      await announcement.deleteOne();
+      res.status(200).json("Announcement deleted successfully");
+    } else {
+      res.status(403).json("Action forbidden");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+
 //Show all Announcements
 export const showAllAnnouncements = async (req, res) => {
   AnnouncementModel.find({})

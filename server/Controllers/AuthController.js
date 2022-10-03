@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 
 // Registering a new User
 export const registerUser = async (req, res) => {
-  const { name, email, password, confirmpassword } = req.body;
-
+  const { name, email, password, confirmpassword,userType } = req.body;
+  console.log(req.body);
   try {
     const oldUser = await UserModel.findOne({ email });
     if (password !== confirmpassword)
@@ -24,6 +24,7 @@ export const registerUser = async (req, res) => {
       email,
       password: hashedPass,
       confirmpassword,
+      userType
     });
 
     if (newUser) {
@@ -34,6 +35,7 @@ export const registerUser = async (req, res) => {
         email: newUser.email,
         password: newUser.password,
         confirmpassword: newUser.confirmpassword,
+        userType:newUser.userType,
         token: generateToken(newUser._id),
       });
     } else {
@@ -50,11 +52,12 @@ export const registerUser = async (req, res) => {
 // Login User
 export const loginUser = async (req, res) => {
   const { email, password, userType } = req.body;
+  // console.log(req.body);
   if (!email || !password)
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
-    // const token = await user.generateAuthToken();
+    console.log(user);
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
       validity
@@ -63,6 +66,7 @@ export const loginUser = async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            userType: user.userType,
             token: generateToken(user._id),
           })
         : res.status(401).json("Invalid credentials!");

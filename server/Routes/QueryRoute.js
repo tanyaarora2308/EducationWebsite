@@ -5,7 +5,7 @@ import {
   updateQuery,
   deleteQuery,
   showAllQueries,
-  // answerQuery
+  answerQuery
 } from "../Controllers/QueryController.js";
 // import {protect} from "../middleware/authMiddleware.js"
 const router = express.Router();
@@ -19,5 +19,5 @@ router.get("/:id", getQuery);
 router.put("/:id", updateQuery);
 router.delete("/:id", deleteQuery);
 router.get("/", showAllQueries);
-// router.post("/answer",answerQuery);
+router.post("/answer",answerQuery);
 export default router;

@@ -3,7 +3,8 @@ import Back from "../common/Back";
 import Error from "../common/Error";
 import BlogCard from "./BlogCard";
 import "./Blog.css";
-import Header from "../common/header/Header";
+import HeaderStudent from "../common/header/Header";
+import HeaderAdmin from "../adminPages/header/Header";
 
 const Blog = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -15,7 +16,8 @@ const Blog = () => {
 
   return (
     <>
-    <Header/>
+    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "admin" && <HeaderAdmin />}
+    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "student" &&  <HeaderStudent/>}
       {authenticated ? (
         <>
           <Back title="Blog Posts" />

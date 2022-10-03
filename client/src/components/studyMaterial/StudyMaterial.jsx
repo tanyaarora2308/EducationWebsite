@@ -8,7 +8,8 @@ import Back from "../common/Back";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./Main.scss";
-import Header from "../common/header/Header";
+import HeaderStudent from "../common/header/Header";
+import HeaderAdmin from "../adminPages/header/Header";
 
 function StudyMaterial() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -45,7 +46,10 @@ function StudyMaterial() {
 
   return (
     <>
-      <Header />
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "admin" && <HeaderAdmin />}
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "student" && <HeaderStudent />}
       {authenticated ? (
         <>
           {/* <Router>
@@ -86,20 +90,20 @@ function StudyMaterial() {
                   .filter((x) => x.title.toLowerCase().includes(query))
                   .map((val) => (
                     <div className="items column11">
-                    <figure className="image-block">
-                      <iframe
-                        id="ytplayer"
-                        type="text/html"
-                        width="100%"
-                        height="405"
-                        src={`https://www.youtube.com/embed/?listType=playlist&list=${val.videoUrl}`}
-                        frameborder="0"
-                        allowfullscreen
-                      ></iframe>
-                      <figcaption>
-                        <p>{val.title}</p>
-                      </figcaption>
-                    </figure>
+                      <figure className="image-block">
+                        <iframe
+                          id="ytplayer"
+                          type="text/html"
+                          width="100%"
+                          height="405"
+                          src={`https://www.youtube.com/embed/?listType=playlist&list=${val.videoUrl}`}
+                          frameborder="0"
+                          allowfullscreen
+                        ></iframe>
+                        <figcaption>
+                          <p>{val.title}</p>
+                        </figcaption>
+                      </figure>
                     </div>
                   ))}
               </div>

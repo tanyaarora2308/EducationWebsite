@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import DarkModeIcon from '@mui/icons-material/DarkMode';import "./Header.css";
+import "./Header.css";
+import Switch from '@mui/material/Switch';
+
 
 const Header = () => {
+  const [theme,setTheme] = useState("140");
   function invert() {
-    document.body.style.filter = "hue-rotate(150deg)";
-    let media = document.querySelectorAll("img, picture, video");
-    media.forEach((mediaItem) => {
-      mediaItem.style.filter = " hue-rotate(150deg)";
-    });
+    if(theme === "140") setTheme("0")
+    else setTheme("140")
+
+    document.body.style.filter = `hue-rotate(${theme}deg)`;
   }
 
   const [authenticated, setAuthenticated] = useState(false);
@@ -56,8 +58,8 @@ const Header = () => {
               <button className="button1 ps-button1">Register!</button>
             </Link>
           )}
-          <li>
-          <DarkModeIcon onClick={() => invert()} style={{ color: "#1eb2a6" }}/>
+          <li style={{padding:"30px 10px 30px 0px"}}>
+          <Switch defaultChecked onClick={() => invert()} style={{ color: "#1eb2a6",paddingRight:"-10px"}}/>
           </li>
           
         </nav>

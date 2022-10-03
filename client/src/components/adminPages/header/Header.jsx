@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -24,16 +24,25 @@ const Header = () => {
               <Link to="/queries">Queries</Link>
             </li>
             <li>
+              <Link to="/announcements">Announcements</Link>
+            </li>
+            <li>
+              <Link to="/studyMaterial">Study Material</Link>
+            </li>
+            <li>
+              <Link to="/blog">Journal</Link>
+            </li>
+            <li>
               <Link to="/feedbackdisplay">View Feedbacks</Link>
             </li>
             <li>
-              <Link to="/announcementForm">AnnouncementForm</Link>
+              <Link to="/announcementForm">Add Announcement</Link>
             </li>
             <li>
-              <Link to="/studyMaterialForm">StudyMaterialForm</Link>
+              <Link to="/studyMaterialForm">Add StudyMaterial</Link>
             </li>
             <li>
-              <Link to="/blogForm">BlogForm</Link>
+              <Link to="/blogForm">Add Blogs</Link>
             </li>
           </ul>
           {authenticated && (

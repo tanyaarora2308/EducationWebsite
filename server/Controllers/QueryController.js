@@ -1,4 +1,5 @@
-import QueryModel from "../Models/queryModel.js";
+import QueryModel1 from "../Models/queryModel1.js";
+import QueryModel from "../Models/queryModel.js"
 // import mongoose from "mongoose";
 // import UserModel from "../Models/userModel.js";
 
@@ -14,7 +15,7 @@ export const postQuery = async (req, res) => {
   }
 };
 
-// Get a query
+// // Get a query
 
 export const getQuery = async (req, res) => {
   const id = req.params.id;
@@ -27,7 +28,7 @@ export const getQuery = async (req, res) => {
   }
 };
 
-// // Update a query
+// // // Update a query
 export const updateQuery = async (req, res) => {
   const queryID = req.params.id;
   const { userId } = req.body;
@@ -45,7 +46,7 @@ export const updateQuery = async (req, res) => {
   }
 };
 
-// // Delete a query
+// // // Delete a query
 export const deleteQuery = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
@@ -63,7 +64,7 @@ export const deleteQuery = async (req, res) => {
   }
 };
 
-//Show all queries
+// //Show all queries
 export const showAllQueries = async (req, res) => {
   QueryModel.find({})
     .then((queries) => {
@@ -75,18 +76,37 @@ export const showAllQueries = async (req, res) => {
 };
 
 // Answer a query
-// export const answerQuery = async (req, res) => {
-//   try {
-//     const { comment, quesID, userId} = req.body;
-//     const newComment = {
-//       userId,
-//       comment
-//     };
-//     const question = await QueryModel.find(quesID);
-//     question.comments.push(newComment);
-//     await question.save();
-//     res.status(200).json(question);
-//   } catch (error){
-//     res.status(500).json(error);
-//   }
-// };
+export const answerQuery = async (req, res) => {
+  try {
+    // const { comment, quesID, userId1} = req.body;
+    // const newComment = {
+    //   userId1,
+    //   comment
+    // };
+    // console.log(newComment);
+    // let question = await QueryModel.findById(quesID);
+    // console.log(question.comments);
+    // question.comments.push(newComment);
+    // console.log(question);
+    // await question.save();
+    // res.status(200).json(question);
+
+    const y = {
+      userId: "1234",
+      desc: "Hello",
+      image: "abc",
+      comments: [
+        {
+          comment: "tanya commnets",
+          userId: "12sdsds3",
+        },
+      ],
+    };
+    const x = new QueryModel1(y);
+    await x.save();
+    res.status(200).json(x);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};

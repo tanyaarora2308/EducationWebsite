@@ -54,11 +54,6 @@ const Question = ({ data }) => {
       )}
 
       <div className="QuestionReact">
-        {/* <b>Add an Answer:</b> */}
-        {/* <QuestionAnswerIcon sx={{
-            cursor:"pointer"
-          }}/> */}
-        {/* <img src={Comment} alt="" /> */}
         <div
           style={{
             display: "flex",

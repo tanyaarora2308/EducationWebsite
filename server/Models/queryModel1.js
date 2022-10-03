@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const querySchema = mongoose.Schema(
+const querySchema1 = mongoose.Schema(
   {
     // userId: { type: mongoose.Schema.ObjectId, required: true },
     userId: String,
@@ -17,8 +17,8 @@ const querySchema = mongoose.Schema(
   { timestamps: true }
 );
 
-var QueryModel = mongoose.model("Queries", querySchema);
-// var QueryModel = mongoose.model("Queries2", querySchema);
-// var QueryModel = mongoose.model("Queries2", querySchema);
-// const QueryModel = mongoose.model("Queries4", querySchema);
-export default QueryModel;
+// // var QueryModel = mongoose.model("Queries", querySchema);
+// // var QueryModel = mongoose.model("Queries2", querySchema);
+// // var QueryModel = mongoose.model("Queries2", querySchema);
+const QueryModel1 = mongoose.model("Queries4", querySchema1);
+export default QueryModel1;

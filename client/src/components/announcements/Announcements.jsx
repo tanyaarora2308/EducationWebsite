@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Header from "../common/header/Header";
+import HeaderStudent from "../common/header/Header";
+import HeaderAdmin from "../adminPages/header/Header"
 import Error from "../common/Error";
 import "./Announcements.scss";
 import axios from "axios";
@@ -14,6 +15,20 @@ const Announcements = () => {
   }, [sessionStorage.getItem("UserDetails")]);
 
   const [data, setData] = useState([]);
+
+  // const deleteAnnouncement = async () = {
+  //   const headers = {
+  //     authorization:
+  //       "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
+  //   }
+  //   axios.delete("localhost:5000/announcements/6332ef058c9259a2b163c1c0", {
+  //     { headers: headers }
+  //     data: {
+  //       source: source
+  //     }
+  //   });
+  // }
+
 
   const getData = async () => {
     // const returnedData = await axios.get("/announcements");
@@ -38,10 +53,11 @@ const Announcements = () => {
     // sessionStorage.setItem("token", token);
     getData();
   }, [data]);
-
+  const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
   return (
     <>
-    <Header />
+    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "admin" && <HeaderAdmin />}
+    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "student" &&  <HeaderStudent/>}
       {authenticated ? (
         <>
           <Back title="ANNOUNCEMENTS" />
@@ -57,7 +73,10 @@ const Announcements = () => {
                       <a href="#">
                         Date: {a.createdAt.slice(0, 10)}
                         <i className="fa fa-long-arrow-right"></i>
-                      </a>
+                      </a><br/>
+                      {userType == "admin" && <a href = "#" 
+                      onClick={() => {deleteAnnouncement(a._id)}}
+                      >Delete</a>}
                     </div>
                   </div>
                 ))}
