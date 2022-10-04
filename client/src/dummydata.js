@@ -220,7 +220,7 @@ export const maths = [
   {
     id: 3,
     link: "PLTEtQdAPfgZmKGji5I-3loI6_uju4nikH",
-    title: "Permutations",
+    title: "Circles",
   },
   {
     id: 4,

@@ -51,65 +51,29 @@ h1,h4{
       text-transform: uppercase;
     }
     p{
-      font-size: 12px;
+      font-size: 18px;
+      letter-spacing: 2px;
     }
     a{
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
+      font-size: 15px;
       text-transform: uppercase;
       color: #666666;
       margin-top: 10px;
-
-      i {
-        opacity: 0;
-        padding-left: 0px;
-        transition: 0.4s;
-        font-size: 24px;
-        display: inline-block;
-        top: 5px;
-        position: relative;
-       }
-      
-      &:hover {
-        text-decoration:none;
-        i {
-          padding-left: 10px;
-          opacity: 1;
-          font-weight: 300;
-          }
-        }
       }
     }
-.item .icon {
-  position:absolute;
-  top: 27px;
-  left: -16px;
-  cursor:pointer;
-    a{
-      font-family: 'Merriweather', serif;
-      font-size: 14px;
-      font-weight:400;
-      color: #999;
-      text-transform:none;
+
+    .item .fa-trash{
+      padding-left: 30em;
+      font-size: 30px;
     }
-    svg{
-      width:32px;
-      height:32px;
-      float:left;
+    .item .fa-trash:hover{
+      color: red;
+      cursor: pointer;
+      transition: 0.2s ease;
+      
     }
-    .icon-topic{
-      opacity: 0;
-      padding-left: 0px;
-      transition: 0.4s;
-      display: inline-block;
-      top: 0px;
-      position: relative;
-    }
-    &:hover .icon-topic{
-      opacity: 1;
-      padding-left: 10px;
-    }
-  }
+
 @media only screen and (max-width : 768px) {
   .item .icon{position: relative; top: 0; left:0;}
 }

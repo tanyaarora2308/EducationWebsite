@@ -67,3 +67,14 @@
     font-size:18;
     margin-top:6 
 }
+
+.QuestionReact .fa-trash{
+    padding-left: 30em;
+    font-size: 27px;
+  }
+  .QuestionReact .fa-trash:hover{
+    color: red;
+    cursor: pointer;
+    transition: 0.2s ease;
+    
+  }

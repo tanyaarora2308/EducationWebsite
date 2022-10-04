@@ -5,10 +5,10 @@ import Switch from '@mui/material/Switch';
 
 
 const Header = () => {
-  const [theme,setTheme] = useState("140");
+  const [theme,setTheme] = useState("130");
   function invert() {
-    if(theme === "140") setTheme("0")
-    else setTheme("140")
+    if(theme === "130") setTheme("0")
+    else setTheme("130")
 
     document.body.style.filter = `hue-rotate(${theme}deg)`;
   }

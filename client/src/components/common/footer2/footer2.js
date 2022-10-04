@@ -23,7 +23,7 @@ export default function Footer() {
               </li>
               <li>
                 <i className="fa fa-paper-plane" style={{paddingRight:"12px"}}></i>
-                info@coachify.com
+                coachify02@gmail.com
               </li>
             </ul></p>
       </footer>

@@ -28,6 +28,20 @@ export const getAssignment = async (req, res) => {
   }
 };
 
+
+// Delete an Assignment
+export const deleteAssignment = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const Assignment = await AssignmentModel.findById(id);
+      await Assignment.deleteOne();
+      res.status(200).json("Assignment deleted successfully");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 //Show all Assignments
 export const showAllAssignments = async (req, res) => {
   AssignmentModel.find({})

@@ -38,8 +38,8 @@ const Questions = () => {
 
   return (
     <div className="Questions">
-      {[...data].reverse().map((query, id,_id) => {
-        return <Question data={query} id={id} />;
+      {[...data].reverse().map((a) => {
+        return <Question data={a} />;
       })}
     </div>
   );

@@ -28,22 +28,32 @@ const BlogCard = () => {
     // setData(returnedData.data);
   };
 
+
+  const deleteAnnouncement = async (id) => {
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
+    }
+    axios.delete(`/blogs/${id}`, { headers: headers });
+  }
+
   useEffect(() => {
     getData();
   }, [data]);
 
+  const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
   return (
     <>
       <div className="row11 blogCard">
         {data &&
           data.map((val) => (
-            <div className=" column11">
+            <div className=" column11 singleBlog">
               <a href="#" class="data-card" key={val._id}>
                 <h3>{val.id}</h3>
                 <h4></h4>
                 <p>{val.title}</p>
                 <span class="link-text">
-                  <a href={val.link}>View Link</a>
+                  <a href={val.link} style={{color:"#024b45"}}>View Link</a>
                   <svg
                     width="25"
                     height="16"
@@ -59,6 +69,10 @@ const BlogCard = () => {
                     />
                   </svg>
                 </span>
+                <br/>
+                {userType == "admin" && <i className="fa fa-trash delete-icon" aria-hidden="true" style={{color:"#024b45",paddingLeft:"10em",fontSize:"20px"}}
+                onClick={() => {deleteAnnouncement(val._id)}}
+                 />}
               </a>
             </div>
           ))}

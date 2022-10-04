@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Question.css";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import axios from "axios";
 import Comment from "../../images/comment.png";
 
 const Question = ({ data }) => {
@@ -23,7 +24,6 @@ const Question = ({ data }) => {
     addComment();
   };
 
-  console.log(Comments);
 
   const handleshow = () => {
     if (show === false) {
@@ -33,11 +33,20 @@ const Question = ({ data }) => {
     }
   };
 
+  const deleteQuery = async (queryID,userID) => {
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
+    }
+    axios.delete(`/query/${queryID}/${userID}`, { headers: headers });
+  }
+  const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
+  const userID = JSON.parse(sessionStorage.getItem("UserDetails"))?._id || "";
   return (
     <div className="Question">
       <div className="detail">
         <span>
-          <span className="date">Posted on: {data.createdAt.slice(0, 10)}</span>
+          {/* <span className="date">Posted on: {data.createdAt.slice(0, 10)}</span> */}
           <br />
           <br />
           <b>Question by user {data.userId}: </b>
@@ -46,12 +55,12 @@ const Question = ({ data }) => {
         <br />
         <span>{data.desc}</span>
       </div>
-      {data.img && (
+      {/* {data.img && (
         <>
           <img src={data.img} alt="Question" />
           <br />
         </>
-      )}
+      )} */}
 
       <div className="QuestionReact">
         <div
@@ -69,6 +78,7 @@ const Question = ({ data }) => {
             onClick={handleshow}
           />
           <span style={{ marginLeft: "6px" }} onClick={handleshow}>{count} Answers</span>
+          {(data.userId === userID || userType === "admin")  && <i class="fa fa-trash" aria-hidden="true" onClick={() => {deleteQuery(data._id,userID)}} />}
         </div>
       </div>
       {show === true ?

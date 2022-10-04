@@ -6,6 +6,7 @@ import "./Announcements.scss";
 import axios from "axios";
 import Back from "../common/Back";
 
+
 const Announcements = () => {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
@@ -16,18 +17,13 @@ const Announcements = () => {
 
   const [data, setData] = useState([]);
 
-  // const deleteAnnouncement = async () = {
-  //   const headers = {
-  //     authorization:
-  //       "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
-  //   }
-  //   axios.delete("localhost:5000/announcements/6332ef058c9259a2b163c1c0", {
-  //     { headers: headers }
-  //     data: {
-  //       source: source
-  //     }
-  //   });
-  // }
+  const deleteAnnouncement = async (id) => {
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
+    }
+    axios.delete(`/announcements/${id}`, { headers: headers });
+  }
 
 
   const getData = async () => {
@@ -40,7 +36,7 @@ const Announcements = () => {
     axios
       .get("/announcements", { headers: headers })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setData(response.data);
         return response.data;
       })
@@ -70,13 +66,11 @@ const Announcements = () => {
                       <h4>{a.title}</h4>
                       <div className="seperator"></div>
                       <p>{a.description}</p>
+                      {userType == "admin" && <i class="fa fa-trash" aria-hidden="true" onClick={() => {deleteAnnouncement(a._id)}} ></i>}
+                      <br/>
                       <a href="#">
                         Date: {a.createdAt.slice(0, 10)}
-                        <i className="fa fa-long-arrow-right"></i>
-                      </a><br/>
-                      {userType == "admin" && <a href = "#" 
-                      onClick={() => {deleteAnnouncement(a._id)}}
-                      >Delete</a>}
+                      </a>
                     </div>
                   </div>
                 ))}

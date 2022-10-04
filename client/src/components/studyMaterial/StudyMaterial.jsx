@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Maths from "./Maths";
-import Nav from "./Nav";
-import Chemistry from "./Chemistry";
+// import Maths from "./Maths";
+// import Nav from "./Nav";
+// import Chemistry from "./Chemistry";
 import Heading from "../common/Heading";
 import Error from "../common/Error";
 import Back from "../common/Back";
@@ -21,6 +21,14 @@ function StudyMaterial() {
 
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
+
+  const deleteAssignments = async (id) => {
+    const headers = {
+      authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
+    }
+    axios.delete(`/assignments/${id}`, { headers: headers });
+  }
 
   const getData = async () => {
     const headers = {
@@ -44,6 +52,7 @@ function StudyMaterial() {
     getData();
   }, [data]);
 
+  const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType;
   return (
     <>
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
@@ -102,8 +111,11 @@ function StudyMaterial() {
                         ></iframe>
                         <figcaption>
                           <p>{val.title}</p>
+                          {userType == "admin" && <p onClick={() => {deleteAssignments(val._id)}} style={{color:"red", cursor:"pointer"}}>Delete</p>}
                         </figcaption>
+                        
                       </figure>
+                      
                     </div>
                   ))}
               </div>

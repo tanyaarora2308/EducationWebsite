@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Back from "../common/Back";
 import Error from "../common/Error";
 import BlogCard from "./BlogCard";
-import "./Blog.css";
+import "./Blog.scss";
 import HeaderStudent from "../common/header/Header";
 import HeaderAdmin from "../adminPages/header/Header";
 
