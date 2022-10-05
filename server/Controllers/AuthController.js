@@ -1,9 +1,10 @@
 import UserModel from "../Models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import nodemailer from "nodemailer"
 
 // Registering a new User
-export const registerUser = async (req, res) => {
+export const registerUser = async (req, res,{ transporter }) => {
   const { name, email, password, confirmpassword,userType } = req.body;
   console.log(req.body);
   try {
@@ -27,8 +28,33 @@ export const registerUser = async (req, res) => {
       userType
     });
 
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
+    });
+
     if (newUser) {
       await newUser.save();
+      if(!newUser.confirmed){
+
+        jwt.sign(newUser._id, process.env.JWT_KEY, (err, emailToken) => {
+            const url = `http://localhost:3000/confirmation/${emailToken}`;
+      
+            transporter.sendMail({
+              to: email,
+              subject: 'Confirm your email to register at Coachify',
+              html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
+            });
+          },
+        );
+  
+        res.status(400).json({ message: "Please confirm your email to register" });
+      }
+
+
       res.status(201).json({
         _id: newUser.id,
         name: newUser.name,
@@ -43,21 +69,20 @@ export const registerUser = async (req, res) => {
       throw new Error("Invalid user data");
     }
 
-    //   res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+
 // Login User
 export const loginUser = async (req, res) => {
-  const { email, password, userType } = req.body;
+  const { email, password } = req.body;
   // console.log(req.body);
   if (!email || !password)
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
-    console.log(user);
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
       validity
@@ -78,12 +103,8 @@ export const loginUser = async (req, res) => {
   }
 };
 
-//Logout User
-export const logoutUser = (req, res) => {
-  sessionStorage.removeItem('UserDetails');
-  res.redirect("/");
-};
 
+//Get All Users
 export const getAllUsers = async (req, res) => {
   UserModel.find({})
     .then((user) => {
@@ -94,6 +115,24 @@ export const getAllUsers = async (req, res) => {
     });
 };
 
+
+
+
+
+
+
+export const updateConfirmedPassword = async (req, res) => {
+  try {
+    const { user: { id } } = jwt.verify(req.params.token, EMAIL_SECRET);
+    await models.User.update({ confirmed: true }, { where: { id } });
+  } catch (e) {
+    res.send('error');
+  }
+
+  return res.redirect('http://localhost:3000/auth');
+}
+
+//Generate Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_KEY,
     //  { expiresIn: "2m" }

@@ -22,7 +22,7 @@ const Auth = () => {
     email: "",
     password: "",
     confirmpassword: "",
-    userType: "",
+    userType: "student",
   };
   const loginInitialState = {
     email: "",
@@ -57,7 +57,7 @@ const Auth = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
     {
@@ -104,6 +104,7 @@ const Auth = () => {
   };
 
   const RegisterHandler = (e) => {
+    console.log(registerData);
     e.preventDefault();
     if (
       registerData.name &&
@@ -116,16 +117,18 @@ const Auth = () => {
         .post("http://localhost:5000/auth/register", registerData)
         .then((response) => {
           console.log(response);
-          if (response.status == 200)
+          if (response.status === 201) {
+            // console.log("Please confirm your email");
             swal("Signed Up Successfully!", {
               buttons: false,
               timer: 1000,
             });
-          else if (response.status == 400) {
+          } else if (response.status == 400 || response.status == 500) {
             throw new Error(response.status);
           }
         })
         .catch((error) => {
+          console.log(error.response);
           swal(error.response.data.message, {
             buttons: false,
             timer: 1000,
@@ -144,7 +147,6 @@ const Auth = () => {
         else history.push("/");
         if (response.status == 200) {
           console.log(response);
-          // sessionStorage.setItem("token",`Bearer ${response.data.token}`)
           sessionStorage.setItem("UserDetails", JSON.stringify(response.data));
           swal("Logged in Successfully!", {
             buttons: false,
