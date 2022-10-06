@@ -2,22 +2,45 @@ import React, { useState } from "react";
 import "./Question.css";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import axios from "axios";
-import Comment from "../../images/comment.png";
+import swal from "sweetalert";
 
 const Question = ({ data }) => {
-  const [count,setCount] = useState(0);
-  const [Comments, setComments] = useState([]);
+  console.log(data)
+  const [count,setCount] = useState(data.answers.length);
+  const [Comments, setComments] = useState(data.answers);
   const [commentwriting, setcommentwriting] = useState("");
   const [show, setshow] = useState(false);
 
   const addComment = () => {
     const comment = {
-      id: "61fsbf23123123123123",
-      username: "suman",
-      title: `${commentwriting}`,
+      quesID: data._id,
+      userId: JSON.parse(sessionStorage.getItem("UserDetails"))?._id,
+      answer: `${commentwriting}`,
     };
-    setComments(Comments.concat(comment));
+    // setComments(Comments.concat(comment));
     setCount(count+1);
+
+    axios
+      .post("http://localhost:5000/query/answer", comment)
+      .then((response) => {
+        if (response.status == 200)
+          swal("Answer Posted!", {
+            buttons: false,
+            timer: 1000,
+          });
+        else if (response.status == 400) {
+          throw new Error(response);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(error.response.data.message, {
+          buttons: false,
+          timer: 1000,
+        });
+      });
+
+
   };
 
   const handleComment = () => {
@@ -32,6 +55,8 @@ const Question = ({ data }) => {
       setshow(false);
     }
   };
+
+
 
   const deleteQuery = async (queryID,userID) => {
     const headers = {
@@ -87,12 +112,12 @@ const Question = ({ data }) => {
               <input type="text" className='commentinput' placeholder='Write your answer' onChange={(e) => setcommentwriting(e.target.value)} />
               <button className='addCommentbtn' onClick={handleComment}>Post</button>
             </div>
-            {Comments.map((item) => (
+            {data.answers.map((item) => (
               <div className="answer">
                 {/* <div style={{display:"flex" , alignItems:"center"}}>  */}
-                  <span className="username">{item.username} : </span>
+                  <span className="username">{item.userId} : </span>
                 {/* </div> */}
-                <span style={{ marginLeft: "25px" , textAlign:'start' , marginTop:-16 }}>{item.title}</span>
+                <span style={{ marginLeft: "25px" , textAlign:'start' , marginTop:-16 }}>{item.answer}</span>
                 
               </div>
 

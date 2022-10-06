@@ -7,6 +7,7 @@ const BlogCard = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
+    console.log("Inside getData");
     const headers = {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
@@ -29,7 +30,7 @@ const BlogCard = () => {
   };
 
 
-  const deleteAnnouncement = async (id) => {
+  const deleteBlog = async (id) => {
     const headers = {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
@@ -50,7 +51,7 @@ const BlogCard = () => {
             <div className=" column11 singleBlog">
               <a href="#" class="data-card" key={val._id}>
                 <h3>{val.id}</h3>
-                <h4></h4>
+                <br/>
                 <p>{val.title}</p>
                 <span class="link-text">
                   <a href={val.link} style={{color:"#024b45"}}>View Link</a>
@@ -70,8 +71,8 @@ const BlogCard = () => {
                   </svg>
                 </span>
                 <br/>
-                {userType == "admin" && <i className="fa fa-trash delete-icon" aria-hidden="true" style={{color:"#024b45",paddingLeft:"10em",fontSize:"20px"}}
-                onClick={() => {deleteAnnouncement(val._id)}}
+                {userType === "admin" && <i className="fa fa-trash delete-icon" aria-hidden="true" style={{color:"#024b45",paddingLeft:"10em",fontSize:"20px"}}
+                onClick={() => {deleteBlog(val._id)}}
                  />}
               </a>
             </div>

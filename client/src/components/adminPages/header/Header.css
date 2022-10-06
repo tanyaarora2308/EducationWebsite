@@ -1,5 +1,4 @@
-/*--------header------------*/
-.header_admin header {
+/* .header_admin header {
   height: 6rem;
   margin: 0 auto;
   text-align: left;
@@ -54,7 +53,6 @@
 .header_admin .toggle {
   display: none;
 }
-/*--------header------------*/
 @media screen and (max-width: 768px) {
   .header_admin header {
     margin: 0;
@@ -87,4 +85,4 @@
     background-color: white;
     color:#1eb2a6;
   }
-}
+} */

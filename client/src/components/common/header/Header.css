@@ -1,90 +1,103 @@
-/*--------header------------*/
-.header_home header {
-  height: 6rem;
-  margin: 0 auto;
-  text-align: left;
-}
-.header_home .button1{
+ .navigation {
+  height: 5rem;
+  width: 100%;
   display: flex;
-  padding:10px 10px;
   align-items: center;
-  justify-content: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: #fff;
+  color: black;
+}
+ .brand-name {
+  padding-right: 10rem;
+  color: #1eb2a6;
+  font-weight: 500;
+  transition: 0.5s;
+  text-decoration: none;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+}
+.navigation-menu {
+  margin-left: auto;
+}
+ .navigation-menu ul {
+  display: flex;
+  padding: 0;
+}
+.navigation-menu li {
+  list-style-type: none;
+  font-weight: 500;
+  transition: 0.5s;
+  margin: 0 1rem;
+  font-size: 0.9rem;
+}
+.navigation-menu li a {
+  text-decoration: none;
+  display: block;
+  color: #1eb2a6;
+  width: 100%;
+}
+.navigation-menu li a:hover{
+  color: #0a7e74;
+}
+ .hamburger {
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  right: 30px;
+  display: none;
+}
+.hamburger i{
+  color: #1eb2a6;
+  font-size: 1.5em;
+}
+.button1{
+  padding:10px 20px;
   color:white;
   border:none;
   border-radius: 0.5rem;
   background: #1eb2a6;
   transition:all 100ms ease-out;
-  margin:0;
+  margin-top: -0.5em;
+  margin-right: 2.5em;
 }
-.header_home .ps-button1{
-  margin-top: 20px;
-  margin-right: 20px;
-  padding: 16px 28px;
-  font-size: 12px
-}
-.header_home .flexSB {
-  display: flex;
-  justify-content: flex-end;
-}
-.header_home .flexSB header .nav {
-  display: flex !important;
-}
-.header_home .flexSB li {
-  font-size: 0.9rem;
-  margin-right: 40px;
-  padding: 30px 15px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.5s;
-}
-.header_home .flexSB a{
-  color: #1eb2a6;
-} 
-.header_home .headerTitle{
-  padding-top: 2rem;
-  padding-right: 10rem;
-  color: #1eb2a6;
-  font-weight: 500;
-  transition: 0.5s;
-  text-align: left;
-}
-.header_home header ul li a:hover {
-  color: #0a7e74;
-}
-.header_home .toggle {
-  display: none;
-}
-/*--------header------------*/
-@media screen and (max-width: 768px) {
-  .header_home header {
-    margin: 0;
-    background-color: #1eb2a6;
-    position: relative;
+ @media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
   }
-  .header_home header ul.flexSB {
+  .navigation-menu ul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-color: #1eb2a6;
+    border-top: 1px solid white;
     display: none;
   }
-  .header_home header ul li {
-    margin-bottom: 20px;
-  }
-  .header_home .toggle {
+  .navigation-menu.expanded ul {
     display: block;
-    background: none;
-    color: #fff;
-    font-size: 30px;
-    position: absolute;
-    right: 0;
-    top: -20px;
+    border-top: 2px solid white;
+    z-index: 10;
   }
-  .header_home .mobile-nav {
-    position: absolute;
-    top: 2vh;
-    left: 0;
+  .navigation-menu li {
+    text-align: center;
+    margin: 0;
+  }
+  .navigation-menu li a {
+    color: white;
     width: 100%;
-    background-color: #1eb2a6;
+    padding: 1.5rem 0;
   }
-  .header_home .button1{
-    background-color:white;
-    color:#1eb2a6;
+  .navigation-menu li:hover {
+    background-color: #eee;
+  }
+  .switch{
+    display: none;
+  }
+  .button1{
+    margin: 0;
   }
 }

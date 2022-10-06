@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/common/header/Header";
+import Header1 from "./components/common/header/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Announcements from "./components/announcements/Announcements";
 import StudyMaterial from "./components/studyMaterial/StudyMaterial";

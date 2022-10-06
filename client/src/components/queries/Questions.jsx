@@ -26,7 +26,7 @@ const Questions = () => {
     //   });
 
     const returnedData = await axios.get("http://localhost:5000/query/");
-    console.log(returnedData);
+    // console.log(returnedData);
     setData(returnedData.data);
   };
 

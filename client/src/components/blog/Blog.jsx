@@ -29,7 +29,6 @@ const Blog = () => {
         </>
       ) : (
         <Error />
-        // <p>Tanya</p>
       )}
     </>
   );

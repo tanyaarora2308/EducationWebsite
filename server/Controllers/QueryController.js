@@ -1,21 +1,18 @@
-// import QueryModel1 from "../Models/queryModel1.js";
 import QueryModel from "../Models/queryModel.js"
-import mongoose from "mongoose";
 
 // Create new Query
 export const postQuery = async (req, res) => {
-  const newQuery = new QueryModel(req.body);
-
   try {
+    const newQuery = new QueryModel(req.body);
     await newQuery.save();
     res.status(200).json(newQuery);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };
 
-// // Get a query
-
+// Get a query
 export const getQuery = async (req, res) => {
   const id = req.params.id;
 
@@ -27,7 +24,7 @@ export const getQuery = async (req, res) => {
   }
 };
 
-// // // Update a query
+// Update a query
 export const updateQuery = async (req, res) => {
   const queryID = req.params.id;
   const { userId } = req.body;
@@ -53,18 +50,14 @@ export const deleteQuery = async (req, res) => {
 
   try {
     const query = await QueryModel.findById(queryID);
-    // if (query.userId === userID) {
       await query.deleteOne();
       res.status(200).json("Post deleted successfully");
-    // } else {
-      // res.status(403).json("Action forbidden");
-    // }
   } catch (error) {
     res.status(500).json(error);
   }
 };
 
-// //Show all queries
+//Show all queries
 export const showAllQueries = async (req, res) => {
   QueryModel.find({})
     .then((queries) => {
@@ -76,22 +69,22 @@ export const showAllQueries = async (req, res) => {
 };
 
 // Answer a query
-// export const answerQuery = async (req, res) => {
-//   try {
-//     const { comment, quesID, userId1} = req.body;
-//     const newComment = {
-//       userId1,
-//       comment
-//     };
-//     console.log(newComment);
-//     let question = await QueryModel.findById(quesID);
-//     console.log(question.comments);
-//     question.comments.push(newComment);
-//     console.log(question);
-//     await question.save();
-//     res.status(200).json(question);
-//   }catch (error) {
-//     console.log(error);
-//     res.status(500).json(error);
-//   }
-// };
+export const answerQuery = async (req, res) => {
+  try {
+    const { answer, quesID, userId} = req.body;
+    const newAnswer = {
+      userId,
+      answer
+    };
+    // console.log(newAnswer);
+    let question = await QueryModel.findById(quesID);
+    // console.log(question);
+    // console.log(question.answers);
+    question.answers.push(newAnswer);
+    await question.save();
+    res.status(200).json(question);
+  }catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};

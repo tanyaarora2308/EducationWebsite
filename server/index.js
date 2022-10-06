@@ -8,8 +8,8 @@ import QueryRoute from "./Routes/QueryRoute.js"
 import FeedbackRoute from "./Routes/FeedbackRoute.js"
 import AnnouncementRoute from "./Routes/AnnouncementRoute.js"
 import AssignmentRoute from "./Routes/AssignmentRoute.js"
-import UserDetail from "./Routes/UserDetail.js";
 import BlogRoute from "./Routes/BlogRoute.js"
+import UserDetail from "./Routes/UserDetail.js"
 
 const app = express();
 app.use(cors());

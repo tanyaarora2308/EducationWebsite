@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
+import Switch from '@mui/material/Switch';
 import { Link } from "react-router-dom";
 import "./Header.css";
-import Switch from '@mui/material/Switch';
 
-
-const Header = () => {
+export default function Header() {
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [theme,setTheme] = useState("130");
   function invert() {
     if(theme === "130") setTheme("0")
@@ -19,13 +19,30 @@ const Header = () => {
       JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
     if (value) setAuthenticated(true);
   }, [sessionStorage.getItem("UserDetails")]);
-
   return (
-    <>
-      <header className="header_home">
-        <nav className="flexSB">
-          <h3 className="headerTitle">Coachify</h3>
-          <li>
+    <nav className="navigation">
+      <a href="/" className="brand-name">
+        Coachify
+      </a>
+      <a
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}
+      >
+        {isNavExpanded ? (
+          <i className="fa fa-times"> </i>
+        ) : (
+          <i className="fa fa-bars"></i>
+        )}
+      </a>
+      <div
+        className={
+          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+        }
+      >
+        <ul>
+        <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -43,7 +60,11 @@ const Header = () => {
           <li>
             <Link to="/contact">Feedback</Link>
           </li>
+          <li className="switch">
+          <Switch defaultChecked onClick={() => invert()} style={{ color: "#1eb2a6",paddingRight:"-10px",paddingTop:"-0.7em"}}/>
+          </li>
           {authenticated && (
+            <li>
             <Link to="/Auth">
               <button
                 className="button1 ps-button1"
@@ -52,20 +73,18 @@ const Header = () => {
                 Logout
               </button>
             </Link>
+            </li>
           )}
           {!authenticated && (
+            <li>
             <Link to="/Auth">
               <button className="button1 ps-button1">Register!</button>
             </Link>
+            </li>
           )}
-          <li style={{padding:"30px 10px 30px 0px"}}>
-          <Switch defaultChecked onClick={() => invert()} style={{ color: "#1eb2a6",paddingRight:"-10px"}}/>
-          </li>
-          
-        </nav>
-      </header>
-    </>
+        </ul>
+        
+      </div>
+    </nav>
   );
-};
-
-export default Header;
+}

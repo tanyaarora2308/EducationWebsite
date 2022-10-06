@@ -2,16 +2,16 @@ import mongoose from "mongoose";
 
 const querySchema = mongoose.Schema(
   {
-    userId: { type: mongoose.Schema.ObjectId, required: true },
-    userId: String,
+    userId: { type: mongoose.Schema.ObjectId, required: true, ref:"Users" },
     desc: String,
     image: String,
-    // comments: [
-    //   {
-    //     userId1: { type: mongoose.Schema.ObjectId},
-    //     comment: { type: String},
-    //   },
-    // ],
+    answers: [
+      {
+        userId: { type: mongoose.Schema.ObjectId, ref:"Users"},
+        answer: { type: String},
+        
+      },
+    ],
   },
   { timestamps: true }
 );
