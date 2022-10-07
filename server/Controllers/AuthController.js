@@ -6,7 +6,6 @@ import bcrypt from "bcrypt";
 // Registering a new User
 export const registerUser = async (req, res) => {
   const { name, email, password, confirmpassword, userType } = req.body;
-  // console.log(req.body);
   try {
     const oldUser = await UserModel.findOne({ email });
     if (password !== confirmpassword)
@@ -29,9 +28,11 @@ export const registerUser = async (req, res) => {
       confirmed:false
     });
 
+    if (newUser) await newUser.save();
+    console.log("user saved in DB")
     console.log("Please verify your account to register at coachify");
     const emailToken = generateToken(newUser._id);
-    const url = `http://localhost:3000/confirmation/hello`;
+    const url = `http://localhost:5000/auth/confirmation/${emailToken}`;
     const output = `
     <p>Hello Future Achiever, </p>
     <h3>Please verify your account to register at coachify.</h3>
@@ -53,7 +54,7 @@ export const registerUser = async (req, res) => {
   
     var mailOptions = {
       from: "coachify02@gmail.com",
-      to: "tanya.arora2308@gmail.com",
+      to: email,
       subject: "Verification code to register at Coachify",
       html:output,
     };
@@ -66,11 +67,11 @@ export const registerUser = async (req, res) => {
         console.log("Email sent: " + info.response);
       }
     });
-    // res.send("sai");
+    console.log("Mail sent")
 
     if (newUser) {
       // console.log("New user made");
-      await newUser.save();
+      // await newUser.save();
       res.status(201).json({
         _id: newUser.id,
         name: newUser.name,
@@ -78,7 +79,7 @@ export const registerUser = async (req, res) => {
         password: newUser.password,
         confirmpassword: newUser.confirmpassword,
         userType: newUser.userType,
-        token: generateToken(newUser._id),
+        token: emailToken,
         confirmed:newUser.confirmed
       });
     } else {
@@ -97,7 +98,6 @@ export const registerUser = async (req, res) => {
 // Login User
 export const loginUser = async (req, res) => {
   const { email, password, userType } = req.body;
-  // console.log(req.body);
   if (!email || !password)
     return res.status(400).json("Email or password not entered");
   try {
@@ -113,6 +113,7 @@ export const loginUser = async (req, res) => {
             email: user.email,
             userType: user.userType,
             token: generateToken(user._id),
+            confirmed:user.confirmed
           })
         : res.status(401).json("Invalid credentials!");
     } else {
@@ -156,11 +157,18 @@ const generateToken = (id) => {
 
 export const updateConfirmedPassword = async (req, res) => {
   try {
-    const { user: { id } } = jwt.verify(req.params.token, "hello");
-    await models.User.update({ confirmed: true }, { where: { id } });
+    console.log("Inside updateConfirmedPassword")
+    const decoded = jwt.verify(req.params.token, process.env.JWT_KEY)
+    req.user = await UserModel.findById(decoded.id).select('-password')
+    // const { user: { id } } = jwt.verify(req.params.token,process.env.JWT_KEY);
+    console.log("User is", req.user)
+    // await UserModel.updateOne({ confirmed: true }, { where: { id } });
+    await UserModel.updateOne({ _id: req.user.id },{ $set: { confirmed: true } },);
+    console.log("User confirmed updated")
   } catch (e) {
+    console.log(e)
     res.send('error');
   }
 
-  return res.redirect('http://localhost:3000/auth');
+  // return res.redirect('http://localhost:3000/auth');
 }

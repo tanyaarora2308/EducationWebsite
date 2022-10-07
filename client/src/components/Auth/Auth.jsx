@@ -116,21 +116,11 @@ const Auth = () => {
       .post("http://localhost:5000/auth/register", registerData)
       .then((response) => {
         console.log(response);
-        if (response.status == 201){
-          if(!response.data.confirmed)
-            swal("Please check your email for verification", {
-              buttons: false,
-              timer: 1000,
-            });
-          else
-          swal("Signed up successfully", {
+        if (response.status == 201)
+          swal("Please check your email to verify your account", {
             buttons: false,
             timer: 1000,
           });
-        }
-          
-          // throw new Error(response);
-          
         else if (response.status == 400) {
           throw new Error(response);
         }
@@ -150,17 +140,28 @@ const Auth = () => {
     axios
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
-        if (response.data.userType == "admin") history.push("/adminHome");
-        else history.push("/");
         if (response.status == 200) {
           console.log(response);
-          // sessionStorage.setItem("token",`Bearer ${response.data.token}`)
-          sessionStorage.setItem("UserDetails", JSON.stringify(response.data));
-          swal("Logged in Successfully!", {
-            buttons: false,
-            timer: 1000,
-          });
+          if ((response.data.userType == "student" ||  response.data.userType == "") &&  !response.data.confirmed) {
+            swal("Please check your email to verify your account!", {
+              buttons: false,
+              timer: 1000,
+            });
+          } else {
+            sessionStorage.setItem(
+              "UserDetails",
+              JSON.stringify(response.data)
+            );
+            swal("Logged in Successfully!", {
+              buttons: false,
+              timer: 1000,
+            });
+            if (response.data.userType == "admin") history.push("/adminHome");
+            else history.push("/");
+          }
         } else throw new Error(response.message);
+
+        
       })
       .catch((error) => {
         swal(error.response.data, {
