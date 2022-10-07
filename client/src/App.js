@@ -5,7 +5,7 @@ import Announcements from "./components/announcements/Announcements";
 import StudyMaterial from "./components/studyMaterial/StudyMaterial";
 import Queries from "./components/queries/Queries";
 import Contact from "./components/contact/contact";
-import Footer from "./components/common/footer2/footer2";
+import Footer from "./components/common/footer/footer";
 import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
 import Blog from "./components/blog/Blog";

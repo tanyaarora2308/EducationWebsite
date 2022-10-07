@@ -10,16 +10,16 @@ const HAbout = () => {
       <section className='aboutHome'>
         <div className='container flexSB1'>
           <div className='left row'>
-            <img src='https://media.istockphoto.com/photos/studying-on-campus-picture-id1318948090?k=20&m=1318948090&s=612x612&w=0&h=-cUbSJGfBNCu8pJQi_2TPRZCGJHaEgjuX9fdg66MaWc=' alt='' />
+            <img src='https://www.westend61.de/images/0001411499pw/portrait-of-smiling-male-student-in-corridor-of-university-MASF19099.jpg' />
           </div>
           <div className='right'>
-            <Heading subtitle='LEARN ANYTHING' title='Benefits About Online Learning Expertise' />
+            <Heading subtitle='LEARN ANYTHING' title='Benefits About Our Learning Expertise' />
             <div className='items'>
               {hAbout.map((val) => {
                 return (
                   <div className='item flexSB'>
                     <div className='img'>
-                      <img src={val.cover} alt='' />
+                      <img src="https://static.thenounproject.com/png/372615-200.png" alt='' />
                     </div>
                     <div className='text'>
                       <h2>{val.title}</h2>

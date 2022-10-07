@@ -1,13 +1,12 @@
 import "./Form.css";
 import Back from "../common/Back";
 import { React, useEffect, useState } from "react";
-import Error from "../common/Error"
-import Header from "./header/Header"
+import Error from "../common/Error/Error";
+import Header from "./header/Header";
 import swal from "sweetalert";
 import axios from "axios";
 
 const BlogForm = () => {
-
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     const value =
@@ -17,23 +16,22 @@ const BlogForm = () => {
 
   return (
     <>
-    <Header />
+      <Header />
       {authenticated ? (
         <>
           <Back title="Post Blogs" />
-      <div className="announcementForm">
-        <div id="loginform">
-          <h2 id="headerTitle">Post Blogs</h2>
-          <Form />
-        </div>
-      </div>
+          <div className="announcementForm">
+            <div id="loginform">
+              <h2 id="headerTitle">Post Blogs</h2>
+              <Form />
+            </div>
+          </div>
         </>
       ) : (
         <Error />
       )}
     </>
   );
-
 };
 
 const Form = (props) => {
@@ -60,12 +58,12 @@ const Form = (props) => {
     axios
       .post("http://localhost:5000/blogs/", data, { headers: headers })
       .then((response) => {
-        if (response.status == 200) 
-        // console.log(response);
-        swal("Blog Posted!", {
-          buttons: false,
-          timer: 1000,
-        });
+        if (response.status == 200)
+          // console.log(response);
+          swal("Blog Posted!", {
+            buttons: false,
+            timer: 1000,
+          });
         else if (response.status == 400) {
           throw new Error(response.status);
         }

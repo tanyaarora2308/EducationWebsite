@@ -8,7 +8,7 @@ import HelpIcon from "@mui/icons-material/Help";
 
 const UploadQues = () => {
   const initialState = {
-    userId: "",
+    userId: JSON.parse(sessionStorage.getItem("UserDetails"))?._id,
     desc: "",
   };
   const [data, setData] = useState(initialState);
@@ -46,19 +46,19 @@ const UploadQues = () => {
   return (
     <form>
     <div className="QuesShare">
-      <HelpIcon sx={{ color: "#1eb2a6" }} fontSize="large" />
+      <HelpIcon sx={{ color: "#1eb2a6" }} fontSize="large" className="questionShareIcon"/>
       <div>
-        <input
+        {/* <input
           type="text"
           placeholder="Your User ID"
           name="userId"
           value={data.userId}
           onChange={handleInputChange}
-        />
+        /> */}
         <textarea
           type="text"
           placeholder="Your question here"
-          style={{ padding: "3rem" }}
+          // style={{ padding: "3rem" }}
           name="desc"
           value={data.desc}
           onChange={handleInputChange}

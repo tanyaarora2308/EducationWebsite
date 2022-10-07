@@ -74,7 +74,7 @@ const Question = ({ data }) => {
           {/* <span className="date">Posted on: {data.createdAt.slice(0, 10)}</span> */}
           <br />
           <br />
-          <b>Question by user {data.userId}: </b>
+          <b>Question by user #{data.userId}: </b>
         </span>
         <br />
         <br />
@@ -115,9 +115,9 @@ const Question = ({ data }) => {
             {data.answers.map((item) => (
               <div className="answer">
                 {/* <div style={{display:"flex" , alignItems:"center"}}>  */}
-                  <span className="username">{item.userId} : </span>
+                  <span className="username">{item.userId}: </span>
                 {/* </div> */}
-                <span style={{ marginLeft: "25px" , textAlign:'start' , marginTop:-16 }}>{item.answer}</span>
+                <span style={{ marginLeft: "15px" , textAlign:'start' , marginTop:-16 }}>{item.answer}</span>
                 
               </div>
 

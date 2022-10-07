@@ -16,6 +16,10 @@ $lg: new-breakpoint(min-width 1024px);
 .studyMaterial{
 	background-color: #f8f8f8;
 }
+.container .column11{
+	margin: 0 auto;
+	margin-bottom: 1.5em;
+}
 
 figure {
 	position: relative;
@@ -120,3 +124,24 @@ figure {
     color: grey;
 }
   
+
+@media screen and (max-width: 768px) {
+	.studyMaterialSection .input {
+		padding: 10px;
+		width: 12em;
+		height: 2em;
+		background: none;
+		border: 4px solid #1eb2a6;
+		border-radius: 50px;
+		box-sizing: border-box;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 26px;
+		color: #1eb2a6;
+		outline: none;
+		transition: .5s;
+	}
+	.studyMaterialSection .box:hover input{
+		width: 12em;
+	}
+	
+}

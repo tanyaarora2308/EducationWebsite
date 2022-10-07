@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./header/Header";
 import Back from "../common/Back";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 
 const AdminHome = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -25,7 +25,6 @@ const AdminHome = () => {
       )}
     </>
   );
-
 };
 
 export default AdminHome;

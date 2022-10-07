@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Nav from "./Nav";
 // import Chemistry from "./Chemistry";
 import Heading from "../common/Heading";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import Back from "../common/Back";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -25,10 +25,11 @@ function StudyMaterial() {
   const deleteAssignments = async (id) => {
     const headers = {
       authorization:
-        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
-    }
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
     axios.delete(`/assignments/${id}`, { headers: headers });
-  }
+  };
 
   const getData = async () => {
     const headers = {
@@ -111,11 +112,18 @@ function StudyMaterial() {
                         ></iframe>
                         <figcaption>
                           <p>{val.title}</p>
-                          {userType == "admin" && <p onClick={() => {deleteAssignments(val._id)}} style={{color:"red", cursor:"pointer"}}>Delete</p>}
+                          {userType == "admin" && (
+                            <p
+                              onClick={() => {
+                                deleteAssignments(val._id);
+                              }}
+                              style={{ color: "red", cursor: "pointer" }}
+                            >
+                              Delete
+                            </p>
+                          )}
                         </figcaption>
-                        
                       </figure>
-                      
                     </div>
                   ))}
               </div>

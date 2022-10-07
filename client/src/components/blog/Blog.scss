@@ -169,7 +169,13 @@
 }
 
   @media screen and (max-width: 600px) {
-    .column11 {
+    .blogCard .column11 {
+      float: none;
       width: 100%;
+      margin:0 auto;
+      padding: 0;    
+      margin-bottom: 4em;
     }
   }
+
+

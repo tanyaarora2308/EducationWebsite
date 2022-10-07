@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./contact.css";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import swal from "sweetalert";
 import axios from "axios";
 import Back from "../common/Back";

@@ -1,7 +1,7 @@
 import "./Form.css";
 import Back from "../common/Back";
 import { React, useEffect, useState } from "react";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import Header from "./header/Header";
 import swal from "sweetalert";
 import axios from "axios";

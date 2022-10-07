@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UploadQues from "./UploadQues";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import Questions from "./Questions";
 import Back from "../common/Back";
 import HeaderStudent from "../common/header/Header";
@@ -12,12 +12,14 @@ const Queries = () => {
   useEffect(() => {
     const value =
       JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
-      if (value) setAuthenticated(true);
+    if (value) setAuthenticated(true);
   }, [sessionStorage.getItem("UserDetails")]);
   return (
     <>
-      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "admin" && <HeaderAdmin />}
-    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "student" &&  <HeaderStudent/>}
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "admin" && <HeaderAdmin />}
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "student" && <HeaderStudent />}
       {authenticated ? (
         <>
           <Back title="QUERIES" />

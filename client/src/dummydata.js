@@ -3,38 +3,38 @@ import c1 from "./images/courses/c1.png";
 import c2 from "./images/courses/c2.png";
 import c3 from "./images/courses/c3.png";
 
-export const blog = [
-  {
-    id: 1,
-    title: "Build your Dream Software & Engineering Career",
-    link:""
-  },
-  {
-    id: 2,
-    title: "Global Warming",
-    link:""
-  },
-  {
-    id: 3,
-    title: "Sleep is the key",
-    link:""
-  },
-  {
-    id: 4,
-    title: "Build your Dream Software & Engineering Career",
-    link:""
-  },
-  {
-    id: 5,
-    title: "Build your Dream Software & Engineering Career",
-    link:""
-  },
-  {
-    id: 6,
-    title: "Build your Dream Software & Engineering Career",
-    link:""
-  },
-]
+// export const blog = [
+//   {
+//     id: 1,
+//     title: "Build your Dream Software & Engineering Career",
+//     link:""
+//   },
+//   {
+//     id: 2,
+//     title: "Global Warming",
+//     link:""
+//   },
+//   {
+//     id: 3,
+//     title: "Sleep is the key",
+//     link:""
+//   },
+//   {
+//     id: 4,
+//     title: "Build your Dream Software & Engineering Career",
+//     link:""
+//   },
+//   {
+//     id: 5,
+//     title: "Build your Dream Software & Engineering Career",
+//     link:""
+//   },
+//   {
+//     id: 6,
+//     title: "Build your Dream Software & Engineering Career",
+//     link:""
+//   },
+// ]
 export const hAbout = [
   {
     id: 1,
@@ -62,7 +62,7 @@ export const hStats = [
   },
 
   {
-    data: "320",
+    data: "003",
     title: "TRUSTED TUTORS",
   },
   {
@@ -70,7 +70,7 @@ export const hStats = [
     title: "SCHEDULES",
   },
   {
-    data: "587",
+    data: "005",
     title: "COURSES",
   },
 ];
@@ -81,7 +81,6 @@ export const coursesCard = [
     coursesName: "High Level Mathematics made easy",
     courTeacher: [
       {
-        dcover: "./images/back.webp",
         name: "by Shailender Gupta",
         totalTime: "150 lectures (190 hrs)",
       },
@@ -95,7 +94,6 @@ export const coursesCard = [
     coursesName: "Enhancing Chemistry",
     courTeacher: [
       {
-        dcover: "./images/back.webp",
         name: "by Shashi Gupta",
         totalTime: "130 lectures (125 hrs)",
       },
@@ -109,7 +107,6 @@ export const coursesCard = [
     coursesName: "Advanced Chemistry & Maths for JEE",
     courTeacher: [
       {
-        dcover: "./images/back.webp",
         name: "by Shailender Gupta and Shashi Gupta",
         totalTime: "50 lectures (50 hrs)",
       },

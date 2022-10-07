@@ -5,8 +5,11 @@
     display: flex;
     justify-content: flex-end;
   }
+  .aboutHome .flexSB {
+    display: flex;
+    justify-content: flex-end;
+  }
   .aboutHome #heading {
-    text-align: left;
     padding: 0;
   }
   .aboutHome .left img {
@@ -23,16 +26,16 @@
   }
   .aboutHome .item {
     background-color: #fff;
+    width: 30em;
     margin-top: 30px;
-    padding: 20px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 40px;
     transition: 0.5s;
   }
-  .aboutHome .img {
-    width: 100px;
-  }
   .aboutHome img {
-    width: 70px;
-    height: 70px;
+    margin-right: 2em;
+    width: 110px;
+    height: 110px;
   }
   .aboutHome .item h2 {
     font-size: 20px;
@@ -74,16 +77,24 @@
   }
   /*----------awrapper------------*/
   @media screen and (max-width: 768px) {
+   #heading h3{
+      padding-top:1em;
+      font-size:22px;
+    }
+     #heading h1{
+      padding-top:1em;
+      font-size:1.5em;
+    }
+    .aboutHome .item{
+      width: 18em;
+    }
     .aboutHome .container {
       flex-direction: column-reverse;
     }
-    .aboutHome .row {
-      width: 100%;
-    }
-    .awrapper {
+    .awrapper, .aboutHome .img {
       display: none;
     }
-    .aboutHome .right {
+    .aboutHome .right,.aboutHome .row {
       width: 100%;
       padding: 0;
     }

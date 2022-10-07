@@ -2,8 +2,8 @@ import Back from "../../common/Back";
 import Heading from "../../common/Heading";
 import FeedbackDisplay from "./FeedbackDisplay";
 import { React, useEffect, useState } from "react";
-import Error from "../../common/Error"
-import Header from "../header/Header"
+import Error from "../../common/Error/Error";
+import Header from "../header/Header";
 import "./FeedbackDisplay.css";
 
 const Feedback = () => {

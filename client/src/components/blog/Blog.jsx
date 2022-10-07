@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Back from "../common/Back";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import BlogCard from "./BlogCard";
 import "./Blog.scss";
 import HeaderStudent from "../common/header/Header";
@@ -16,8 +16,10 @@ const Blog = () => {
 
   return (
     <>
-    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "admin" && <HeaderAdmin />}
-    {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType === "student" &&  <HeaderStudent/>}
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "admin" && <HeaderAdmin />}
+      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "student" && <HeaderStudent />}
       {authenticated ? (
         <>
           <Back title="Blog Posts" />

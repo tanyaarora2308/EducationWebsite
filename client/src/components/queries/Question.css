@@ -6,6 +6,7 @@
     /* background-color: #d8f2f0; */
     border-radius: 1rem;
     gap: 1rem;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 .detail span:nth-of-type(1){
     /* text-shadow: -2px 0px 2px rgb(48 49 49); */

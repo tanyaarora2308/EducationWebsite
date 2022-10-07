@@ -4,7 +4,7 @@ import Header from "../common/header/Header";
 import swal from "sweetalert";
 import "./Auth.css";
 import axios from "axios";
-import FormInput from "../common/formInput";
+import FormInput from "../common/formInput/formInput";
 
 const Auth = () => {
   const history = useHistory();
@@ -116,11 +116,21 @@ const Auth = () => {
       .post("http://localhost:5000/auth/register", registerData)
       .then((response) => {
         console.log(response);
-        if (response.status == 201)
-          swal("Signed Up Successfully!", {
+        if (response.status == 201){
+          if(!response.data.confirmed)
+            swal("Please check your email for verification", {
+              buttons: false,
+              timer: 1000,
+            });
+          else
+          swal("Signed up successfully", {
             buttons: false,
             timer: 1000,
           });
+        }
+          
+          // throw new Error(response);
+          
         else if (response.status == 400) {
           throw new Error(response);
         }

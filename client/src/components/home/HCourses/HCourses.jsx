@@ -1,12 +1,12 @@
 import React from "react";
 import Heading from "../../common/Heading";
-import "./HCourses.css";
 import swal from 'sweetalert';
 import { coursesCard } from "../../../dummydata";
+import "./HCourses.css";
 
 const HCourses = () => {
   const enrollButton = () => {
-    swal("Contact us at +91 70113 01240! ", {
+    swal("To enroll, contact us at +91 70113 01240! ", {
       buttons: false,
       timer: 2000,
     });
@@ -45,9 +45,6 @@ const HCourses = () => {
                         {val.courTeacher.map((details) => (
                           <>
                             <div className="box">
-                              <div className="dimg">
-                                <img src={details.dcover} alt="" />
-                              </div>
                               <div className="para">
                                 <h4>{details.name}</h4>
                               </div>

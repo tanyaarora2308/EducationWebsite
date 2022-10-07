@@ -49,7 +49,7 @@ export default function Header() {
             <Link to="/announcements">Announcements</Link>
           </li>
           <li>
-            <Link to="/studyMaterial">Study Material</Link>
+            <Link to="/studyMaterial">Playlists</Link>
           </li>
           <li>
             <Link to="/blog">Journal</Link>
@@ -59,9 +59,6 @@ export default function Header() {
           </li>
           <li>
             <Link to="/contact">Feedback</Link>
-          </li>
-          <li className="switch">
-          <Switch defaultChecked onClick={() => invert()} style={{ color: "#1eb2a6",paddingRight:"-10px",paddingTop:"-0.7em"}}/>
           </li>
           {authenticated && (
             <li>
@@ -82,6 +79,9 @@ export default function Header() {
             </Link>
             </li>
           )}
+          <li className="switch">
+          <Switch defaultChecked onClick={() => invert()} style={{ color: "#1eb2a6",paddingRight:"-10px",paddingTop:"-0.7em"}}/>
+          </li>
         </ul>
         
       </div>

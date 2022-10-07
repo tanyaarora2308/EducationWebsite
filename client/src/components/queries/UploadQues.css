@@ -24,7 +24,7 @@
     display: flex;
     gap: 1rem;
     background-color: rgba(255, 255, 255, 0.64);
-    padding: 1rem;
+    padding-top: 1rem;
     border-radius: 1rem;
 }
 
@@ -48,6 +48,9 @@
     font-size: 17px;
     border: none;
     outline: none;
+}
+.QuesShare>div> textarea{
+    padding: 3rem;
 }
 
 .QuesShareOptions{
@@ -97,3 +100,11 @@
 }
 
 
+@media screen and (max-width: 768px) {
+    .QuesShare svg{
+        display: none;
+    }
+    .QuesShare>div> textarea{
+        padding: 1rem;
+    }
+}

@@ -19,18 +19,7 @@
 	font-size: 2em;
 	margin: 0;
 	text-shadow: -1px -1px 0 #121212, 1px 1px 0 #121212, -1px 1px 0 #121212, 1px -1px 0 #121212;
-	// @media screen and (min-width: 340px) {
-	// 	width: 70%;
-	// }
-	// @media screen and (min-width: 560px) {
-	// 	width: 50%;
-	// }
-	// @media screen and (min-width: 940px) {
-	// 	width: 30%;
-	// }
-	// @media screen and (min-width: 1300px) {
-	// 	width: 25%;
-	// }
+	
 }
 
 .error-container > span {
@@ -136,4 +125,12 @@
   100% {
     box-shadow: inset 160px -160px 0px 5px rgba(0, 0, 0, 0.4);
   }
+}
+
+@media screen and (max-width: 768px) {
+.error-container{
+  margin-left: 1em;
+  width: 20px;
+}
+
 }

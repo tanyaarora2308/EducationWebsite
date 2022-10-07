@@ -1,5 +1,8 @@
 .hero {
-  background-image: url("../../../images/bg.webp");
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1)
+  ), url("../../../images/bg.webp");
   background-size: cover;
   position: relative;
   top: 0;
@@ -29,15 +32,7 @@
   .hero .row {
     width: 100%;
   }
-  .hero h1, .hero p{
+  .hero h1, .hero p, .hero #heading h3{
     display: none;
-  }
-  .hero #heading h3{
-    text-transform: capitalize;
-    font-size: 30px;
-    color: #d3970e;
-    text-align: left;
-    padding-top: 17rem;
-    font-weight: 900;
   }
 }

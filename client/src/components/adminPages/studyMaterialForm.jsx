@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import Error from "../common/Error";
+import Error from "../common/Error/Error";
 import Header from "./header/Header";
 import "./Form.css";
 import swal from "sweetalert";

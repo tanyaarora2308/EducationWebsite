@@ -37,9 +37,10 @@ html,body
   margin: auto;
 }
 .back {
+  display: flex;
   background-image: url("./images/back.webp");
   background-size: cover;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   position: absolute;
   top: 0;
   left: 0;
@@ -118,16 +119,15 @@ p {
   line-height: 30px;
   font-size: 18px;
 }
-
-
 .back h1 {
-  font-size: 100px;
+  margin: 0 auto;
+  /* font-size: 100px; */
+  padding-top: 1em;
   font-weight: 400;
+
 }
 .back h2 {
-  font-weight: 500;
-  font-size: 17px;
-  text-transform: uppercase;
+  display: none;
 }
 .margin {
   margin-top: 40.3%;
@@ -181,8 +181,29 @@ p {
     flex-direction: column;
   }
   .back {
+    background-image: linear-gradient(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+  ), url("./images/back.webp");
+    text-align: center;
     background-position: center;
     padding-top: 50%;
-    height: 80vh;
+    height: 90vh;
+  } 
+  .back h2{
+    display: block;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 20px #049b8e,
+    -2px 1px 30px #00b4a5;
+    padding-top: 10em;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin: 0 auto;
+  }
+  .back h1 {
+    display: none;
+  }
+   .margin {
+    margin-top: 90%;
   }
 }

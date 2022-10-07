@@ -7,7 +7,6 @@ const BlogCard = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    console.log("Inside getData");
     const headers = {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
@@ -16,7 +15,7 @@ const BlogCard = () => {
     axios
       .get("/blogs", { headers: headers })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setData(response.data);
         return response.data;
       })
