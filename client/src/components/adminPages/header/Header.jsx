@@ -1,76 +1,91 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import "./Header.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../../common/header/Header.css";
 
-// const Header = () => {
-//   const [authenticated, setAuthenticated] = useState(false);
-//   useEffect(() => {
-//     const value =
-//       JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
-//     if (value) setAuthenticated(true);
-//   }, [sessionStorage.getItem("UserDetails")]);
-//   const [click, setClick] = useState(false);
+export default function Header() {
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [theme, setTheme] = useState("130");
+  function invert() {
+    if (theme === "130") setTheme("0");
+    else setTheme("130");
 
-//   return (
-//     <>
-//       <header className="header_admin">
-//         <nav className="flexSB">
-//           <ul
-//             className={click ? "mobile-nav" : "flexSB "}
-//             onClick={() => setClick(false)}
-//           >
-//             <h3 className="headerTitle">Coachify</h3>
-//             <li>
-//               <Link to="/queries">Queries</Link>
-//             </li>
-//             <li>
-//               <Link to="/announcements">Announcements</Link>
-//             </li>
-//             <li>
-//               <Link to="/studyMaterial">Study Material</Link>
-//             </li>
-//             <li>
-//               <Link to="/blog">Journal</Link>
-//             </li>
-//             <li>
-//               <Link to="/feedbackdisplay">View Feedbacks</Link>
-//             </li>
-//             <li>
-//               <Link to="/announcementForm">Add Announcement</Link>
-//             </li>
-//             <li>
-//               <Link to="/studyMaterialForm">Add StudyMaterial</Link>
-//             </li>
-//             <li>
-//               <Link to="/blogForm">Add Blogs</Link>
-//             </li>
-//           </ul>
-//           {authenticated && (
-//             <Link to="/Auth">
-//               <button
-//                 className="button1 ps-button1"
-//                 onClick={() => sessionStorage.removeItem("UserDetails")}
-//               >
-//                 Logout
-//               </button>
-//             </Link>
-//           )}
-//           {!authenticated && (
-//             <Link to="/Auth">
-//               <button className="button1 ps-button1">Register!</button>
-//             </Link>
-//           )}
-//           <button className="toggle" onClick={() => setClick(!click)}>
-//             {click ? (
-//               <i className="fa fa-times"> </i>
-//             ) : (
-//               <i className="fa fa-bars"></i>
-//             )}
-//           </button>
-//         </nav>
-//       </header>
-//     </>
-//   );
-// };
+    document.body.style.filter = `hue-rotate(${theme}deg)`;
+  }
 
-// export default Header;
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const value =
+      JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
+    if (value) setAuthenticated(true);
+  }, [sessionStorage.getItem("UserDetails")]);
+  return (
+    <nav className="navigation">
+      <a href="/" className="brand-name">
+        Coachify
+      </a>
+      <a
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}
+      >
+        {isNavExpanded ? (
+          <i className="fa fa-times"> </i>
+        ) : (
+          <i className="fa fa-bars"></i>
+        )}
+      </a>
+      <div
+        className={
+          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+        }
+      >
+        <ul>
+          <li>
+            <Link to="/queries">Queries</Link>
+          </li>
+          <li>
+            <Link to="/announcements">Announcements</Link>
+          </li>
+          <li>
+            <Link to="/studyMaterial">Study Material</Link>
+          </li>
+          <li>
+            <Link to="/blog">Journal</Link>
+          </li>
+          <li>
+            <Link to="/feedbackdisplay">View Feedbacks</Link>
+          </li>
+          <li>
+            <Link to="/announcementForm">Add Announcement</Link>
+          </li>
+          <li>
+            <Link to="/studyMaterialForm">Add StudyMaterial</Link>
+          </li>
+          <li>
+            <Link to="/blogForm">Add Blogs</Link>
+          </li>
+          {authenticated && (
+            <li>
+              <Link to="/Auth">
+                <button
+                  className="button1 ps-button1"
+                  onClick={() => sessionStorage.removeItem("UserDetails")}
+                >
+                  Logout
+                </button>
+              </Link>
+            </li>
+          )}
+          {!authenticated && (
+            <li>
+              <Link to="/Auth">
+                <button className="button1 ps-button1">Register!</button>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
+    </nav>
+  );
+}

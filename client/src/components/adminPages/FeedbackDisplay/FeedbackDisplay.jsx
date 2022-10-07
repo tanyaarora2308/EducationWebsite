@@ -34,7 +34,7 @@ const FeedbackDisplay = () => {
     <>
       <div className="row11">
         {[...data].reverse().map((val, key) => (
-          <div className="items shadow column11">
+          <div className="items shadow column11" style={{marginRight:"1em"}}>
             <div className="text" key={val.id}>
               <h1>{val.name}</h1>
               <p>{val.message}</p>

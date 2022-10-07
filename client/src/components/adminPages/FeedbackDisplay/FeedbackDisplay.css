@@ -39,7 +39,7 @@
     margin-bottom: 1em;
     margin-left: 1em;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 300px; 
   }
   
   /* Clear floats after the columns */
