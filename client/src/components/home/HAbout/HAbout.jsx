@@ -1,6 +1,7 @@
 import React from "react"
 import Heading from "../../common/Heading"
 import "./HAbout.css"
+import { Slide } from "react-awesome-reveal";
 import  HStats  from "./HStats"
 import { hAbout } from "../../../dummydata"
 
@@ -17,6 +18,7 @@ const HAbout = () => {
             <div className='items'>
               {hAbout.map((val) => {
                 return (
+                  <Slide duration={1500}>
                   <div className='item flexSB'>
                     <div className='img'>
                       <img src="https://static.thenounproject.com/png/372615-200.png" alt='' />
@@ -26,6 +28,7 @@ const HAbout = () => {
                       <p>{val.desc}</p>
                     </div>
                   </div>
+                  </Slide>
                 )
               })}
             </div>

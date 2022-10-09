@@ -22,7 +22,7 @@ const Auth = () => {
     email: "",
     password: "",
     confirmpassword: "",
-    userType: "",
+    userType: "student",
   };
   const loginInitialState = {
     email: "",
@@ -117,7 +117,13 @@ const Auth = () => {
       .then((response) => {
         console.log(response);
         if (response.status == 201)
+          if(registerData.userType === "student")
           swal("Please check your email to verify your account", {
+            buttons: false,
+            timer: 1000,
+          });
+          else
+          swal("Sign in Successful!", {
             buttons: false,
             timer: 1000,
           });

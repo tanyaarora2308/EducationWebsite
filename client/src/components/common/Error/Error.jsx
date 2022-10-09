@@ -1,10 +1,13 @@
 import React from "react";
+import {JackInTheBox } from "react-awesome-reveal";
 import {Link} from "react-router-dom";
 import "./Error.scss";
 
 const Error = () => {
   return (
+    <JackInTheBox duration={2000}>
     <div className="error">
+      
       <section class="error-container">
         <span class="four">
           <span class="screen-reader-text">4</span>
@@ -26,7 +29,8 @@ const Error = () => {
           <button>Login</button>
         </Link>
       </div>
-    </div>
+      
+    </div></JackInTheBox>
   );
 };
 

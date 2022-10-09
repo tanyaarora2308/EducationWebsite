@@ -58,8 +58,8 @@ function StudyMaterial() {
     <>
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "admin" && <HeaderAdmin />}
-      {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "student" && <HeaderStudent />}
+      {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
+        "student" || !authenticated) && <HeaderStudent />}
       {authenticated ? (
         <>
           {/* <Router>

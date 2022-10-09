@@ -1,4 +1,5 @@
 import React from "react"
+import { Slide } from "react-awesome-reveal";
 import { testimonal } from "../../../dummydata"
 import Heading from "../../common/Heading"
 import "./HTestimonial.css"
@@ -12,6 +13,7 @@ const Testimonal = () => {
 
           <div className='content grid2'>
             {testimonal.map((val) => (
+              <Slide duration={2000} direction="up">
               <div className='items shadow'>
                 <div className='box flex'>
                   <div className='img'>
@@ -25,6 +27,7 @@ const Testimonal = () => {
                 </div>
                 <p>{val.desc}</p>
               </div>
+              </Slide>
             ))}
           </div>
         </div>

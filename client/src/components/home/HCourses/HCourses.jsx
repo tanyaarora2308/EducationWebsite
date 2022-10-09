@@ -1,5 +1,6 @@
 import React from "react";
 import Heading from "../../common/Heading";
+import { Fade } from "react-awesome-reveal";
 import swal from 'sweetalert';
 import { coursesCard } from "../../../dummydata";
 import "./HCourses.css";
@@ -31,6 +32,7 @@ const HCourses = () => {
                         <img src={val.cover} alt="" />
                       </div>
                     </div>
+                    <Fade duration={1500}>
                     <div className="text">
                       <h1>{val.coursesName}</h1>
                       <div className="rate">
@@ -54,6 +56,7 @@ const HCourses = () => {
                         ))}
                       </div>
                     </div>
+                    </Fade>
                   </div>
                   <div className="price">
                     <h3>
