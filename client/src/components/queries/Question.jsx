@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "./Question.css";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import axios from "axios";
+import React, { useState } from "react";
 import swal from "sweetalert";
+import "./Question.css";
 
 const Question = ({ data }) => {
   console.log(data)

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Header from "../common/header/Header";
-import swal from "sweetalert";
-import "./Auth.css";
 import axios from "axios";
-import FormInput from "../common/formInput/formInput";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import swal from "sweetalert";
+import FormInput from "../CommonComponents/formInput/formInput";
+import Header from "../CommonComponents/header/Header";
+import "./Auth.css";
 
 const Auth = () => {
   const history = useHistory();
@@ -57,7 +57,7 @@ const Auth = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
     {
@@ -117,16 +117,16 @@ const Auth = () => {
       .then((response) => {
         console.log(response);
         if (response.status == 201)
-          if(registerData.userType === "student")
-          swal("Please check your email to verify your account", {
-            buttons: false,
-            timer: 1000,
-          });
+          if (registerData.userType === "student")
+            swal("Please check your email to verify your account", {
+              buttons: false,
+              timer: 1000,
+            });
           else
-          swal("Sign in Successful!", {
-            buttons: false,
-            timer: 1000,
-          });
+            swal("Sign up Successful!", {
+              buttons: false,
+              timer: 1000,
+            });
         else if (response.status == 400) {
           throw new Error(response);
         }
@@ -148,7 +148,11 @@ const Auth = () => {
       .then((response) => {
         if (response.status == 200) {
           console.log(response);
-          if ((response.data.userType == "student" ||  response.data.userType == "") &&  !response.data.confirmed) {
+          if (
+            (response.data.userType == "student" ||
+              response.data.userType == "") &&
+            !response.data.confirmed
+          ) {
             swal("Please check your email to verify your account!", {
               buttons: false,
               timer: 1000,
@@ -166,8 +170,6 @@ const Auth = () => {
             else history.push("/");
           }
         } else throw new Error(response.message);
-
-        
       })
       .catch((error) => {
         swal(error.response.data, {

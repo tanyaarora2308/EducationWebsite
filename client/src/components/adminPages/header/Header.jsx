@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../common/header/Header.css";
+import "../../CommonComponents/header/Header.css";
 
 export default function Header() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -48,7 +48,7 @@ export default function Header() {
             <Link to="/announcements">Announcements</Link>
           </li>
           <li>
-            <Link to="/studyMaterial">Study Material</Link>
+            <Link to="/playlists">Playlists</Link>
           </li>
           <li>
             <Link to="/blog">Journal</Link>
@@ -60,10 +60,13 @@ export default function Header() {
             <Link to="/announcementForm">Add Announcement</Link>
           </li>
           <li>
-            <Link to="/studyMaterialForm">Add StudyMaterial</Link>
+            <Link to="/playlistForm">Add Playlists</Link>
           </li>
           <li>
             <Link to="/blogForm">Add Blogs</Link>
+          </li>
+          <li>
+            <Link to="/studymaterialForm">Add Study Material</Link>
           </li>
           {authenticated && (
             <li>

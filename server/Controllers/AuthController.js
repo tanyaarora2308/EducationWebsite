@@ -97,7 +97,7 @@ export const registerUser = async (req, res) => {
 
 // Login User
 export const loginUser = async (req, res) => {
-  const { email, password, userType } = req.body;
+  const { email, password } = req.body;
   if (!email || !password)
     return res.status(400).json("Email or password not entered");
   try {

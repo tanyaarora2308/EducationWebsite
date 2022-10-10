@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
 import Header from "./header/Header";
-import Back from "../common/Back";
-import Error from "../common/Error/Error";
 
 const AdminHome = () => {
   const [authenticated, setAuthenticated] = useState(false);

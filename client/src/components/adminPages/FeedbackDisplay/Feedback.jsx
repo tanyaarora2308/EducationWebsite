@@ -1,9 +1,9 @@
-import Back from "../../common/Back";
-import Heading from "../../common/Heading";
-import FeedbackDisplay from "./FeedbackDisplay";
 import { React, useEffect, useState } from "react";
-import Error from "../../common/Error/Error";
+import Back from "../../CommonComponents/Back";
+import Error from "../../CommonComponents/Error/Error";
+import Heading from "../../CommonComponents/Heading";
 import Header from "../header/Header";
+import FeedbackDisplay from "./FeedbackDisplay";
 import "./FeedbackDisplay.css";
 
 const Feedback = () => {

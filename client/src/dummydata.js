@@ -148,36 +148,36 @@ export const feedbacks = [
     desc: "Real life examples make learning effective",
   },
 ];
-export const announcements = [
-  {
-    id: 1,
-    title: "Class XI: Test, Link: forms.google.com/id=true/23ihjyu67896543",
-    description:
-      "Maths test of Chapter 11- Permutations and Combinations on Saturday(21-09-22), ",
-    date: "12-09-22",
-  },
-  {
-    id: 2,
-    title: "Class XII : Revision of Chapter 2- Probability",
-    description:
-      "A brief revision of the RD Sharma of Chapter 2 will be held on this monday( 23-09-22)",
-    date: "12-09-22",
-  },
-  {
-    id: 3,
-    title: "Class XI Chemistry test",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iste voluptate nostrum dolorum, incidunt ullam vero alias laboriosam ab eos voluptates quae, quia sint dicta facere beatae aliquam obcaecati molestias numquam quasi ipsa? Ab.",
-    date: "12-09-22",
-  },
-  {
-    id: 4,
-    title: "Class XI test",
-    description:
-      "Maths test of Chapter 11- Permutations and Combinations on Saturday(21-09-22)",
-    date: "12-09-22",
-  },
-];
+// export const announcements = [
+//   {
+//     id: 1,
+//     title: "Class XI: Test, Link: forms.google.com/id=true/23ihjyu67896543",
+//     description:
+//       "Maths test of Chapter 11- Permutations and Combinations on Saturday(21-09-22), ",
+//     date: "12-09-22",
+//   },
+//   {
+//     id: 2,
+//     title: "Class XII : Revision of Chapter 2- Probability",
+//     description:
+//       "A brief revision of the RD Sharma of Chapter 2 will be held on this monday( 23-09-22)",
+//     date: "12-09-22",
+//   },
+//   {
+//     id: 3,
+//     title: "Class XI Chemistry test",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iste voluptate nostrum dolorum, incidunt ullam vero alias laboriosam ab eos voluptates quae, quia sint dicta facere beatae aliquam obcaecati molestias numquam quasi ipsa? Ab.",
+//     date: "12-09-22",
+//   },
+//   {
+//     id: 4,
+//     title: "Class XI test",
+//     description:
+//       "Maths test of Chapter 11- Permutations and Combinations on Saturday(21-09-22)",
+//     date: "12-09-22",
+//   },
+// ];
 export const testimonal = [
   {
     id: 1,

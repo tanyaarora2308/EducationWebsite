@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import UploadQues from "./UploadQues";
-import Error from "../common/Error/Error";
-import Questions from "./Questions";
-import Back from "../common/Back";
-import HeaderStudent from "../common/header/Header";
-import HeaderAdmin from "../adminPages/header/Header";
+import HeaderAdmin from "../AdminPages/header/Header";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
+import HeaderStudent from "../CommonComponents/header/Header";
 import "./Queries.css";
+import Questions from "./Questions";
+import UploadQues from "./UploadQues";
 
 const Queries = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -19,7 +19,8 @@ const Queries = () => {
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "admin" && <HeaderAdmin />}
       {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "student" || !authenticated) && <HeaderStudent />}
+        "student" ||
+        !authenticated) && <HeaderStudent />}
       {authenticated ? (
         <>
           <Back title="QUERIES" />

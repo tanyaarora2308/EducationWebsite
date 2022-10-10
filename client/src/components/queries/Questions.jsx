@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "./Questions.css";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Question from "./Question";
+import "./Questions.css";
 
 const Questions = () => {
   const [data, setData] = useState([]);

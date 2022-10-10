@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./contact.css";
-import Error from "../common/Error/Error";
-import swal from "sweetalert";
 import axios from "axios";
-import Back from "../common/Back";
-import Header from "../common/header/Header";
+import React, { useEffect, useState } from "react";
+import swal from "sweetalert";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
+import Header from "../CommonComponents/header/Header";
+import "./contact.css";
 
 const Contact = () => {
   const [authenticated, setAuthenticated] = useState(false);

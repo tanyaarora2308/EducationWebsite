@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Back from "../common/Back";
-import Error from "../common/Error/Error";
-import BlogCard from "./BlogCard";
+import HeaderAdmin from "../AdminPages/header/Header";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
+import HeaderStudent from "../CommonComponents/header/Header";
 import "./Blog.scss";
-import HeaderStudent from "../common/header/Header";
-import HeaderAdmin from "../adminPages/header/Header";
+import BlogCard from "./BlogCard";
 
 const Blog = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -19,7 +19,8 @@ const Blog = () => {
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "admin" && <HeaderAdmin />}
       {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "student" || !authenticated) && <HeaderStudent />}
+        "student" ||
+        !authenticated) && <HeaderStudent />}
       {authenticated ? (
         <>
           <Back title="Blog Posts" />

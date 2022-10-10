@@ -1,19 +1,19 @@
+import axios from "axios";
 import { React, useEffect, useState } from "react";
-import Error from "../common/Error/Error";
+import swal from "sweetalert";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
 import Header from "./header/Header";
 import "./Form.css";
-import swal from "sweetalert";
-import axios from "axios";
-import Back from "../common/Back";
 
 const StudyMaterialForm = () => {
   const [authenticated, setAuthenticated] = useState(false);
-
   useEffect(() => {
     const value =
       JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "";
     if (value) setAuthenticated(true);
   }, [sessionStorage.getItem("UserDetails")]);
+
   return (
     <>
       <Header />
@@ -35,29 +35,33 @@ const StudyMaterialForm = () => {
 };
 
 const Form = (props) => {
-  const initialState = {
-    title: "",
-    videoUrl: "",
-    assignmentUrl: "",
-  };
-  const [data, setData] = useState(initialState);
+  const [title, setTitle] = useState(""); 
+  const [file, setFile] = useState("");
 
-  const handleInputChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('file', file);
     const headers = {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
         "",
     };
     axios
-      .post("http://localhost:5000/assignments/", data, { headers: headers })
+      .post("http://localhost:5000/studymaterial/singleFile", formData, {
+        headers: headers,
+      })
       .then((response) => {
-        if (response.status == 200)
-          swal("Assignment Posted!", {
+        if (response.status == 201)
+          swal(response.data, {
             buttons: false,
             timer: 1000,
           });
@@ -73,6 +77,7 @@ const Form = (props) => {
         });
       });
   };
+
   return (
     <>
       <form>
@@ -81,29 +86,16 @@ const Form = (props) => {
           <input
             type="text"
             name="title"
-            value={data.title}
             placeholder="Enter title"
-            onChange={handleInputChange}
+            onChange={handleTitleChange}
           />
         </div>
         <div className="row">
-          <label>Video URL</label>
+          <label>File</label>
           <input
-            type="text"
-            name="videoUrl"
-            value={data.videoUrl}
-            placeholder="Enter video key"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="row">
-          <label>File URL</label>
-          <input
-            type="text"
-            name="assignmentUrl"
-            value={data.assignmentUrl}
-            placeholder="Enter Assignment Drive Link"
-            onChange={handleInputChange}
+            type="file"
+            name="fileUpload"
+            onChange={handleFileChange}
           />
         </div>
         <button

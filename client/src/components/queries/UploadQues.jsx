@@ -1,10 +1,8 @@
-import React, { useState, useRef } from "react";
-import "./UploadQues.css";
-import swal from 'sweetalert';
-import axios from "axios";
-import { UilScenery } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import HelpIcon from "@mui/icons-material/Help";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import "./UploadQues.css";
 
 const UploadQues = () => {
   const initialState = {

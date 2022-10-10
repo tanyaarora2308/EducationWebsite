@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import HeaderStudent from "../common/header/Header";
-import HeaderAdmin from "../adminPages/header/Header";
-import Error from "../common/Error/Error";
-import "./Announcements.scss";
 import axios from "axios";
-import Back from "../common/Back";
+import React, { useEffect, useState } from "react";
+import HeaderAdmin from "../AdminPages/header/Header";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
+import HeaderStudent from "../CommonComponents/header/Header";
+import "./Announcements.scss";
 
 const Announcements = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -26,7 +26,6 @@ const Announcements = () => {
   };
 
   const getData = async () => {
-    // const returnedData = await axios.get("/announcements");
     const headers = {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||

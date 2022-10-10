@@ -1,8 +1,8 @@
 import React from "react";
-import Heading from "../../common/Heading";
 import { Fade } from "react-awesome-reveal";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { coursesCard } from "../../../dummydata";
+import Heading from "../../CommonComponents/Heading";
 import "./HCourses.css";
 
 const HCourses = () => {
@@ -33,29 +33,29 @@ const HCourses = () => {
                       </div>
                     </div>
                     <Fade duration={1500}>
-                    <div className="text">
-                      <h1>{val.coursesName}</h1>
-                      <div className="rate">
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <label htmlFor="">(5.0)</label>
-                      </div>
-                      <div className="details">
-                        {val.courTeacher.map((details) => (
-                          <>
-                            <div className="box">
-                              <div className="para">
-                                <h4>{details.name}</h4>
+                      <div className="text">
+                        <h1>{val.coursesName}</h1>
+                        <div className="rate">
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <label htmlFor="">(5.0)</label>
+                        </div>
+                        <div className="details">
+                          {val.courTeacher.map((details) => (
+                            <>
+                              <div className="box">
+                                <div className="para">
+                                  <h4>{details.name}</h4>
+                                </div>
                               </div>
-                            </div>
-                            <span>{details.totalTime}</span>
-                          </>
-                        ))}
+                              <span>{details.totalTime}</span>
+                            </>
+                          ))}
+                        </div>
                       </div>
-                    </div>
                     </Fade>
                   </div>
                   <div className="price">
@@ -63,7 +63,9 @@ const HCourses = () => {
                       {val.priceAll} / {val.pricePer}
                     </h3>
                   </div>
-                  <button className="outline-btn" onClick={enrollButton}>ENROLL NOW !</button>
+                  <button className="outline-btn" onClick={enrollButton}>
+                    ENROLL NOW !
+                  </button>
                 </div>
               ))}
             </div>

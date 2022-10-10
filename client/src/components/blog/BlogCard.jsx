@@ -1,7 +1,6 @@
-import React from "react";
-import "./Blog.scss";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./Blog.scss";
 
 const BlogCard = () => {
   const [data, setData] = useState([]);
