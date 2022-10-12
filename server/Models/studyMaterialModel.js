@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const studyMaterialSchema = new Schema(
-    {
+const studyMaterialSchema = new Schema({
     title:{
         type: String,
         required: true
@@ -23,9 +22,11 @@ const studyMaterialSchema = new Schema(
     fileSize: {
         type: String,
         required: true
+    },
+    subject:{
+        type:String,
     }
-}, {timestamps: true}
-);
+}, {timestamps: true});
 
 var StudyMaterialModel = mongoose.model("StudyMaterial", studyMaterialSchema);
 export default StudyMaterialModel;

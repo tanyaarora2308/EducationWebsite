@@ -12,6 +12,7 @@ const querySchema = mongoose.Schema(
         
       },
     ],
+    subject:String
   },
   { timestamps: true }
 );

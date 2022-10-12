@@ -2,11 +2,11 @@ import PlaylistModel from "../Models/PlaylistModel.js";
 
 // Create new Playlist
 export const postPlaylist = async (req, res) => {
-  const { title, videoUrl } = req.body;
+  const { title, videoUrl,subject } = req.body;
   const newPlaylist = new PlaylistModel(req.body);
   if (!title) return res.status(400).json("Title not entered.");
-  if (!videoUrl)
-    return res.status(400).json("VideoLink Empty");
+  if (!videoUrl || !subject)
+    return res.status(400).json("VideoLink or Subject Empty");
   try {
     await newPlaylist.save();
     res.status(200).json(newPlaylist);

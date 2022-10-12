@@ -37,6 +37,7 @@ const Questions = () => {
   }, [data]);
 
   return (
+    
     <div className="Questions">
       {[...data].reverse().map((a) => {
         return <Question data={a} />;

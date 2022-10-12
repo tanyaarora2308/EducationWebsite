@@ -4,6 +4,7 @@ export const singleFileUpload = async (req, res, next) => {
     try{
         const file = new StudyMaterialModel({
             title: req.body.title,
+            subject:req.body.subject,
             fileName: req.file.originalname,
             filePath: req.file.path,
             fileType: req.file.mimetype,

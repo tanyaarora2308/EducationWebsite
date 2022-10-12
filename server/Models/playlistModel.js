@@ -4,6 +4,7 @@ const playlistSchema = mongoose.Schema(
   {
     title: { type: String, required: true },
     videoUrl: { type: String },
+    subject:{type:String}
   },
   { timestamps: true }
 );

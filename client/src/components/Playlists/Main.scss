@@ -34,9 +34,9 @@ figure {
 	overflow: hidden;
 	&:hover {
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-		iframe {
-			transform: scale(1.25);
-		}
+		// iframe {
+		// 	// transform: scale(1.25);
+		// }
 		figcaption {
 			bottom: 0;
 		}
@@ -95,11 +95,13 @@ figure {
 
 //SearchBar
 
-.studyMaterialSection .box{
+.studymaterial_common .box{
+	padding-left: 19em;
+    padding-bottom: 3em;
     position: relative;
 }
 
-.studyMaterialSection .input {
+.studymaterial_common .input {
     padding: 10px;
     width: 15em;
     height: 2em;
@@ -113,12 +115,12 @@ figure {
     outline: none;
     transition: .5s;
 }
-.studyMaterialSection .box:hover input{
+.studymaterial_common .box:hover input{
     width: 35em;
     border-radius: 10px;
 }
 
-.studyMaterialSection label{
+.studymaterial_common label{
 	font-size: 20px;
 	margin-right: 10px;
     color: grey;

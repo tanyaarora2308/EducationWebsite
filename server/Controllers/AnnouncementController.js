@@ -2,10 +2,10 @@ import AnnouncementModel from "../Models/announcementModel.js";
 
 // Create new announcements
 export const postAnnouncement = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description,subject } = req.body;
   const newAnnouncement = new AnnouncementModel(req.body);
-  if (!title || !description)
-    return res.status(400).json("Title or Description not entered.");
+  if (!title || !description || !subject)
+    return res.status(400).json("Title,Description or subject not entered.");
   try {
     await newAnnouncement.save();
     res.status(200).json(newAnnouncement);

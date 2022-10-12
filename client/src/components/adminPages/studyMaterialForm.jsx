@@ -37,6 +37,7 @@ const StudyMaterialForm = () => {
 const Form = (props) => {
   const [title, setTitle] = useState(""); 
   const [file, setFile] = useState("");
+  const[subject,setSubject] = useState("");
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -44,11 +45,16 @@ const Form = (props) => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(subject);
     const formData = new FormData();
     formData.append('title', title);
+    formData.append('subject', subject);
     formData.append('file', file);
     const headers = {
       authorization:
@@ -88,6 +94,15 @@ const Form = (props) => {
             name="title"
             placeholder="Enter title"
             onChange={handleTitleChange}
+          />
+        </div>
+        <div className="row">
+          <label>Subject</label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Enter subject"
+            onChange={handleSubjectChange}
           />
         </div>
         <div className="row">

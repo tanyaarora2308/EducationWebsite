@@ -38,6 +38,7 @@ const Form = (props) => {
   const initialState = {
     title: "",
     description: "",
+    subject:""
   };
   const [data, setData] = useState(initialState);
 
@@ -84,6 +85,16 @@ const Form = (props) => {
             name="title"
             value={data.title}
             placeholder="Enter title"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="row">
+          <label>Subject</label>
+          <input
+            type="text"
+            name="subject"
+            value={data.subject}
+            placeholder="Enter Subject"
             onChange={handleInputChange}
           />
         </div>

@@ -62,6 +62,9 @@ export default function Header() {
           <li>
             <Link to="/contact">Feedback</Link>
           </li>
+          <li>
+            <Link to ="/profile">Profile</Link>
+          </li>
           {authenticated && (
             <li>
             <Link to="/Auth">

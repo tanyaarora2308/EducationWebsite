@@ -38,6 +38,7 @@ const Form = (props) => {
   const initialState = {
     title: "",
     videoUrl: "",
+    subject:""
   };
   const [data, setData] = useState(initialState);
 
@@ -92,6 +93,16 @@ const Form = (props) => {
             name="videoUrl"
             value={data.videoUrl}
             placeholder="Enter video key"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="row">
+          <label>Subject</label>
+          <input
+            type="text"
+            name="subject"
+            value={data.subject}
+            placeholder="Enter subject"
             onChange={handleInputChange}
           />
         </div>

@@ -16,7 +16,6 @@ import Playlists from "./components/Playlists/Playlists";
 import StudyMaterialForm from "./components/AdminPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
 
-
 function App() {
   return (
     <>
@@ -34,7 +33,11 @@ function App() {
           <Route exact path="/blogForm" component={BlogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/adminHome" component={AdminHome} />
-          <Route exact path="/studymaterialForm" component={StudyMaterialForm} />
+          <Route
+            exact
+            path="/studymaterialForm"
+            component={StudyMaterialForm}
+          />
           <Route exact path="/studymaterial" component={StudyMaterial} />
         </Switch>
         <Footer />

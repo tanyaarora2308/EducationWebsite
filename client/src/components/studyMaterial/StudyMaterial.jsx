@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Nav from "./Nav";
 import HeaderAdmin from "../AdminPages/header/Header";
 import Back from "../CommonComponents/Back";
 import Error from "../CommonComponents/Error/Error";
 import HeaderStudent from "../CommonComponents/header/Header";
+import MathsResources from "./MathsResources";
+import ChemistryResources from "./ChemistryResources";
 import Heading from "../CommonComponents/Heading";
 import "./StudyMaterial.scss";
 
@@ -58,63 +62,25 @@ function StudyMaterial() {
         !authenticated) && <HeaderStudent />}
       {authenticated ? (
         <>
-          <Back title="STUDY MATERIAL" />
-          <section
-            className="studyMaterialSection"
-            style={{
-              backgroundColor: "#f8f8f8",
-              padding: "2rem 1rem",
-              textAlign: "center",
-            }}
-          >
-            <div class="box">
-              <form name="search">
-                <label>Search: </label>
-                <input
-                  type="text"
-                  class="input"
-                  name="txt"
-                  onmouseout="this.value = ''; this.blur();"
-                  onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          <Router>
+            <Back title="STUDY MATERIAL" />
+            <div style={{ backgroundColor: "#f8f8f8", padding: "2rem 1rem" }}>
+              <Nav />
+
+              <Switch>
+                <Route
+                  exact
+                  path="/studymaterial/mathsresources"
+                  component={MathsResources}
                 />
-              </form>
+                <Route
+                  exact
+                  path="/studymaterial/chemistryresources"
+                  component={ChemistryResources}
+                />
+              </Switch>
             </div>
-            <Heading title="STUDY MATERIAL" />
-            <div className="container">
-              <div className="row11">
-                {data &&
-                  data
-                    .filter((x) => x.title.toLowerCase().includes(query))
-                    .map((val) => (
-                      <div
-                        className="items shadow column11"
-                        style={{ marginRight: "1em" }}
-                      >
-                        <div className="text" key={val.title}>
-                          <p>{val.title}</p>
-                          {val.fileType.slice(0,5) === "image" &&
-                          <img
-                            src={`http://localhost:5000/${val.filePath}`}
-                            alt= {`PDF of ${val.title}`}
-                            height="200"
-                            width="300"
-                            className="card-img-top img-responsive"
-                          />}
-                          {val.fileType.slice(0,5) !== "image" &&
-                          <img
-                            src="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-files-for-testing-300x300.png"
-                            alt= {`PDF of ${val.title}`}
-                            className="card-img-top img-responsive"
-                          />}
-                          <a href={`http://localhost:5000/${val.filePath}`} target="_blank" style={{color:"black",fontSize:"20px"}}>
-                            Click to view
-                          </a>
-                        </div>
-                      </div>
-                    ))}
-              </div>
-            </div>
-          </section>
+          </Router>
         </>
       ) : (
         <Error />

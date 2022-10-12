@@ -8,6 +8,7 @@ const UploadQues = () => {
   const initialState = {
     userId: JSON.parse(sessionStorage.getItem("UserDetails"))?._id,
     desc: "",
+    subject:""
   };
   const [data, setData] = useState(initialState);
 
@@ -48,13 +49,13 @@ const UploadQues = () => {
           className="questionShareIcon"
         />
         <div>
-          {/* <input
+          <input
           type="text"
-          placeholder="Your User ID"
-          name="userId"
-          value={data.userId}
+          placeholder="Enter subject"
+          name="subject"
+          value={data.subject}
           onChange={handleInputChange}
-        /> */}
+        />
           <textarea
             type="text"
             placeholder="Your question here"

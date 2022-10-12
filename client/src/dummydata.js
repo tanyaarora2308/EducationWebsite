@@ -207,7 +207,7 @@ export const maths = [
   {
     id: 1,
     link: "PLTEtQdAPfgZmKGji5I-3loI6_uju4nikH",
-    title: "Trigonometry",
+    title: "Permutations",
   },
   {
     id: 2,
@@ -218,11 +218,6 @@ export const maths = [
     id: 3,
     link: "PLTEtQdAPfgZmKGji5I-3loI6_uju4nikH",
     title: "Circles",
-  },
-  {
-    id: 4,
-    link: "PLTEtQdAPfgZmKGji5I-3loI6_uju4nikH",
-    title: "Permutations",
   },
 ];
 export const chemistry = [
