@@ -56,7 +56,7 @@ const Form = (props) => {
       .post("http://localhost:5000/playlists/", data, { headers: headers })
       .then((response) => {
         if (response.status == 200)
-          swal("Assignment Posted!", {
+          swal("Playlist Posted!", {
             buttons: false,
             timer: 1000,
           });

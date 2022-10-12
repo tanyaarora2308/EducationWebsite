@@ -1,4 +1,4 @@
-import { UilTimes } from "@iconscout/react-unicons";
+import { UilTimes, UilScenery } from "@iconscout/react-unicons";
 import HelpIcon from "@mui/icons-material/Help";
 import axios from "axios";
 import React, { useRef, useState } from "react";
@@ -28,8 +28,6 @@ const UploadQues = () => {
       });
   };
 
-
-
   const [image, setImage] = useState(null);
   const imageRef = useRef();
 
@@ -43,51 +41,61 @@ const UploadQues = () => {
   };
   return (
     <form>
-    <div className="QuesShare">
-      <HelpIcon sx={{ color: "#1eb2a6" }} fontSize="large" className="questionShareIcon"/>
-      <div>
-        {/* <input
+      <div className="QuesShare">
+        <HelpIcon
+          sx={{ color: "#1eb2a6" }}
+          fontSize="large"
+          className="questionShareIcon"
+        />
+        <div>
+          {/* <input
           type="text"
           placeholder="Your User ID"
           name="userId"
           value={data.userId}
           onChange={handleInputChange}
         /> */}
-        <textarea
-          type="text"
-          placeholder="Your question here"
-          // style={{ padding: "3rem" }}
-          name="desc"
-          value={data.desc}
-          onChange={handleInputChange}
-        />
-        <div className="QuesShareOptions">
-          {/* <div
-            className="option"
-            style={{ color: "var(--photo)" }}
-            onClick={() => imageRef.current.click()}
-          >
-            <UilScenery sx={{ color: "#1eb2a6" }} />
-            Add Question Picture
-          </div> */}
-          <button className="button ps-button" type="submit" onClick={submitHandler}>Share</button>
-          <div style={{ display: "none" }}>
-            <input
-              type="file"
-              name="myImage"
-              ref={imageRef}
-              onChange={onImageChange}
-            />
+          <textarea
+            type="text"
+            placeholder="Your question here"
+            // style={{ padding: "3rem" }}
+            name="desc"
+            value={data.desc}
+            onChange={handleInputChange}
+          />
+          <div className="QuesShareOptions">
+            <div
+              className="option"
+              style={{ color: "var(--photo)" }}
+              onClick={() => imageRef.current.click()}
+            >
+              <UilScenery sx={{ color: "#1eb2a6" }} />
+              Add Question Picture
+            </div>
+            <button
+              className="button ps-button"
+              type="submit"
+              onClick={submitHandler}
+            >
+              Share
+            </button>
+            <div style={{ display: "none" }}>
+              <input
+                type="file"
+                name="myImage"
+                ref={imageRef}
+                onChange={onImageChange}
+              />
+            </div>
           </div>
+          {image && (
+            <div className="previewImage">
+              <UilTimes onClick={() => setImage(null)} />
+              <img src={image.image} alt="" />
+            </div>
+          )}
         </div>
-        {image && (
-          <div className="previewImage">
-            <UilTimes onClick={() => setImage(null)} />
-            <img src={image.image} alt="" />
-          </div>
-        )}
       </div>
-    </div>
     </form>
   );
 };

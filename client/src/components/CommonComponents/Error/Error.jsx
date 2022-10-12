@@ -23,7 +23,7 @@ const Error = () => {
       <p>Just kidding, You need to login to access this page. </p>
       <div class="link-container">
         <Link
-          to="/auth"
+          to="/Auth"
           class="more-link"
         >
           <button>Login</button>

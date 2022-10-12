@@ -26,9 +26,16 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       defaultValue: false,
     },
+    courses: [
+      {
+        userId: { type: mongoose.Schema.ObjectId, ref:"Users"},
+        answer: { type: String},
+      },
+    ],
   },
   { timestamps: true }
 );
+
 
 
 const UserModel = mongoose.model("Users", UserSchema);
