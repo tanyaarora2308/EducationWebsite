@@ -3,7 +3,7 @@ import Back from "../CommonComponents/Back";
 import Error from "../CommonComponents/Error/Error";
 import Header from "./header/Header";
 
-const AdminHome = () => {
+const TeacherHome = () => {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const AdminHome = () => {
       <Header />
       {authenticated ? (
         <>
-          <Back title="Admin Side" />
+          <Back title="Teacher Side" />
           <div className="adminHome"></div>
         </>
       ) : (
@@ -27,4 +27,4 @@ const AdminHome = () => {
   );
 };
 
-export default AdminHome;
+export default TeacherHome;

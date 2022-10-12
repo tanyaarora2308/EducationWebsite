@@ -7,13 +7,13 @@ import Footer from "./components/CommonComponents/footer/footer";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import Blog from "./components/Blog/Blog";
-import AnnouncementForm from "./components/AdminPages/AnnouncementForm";
-import PlaylistForm from "./components/AdminPages/PlaylistForm";
-import Feedback from "./components/AdminPages/FeedbackDisplay/Feedback";
-import AdminHome from "./components/AdminPages/AdminHome";
-import BlogForm from "./components/AdminPages/BlogForm";
+import AnnouncementForm from "./components/TeacherPages/AnnouncementForm";
+import PlaylistForm from "./components/TeacherPages/PlaylistForm";
+import Feedback from "./components/TeacherPages/FeedbackDisplay/Feedback";
+import TeacherHome from "./components/TeacherPages/TeacherHome";
+import BlogForm from "./components/TeacherPages/BlogForm";
 import Playlists from "./components/Playlists/Playlists";
-import StudyMaterialForm from "./components/AdminPages/StudyMaterialForm";
+import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/playlistForm" component={PlaylistForm} />
           <Route exact path="/blogForm" component={BlogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
-          <Route exact path="/adminHome" component={AdminHome} />
+          <Route exact path="/TeacherHome" component={TeacherHome} />
           <Route
             exact
             path="/studymaterialForm"

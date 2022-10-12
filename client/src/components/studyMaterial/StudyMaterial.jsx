@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./Nav";
-import HeaderAdmin from "../AdminPages/header/Header";
+import HeaderTeacher from "../TeacherPages/header/Header";
 import Back from "../CommonComponents/Back";
 import Error from "../CommonComponents/Error/Error";
 import HeaderStudent from "../CommonComponents/header/Header";
@@ -56,7 +56,7 @@ function StudyMaterial() {
   return (
     <>
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "admin" && <HeaderAdmin />}
+        "admin" && <HeaderTeacher />}
       {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "student" ||
         !authenticated) && <HeaderStudent />}

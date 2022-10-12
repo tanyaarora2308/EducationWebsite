@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderAdmin from "../AdminPages/header/Header";
+import HeaderTeacher from "../TeacherPages/header/Header";
 import Back from "../CommonComponents/Back";
 import Error from "../CommonComponents/Error/Error";
 import HeaderStudent from "../CommonComponents/header/Header";
@@ -17,7 +17,7 @@ const Blog = () => {
   return (
     <>
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "admin" && <HeaderAdmin />}
+        "admin" && <HeaderTeacher />}
       {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "student" ||
         !authenticated) && <HeaderStudent />}
