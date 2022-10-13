@@ -15,6 +15,9 @@ import BlogForm from "./components/TeacherPages/BlogForm";
 import Playlists from "./components/Playlists/Playlists";
 import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
+import AdminHome from "./components/AdminPages/AdminHome";
+import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher"
+import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent"
 
 function App() {
   return (
@@ -33,12 +36,15 @@ function App() {
           <Route exact path="/blogForm" component={BlogForm} />
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/TeacherHome" component={TeacherHome} />
+          <Route exact path="/adminHome" component={AdminHome} />
           <Route
             exact
             path="/studymaterialForm"
             component={StudyMaterialForm}
           />
           <Route exact path="/studymaterial" component={StudyMaterial} />
+          <Route exact path="/updateTeacher" component={UpdateTeacher} />
+          <Route exact path="/updateStudent" component={UpdateStudent} />
         </Switch>
         <Footer />
       </Router>

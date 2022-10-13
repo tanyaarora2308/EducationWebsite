@@ -1,4 +1,5 @@
 import UserModel from "../Models/userModel.js";
+import TeacherModel from "../Models/teacherModel.js"
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
@@ -102,6 +103,7 @@ export const loginUser = async (req, res) => {
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
+    const teacher = await TeacherModel.findOne({ email: email });
     console.log(user);
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
@@ -116,7 +118,18 @@ export const loginUser = async (req, res) => {
             confirmed:user.confirmed
           })
         : res.status(401).json("Invalid credentials!");
-    } else {
+    } else if(teacher){
+      res.status(200).json({
+        _id: teacher.id,
+        name: teacher.name,
+        email: teacher.email,
+        password:teacher.password,
+        subject:teacher.subject,
+        token: generateToken(teacher._id),
+        userType: teacher.userType,
+      })
+    }
+    else {
       res.status(404).json("User does not exist");
     }
   } catch (error) {

@@ -166,7 +166,8 @@ const Auth = () => {
               buttons: false,
               timer: 1000,
             });
-            if (response.data.userType == "admin") history.push("/TeacherHome");
+            if (response.data.userType == "admin") history.push("/adminHome");
+            else if(response.data.userType == "teacher") history.push("/teacherHome");
             else history.push("/");
           }
         } else throw new Error(response.message);

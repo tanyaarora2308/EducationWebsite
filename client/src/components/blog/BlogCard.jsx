@@ -69,7 +69,7 @@ const BlogCard = () => {
                   </svg>
                 </span>
                 <br/>
-                {userType === "admin" && <i className="fa fa-trash delete-icon" aria-hidden="true" style={{color:"#024b45",paddingLeft:"10em",fontSize:"20px"}}
+                {userType === "teacher" && <i className="fa fa-trash delete-icon" aria-hidden="true" style={{color:"#024b45",paddingLeft:"10em",fontSize:"20px"}}
                 onClick={() => {deleteBlog(val._id)}}
                  />}
               </a>

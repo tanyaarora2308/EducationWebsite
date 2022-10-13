@@ -103,7 +103,7 @@ const Question = ({ data }) => {
             onClick={handleshow}
           />
           <span style={{ marginLeft: "6px" }} onClick={handleshow}>{count} Answers</span>
-          {(data.userId === userID || userType === "admin")  && <i class="fa fa-trash" aria-hidden="true" onClick={() => {deleteQuery(data._id,userID)}} />}
+          {(data.userId === userID || userType === "teacher")  && <i class="fa fa-trash" aria-hidden="true" onClick={() => {deleteQuery(data._id,userID)}} />}
         </div>
       </div>
       {show === true ?

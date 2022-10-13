@@ -11,6 +11,8 @@ import AnnouncementRoute from "./Routes/AnnouncementRoute.js"
 import PlaylistRoute from "./Routes/PlaylistRoute.js"
 import BlogRoute from "./Routes/BlogRoute.js"
 import StudyMaterialRoute from "./Routes/StudyMaterialRoute.js"
+import TeacherRoute from "./Routes/TeacherRoute.js"
+import enrolledStudentsRoute from "./Routes/enrolledStudentsRoute.js";
 
 const app = express();
 const __dirname = path.resolve();
@@ -43,3 +45,5 @@ mongoose
   app.use('/playlists', PlaylistRoute)
   app.use('/blogs', BlogRoute)
   app.use('/studymaterial', StudyMaterialRoute);
+  app.use('/teachers',TeacherRoute)
+  app.use('/enrolledStudents',enrolledStudentsRoute)

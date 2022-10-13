@@ -17,7 +17,7 @@ const Queries = () => {
   return (
     <>
       {JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
-        "admin" && <HeaderTeacher />}
+        "teacher" && <HeaderTeacher />}
       {(JSON.parse(sessionStorage.getItem("UserDetails"))?.userType ===
         "student" ||
         !authenticated) && <HeaderStudent />}
