@@ -45,5 +45,5 @@ mongoose
   app.use('/playlists', PlaylistRoute)
   app.use('/blogs', BlogRoute)
   app.use('/studymaterial', StudyMaterialRoute);
-  app.use('/teachers',TeacherRoute)
+  app.use('/auth',TeacherRoute)
   app.use('/enrolledStudents',enrolledStudentsRoute)

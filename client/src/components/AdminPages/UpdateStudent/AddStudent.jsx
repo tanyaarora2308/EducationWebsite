@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import swal from "sweetalert";
 // import "./UploadQues.css";
 
 const AddTeacher = () => {
@@ -36,7 +37,10 @@ const AddTeacher = () => {
     axios
       .post("http://localhost:5000/enrolledStudents/", data)
       .then((response) => {
-        // console.log(response);
+        swal("Student added!", {
+          buttons: false,
+          timer: 1000,
+        });
       })
       .catch((error) => {
         console.log(error);

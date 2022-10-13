@@ -4,29 +4,47 @@ import React, { useState } from "react";
 import swal from "sweetalert";
 // import "./Question.css";
 
-const Teacher = ({ data }) => {
-console.log(data);
-  const deleteTeacher = async (TeacherID) => {
+const Student = ({ data }) => {
+  console.log(data);
+  const deleteStudent = async (StudentID) => {
     const headers = {
       authorization:
-        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
-    }
-    axios.delete(`/teachers/${TeacherID}`, { headers: headers });
-  }
-  const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
+        "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token ||
+        "",
+    };
+    axios.delete(`/enrolledStudents/${StudentID}`, { headers: headers });
+  };
+  const userType =
+    JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
   return (
     <div className="Question">
       <div className="detail">
         <span>
           <br />
           <br />
-          <b>Teacher ID: </b>{data._id}: 
+          <b>Student ID: </b>
+          {data._id}:
         </span>
         <br />
-        <span><b>Teacher Name: </b>{data.name} </span><br/>
-        <span><b>Teacher Email: </b>{data.email} </span><br/>
-        <span><b>Teacher Subject: </b>{data.subject} </span><br/>
-        <span><b>Teacher Name: </b>{data.name}</span><br/>
+        <span>
+          <b>Student Name: </b>
+          {data.name}{" "}
+        </span>
+        <br />
+        <span>
+          <b>Student Email: </b>
+          {data.email}{" "}
+        </span>
+        <br />
+        <span>
+          <b>
+            Student Courses:{" "}</b>
+            {data.courses.map((a) => {
+              return <span style={{textTransform:"capitalize"}}>{a} </span>;
+            })}
+          
+        </span>
+        <br />
       </div>
       <div className="QuestionReact">
         <div
@@ -37,11 +55,19 @@ console.log(data);
             cursor: "pointer",
           }}
         >
-          {(userType === "admin")  && <i class="fa fa-trash" aria-hidden="true" onClick={() => {deleteTeacher(data._id)}} />}
+          {userType === "admin" && (
+            <i
+              class="fa fa-trash"
+              aria-hidden="true"
+              onClick={() => {
+                deleteStudent(data._id);
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Teacher;
+export default Student;

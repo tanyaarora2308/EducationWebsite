@@ -8,7 +8,7 @@ const Teachers = () => {
 
   const getData = async () => {
 
-    const returnedData = await axios.get("http://localhost:5000/teachers/");
+    const returnedData = await axios.get("http://localhost:5000/auth/teacher/");
     setData(returnedData.data);
   };
 

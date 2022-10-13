@@ -16,6 +16,7 @@ import Playlists from "./components/Playlists/Playlists";
 import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
 import AdminHome from "./components/AdminPages/AdminHome";
+import Profile from "./components/Profile";
 import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher"
 import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent"
 
@@ -42,6 +43,7 @@ function App() {
             path="/studymaterialForm"
             component={StudyMaterialForm}
           />
+          <Route exact path="/profile" component={Profile}/>
           <Route exact path="/studymaterial" component={StudyMaterial} />
           <Route exact path="/updateTeacher" component={UpdateTeacher} />
           <Route exact path="/updateStudent" component={UpdateStudent} />

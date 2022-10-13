@@ -8,7 +8,7 @@ const Teacher = ({ data }) => {
       authorization:
         "Bearer " + JSON.parse(sessionStorage.getItem("UserDetails"))?.token || "",
     }
-    axios.delete(`/teachers/${TeacherID}`, { headers: headers });
+    axios.delete(`/auth/teacher/${TeacherID}`, { headers: headers });
   }
   const userType = JSON.parse(sessionStorage.getItem("UserDetails"))?.userType || "";
   return (

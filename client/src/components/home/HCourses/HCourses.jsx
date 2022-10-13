@@ -63,9 +63,9 @@ const HCourses = () => {
                       {val.priceAll} / {val.pricePer}
                     </h3>
                   </div>
-                  <button className="outline-btn" onClick={enrollButton}>
+                  {/* <button className="outline-btn" onClick={enrollButton}>
                     ENROLL NOW !
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </div>

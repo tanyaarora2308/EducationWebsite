@@ -1,9 +1,9 @@
-import TeacherModel from "../Models/teacherModel.js"
+import UserModel from "../Models/userModel.js"
 
 // Create new Teacher
 export const postTeacher = async (req, res) => {
   try {
-    const newTeacher = new TeacherModel(req.body);
+    const newTeacher = new UserModel(req.body);
     await newTeacher.save();
     res.status(200).json(newTeacher);
   } catch (error) {
@@ -17,7 +17,7 @@ export const getTeacher = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const Teacher = await TeacherModel.findById(id);
+    const Teacher = await UserModel.findById(id);
     res.status(200).json(Teacher);
   } catch (error) {
     res.status(500).json(error);
@@ -48,7 +48,7 @@ export const deleteTeacher = async (req, res) => {
   console.log(req.params);
 
   try {
-    const Teacher = await TeacherModel.findById(TeacherID);
+    const Teacher = await UserModel.findById(TeacherID);
       await Teacher.deleteOne();
       res.status(200).json("Teacher deleted successfully");
   } catch (error) {
@@ -58,7 +58,7 @@ export const deleteTeacher = async (req, res) => {
 
 //Show all Teachers
 export const showAllTeachers = async (req, res) => {
-  TeacherModel.find({})
+  UserModel.find({ userType: { $eq: "teacher" } })
     .then((Teachers) => {
       res.status(200).json(Teachers);
     })

@@ -23,7 +23,7 @@ const UpdateStudent = () => {
           <div className="Queries">
             <div className="container">
               <AddStudent />
-              {/* <Students /> */}
+              <Students />
             </div>
           </div>
         </>

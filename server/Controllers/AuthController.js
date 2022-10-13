@@ -1,5 +1,5 @@
 import UserModel from "../Models/userModel.js";
-import TeacherModel from "../Models/teacherModel.js"
+import enrolledStudentModel from "../Models/enrolledStudentModel.js"
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
@@ -8,6 +8,8 @@ import bcrypt from "bcrypt";
 export const registerUser = async (req, res) => {
   const { name, email, password, confirmpassword, userType } = req.body;
   try {
+    const enrolledUser = await enrolledStudentModel.findOne({ email });
+    if(!enrolledUser) return res.status(400).json({ message: "Please enroll offline first to register! 🙁" });
     const oldUser = await UserModel.findOne({ email });
     if (password !== confirmpassword)
       return res
@@ -103,36 +105,53 @@ export const loginUser = async (req, res) => {
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
-    const teacher = await TeacherModel.findOne({ email: email });
+    const enrolledUser = await enrolledStudentModel.findOne({ email: email });
     console.log(user);
     if (user) {
-      const validity = await bcrypt.compare(password, user.password);
-      validity
-        ? res.status(200).json({
-            // user
+      let validity;
+      if(user.userType === 'teacher') validity = (password === user.password);
+      else validity = await bcrypt.compare(password, user.password);
+      
+      if(validity){
+          if(user.userType === "student"){
+            res.status(200).json({
+              // user
+              _id: user.id,
+              name: user.name,
+              email: user.email,
+              userType: user.userType,
+              token: generateToken(user._id),
+              confirmed:user.confirmed,
+              courses:enrolledUser.courses
+            })
+          }
+          else if(user.userType === "teacher"){
+            res.status(200).json({
             _id: user.id,
             name: user.name,
             email: user.email,
-            userType: user.userType,
+            password:user.password,
+            subject:user.subject,
             token: generateToken(user._id),
-            confirmed:user.confirmed
-          })
-        : res.status(401).json("Invalid credentials!");
-    } else if(teacher){
-      res.status(200).json({
-        _id: teacher.id,
-        name: teacher.name,
-        email: teacher.email,
-        password:teacher.password,
-        subject:teacher.subject,
-        token: generateToken(teacher._id),
-        userType: teacher.userType,
-      })
+            userType: user.userType,
+            })
+          }
+          else if(user.userType === "admin"){
+            res.status(200).json({
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            password:user.password,
+            token: generateToken(user._id),
+            userType: user.userType,
+            })
+          }
+      }
+      else res.status(401).json("Invalid credentials!");
     }
-    else {
-      res.status(404).json("User does not exist");
-    }
-  } catch (error) {
+    else res.status(404).json("User does not exist");
+  } 
+  catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
@@ -170,18 +189,18 @@ const generateToken = (id) => {
 
 export const updateConfirmedPassword = async (req, res) => {
   try {
-    console.log("Inside updateConfirmedPassword")
     const decoded = jwt.verify(req.params.token, process.env.JWT_KEY)
     req.user = await UserModel.findById(decoded.id).select('-password')
-    // const { user: { id } } = jwt.verify(req.params.token,process.env.JWT_KEY);
     console.log("User is", req.user)
     // await UserModel.updateOne({ confirmed: true }, { where: { id } });
     await UserModel.updateOne({ _id: req.user.id },{ $set: { confirmed: true } },);
     console.log("User confirmed updated")
+    return res.redirect('http://localhost:3000/Auth');
+    
   } catch (e) {
     console.log(e)
     res.send('error');
   }
 
-  // return res.redirect('http://localhost:3000/auth');
+  
 }

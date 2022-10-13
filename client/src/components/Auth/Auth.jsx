@@ -142,12 +142,11 @@ const Auth = () => {
 
   const LoginHandler = (e) => {
     e.preventDefault();
-    console.log(loginData);
     axios
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
-        if (response.status == 200) {
-          console.log(response);
+        console.log(response);
+        if (response.status == 200 || response.status == 201) {
           if (
             (response.data.userType == "student" ||
               response.data.userType == "") &&
@@ -167,7 +166,8 @@ const Auth = () => {
               timer: 1000,
             });
             if (response.data.userType == "admin") history.push("/adminHome");
-            else if(response.data.userType == "teacher") history.push("/teacherHome");
+            else if (response.data.userType == "teacher")
+              history.push("/teacherHome");
             else history.push("/");
           }
         } else throw new Error(response.message);
@@ -246,7 +246,7 @@ const Auth = () => {
                       onChange={handleLoginInputChange}
                     />
                   ))}
-                  <a href="#">Forgot your password?</a>
+                  {/* <a href="#">Forgot your password?</a> */}
                   <Link>
                     <button
                       className="signin"

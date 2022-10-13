@@ -22,7 +22,7 @@ const AddTeacher = () => {
     setData(initialState);
     e.preventDefault();
     axios
-      .post("http://localhost:5000/teachers/", data)
+      .post("http://localhost:5000/auth/teacher/", data)
       .then((response) => {
         // console.log(response);
       })
@@ -60,7 +60,7 @@ const AddTeacher = () => {
           outline: "none"}}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Enter password"
           name="password"
           value={data.password}
