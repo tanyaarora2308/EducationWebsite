@@ -1,0 +1,44 @@
+.section-one {
+    background-color: #e8f5ff;    
+    filter: brightness();
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .section-one .container {
+    text-align: center;
+    color: black;
+  }
+  
+  .section-one h1 {
+    position: relative;
+    top: 30%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 4rem;
+    font-weight: 400;
+  }
+  
+  .section-one p {
+    font-size: 1.15rem;
+    position: relative;
+    top: 30%;
+    letter-spacing: 3px;
+    margin: 20px 0 40px;
+  }
+  .section-one button {
+    border:2px solid var(--blue);
+    background-color: rgb(231, 243, 243);
+    position: relative;
+    top: 30%;
+  }
+  .section-one button:hover {
+    color: white;
+    background-color: var(--blue);
+    position: relative;
+    top: 30%;
+  }

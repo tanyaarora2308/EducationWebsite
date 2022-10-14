@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import FormInput from "../CommonComponents/formInput/formInput";
 import Header from "../CommonComponents/header/Header";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import "./Auth.css";
 
 const Auth = () => {
@@ -17,13 +19,13 @@ const Auth = () => {
     });
   }, []);
 
-
   const registerInitialState = {
     name: "",
     email: "",
     password: "",
     confirmpassword: "",
     userType: "student",
+    courses:[]
     // courses:[{
     //   "name":"chemistry",
     //   "price":15000
@@ -36,6 +38,15 @@ const Auth = () => {
   const loginInitialState = {
     email: "",
     password: "",
+  };
+  const [courses, setCourses] = useState([]);
+
+  const handleCheckboxChange = event => {
+    let newArray = [...courses, event.target.value];
+    if (courses.includes(event.target.value)) {
+      newArray = newArray.filter(c => c !== event.target.value);
+    } 
+    setCourses(newArray);
   };
   const [registerData, setRegisterData] = useState(registerInitialState);
   const [loginData, setLoginData] = useState(loginInitialState);
@@ -114,6 +125,7 @@ const Auth = () => {
 
   const RegisterHandler = (e) => {
     e.preventDefault();
+    registerData.courses = courses;
     // if (
     //   registerData.name &&
     //   registerData.password &&
@@ -131,7 +143,11 @@ const Auth = () => {
               buttons: false,
               timer: 1000,
             });
-            history.push("/checkout-success");
+            sessionStorage.setItem(
+              "RegisterData",
+              JSON.stringify(response.data)
+            );
+            history.push("/checkout");
           }
           // else
           //   // swal("Sign up Successful!", {
@@ -151,51 +167,49 @@ const Auth = () => {
     // }
   };
 
-
   const LoginHandler = (e) => {
     e.preventDefault();
     // alert(sessionStorage.getItem("PaymentStatus"))
     if (JSON.parse(sessionStorage.getItem("PaymentStatus"))) {
-    //   alert("inside login")
-    axios
-      .post("http://localhost:5000/auth/login", loginData)
-      .then((response) => {
-        console.log(response);
-        if (response.status == 200 || response.status == 201) {
-          if (
-            (response.data.userType == "student" ||
-              response.data.userType == "") &&
-            !response.data.confirmed
-          ) {
-            swal("Please check your email to verify your account!", {
-              buttons: false,
-              timer: 1000,
-            });
-          } else {
-            sessionStorage.setItem(
-              "UserDetails",
-              JSON.stringify(response.data)
-            );
-            swal("Logged in Successfully!", {
-              buttons: false,
-              timer: 1000,
-            });
-            if (response.data.userType == "admin") history.push("/adminHome");
-            else if (response.data.userType == "teacher")
-              history.push("/teacherHome");
-            else history.push("/");
-          }
-        } else throw new Error(response.message);
-      })
-      .catch((error) => {
-        console.log(error);
-        // alert("inside error");
-        swal(error.response.data, {
-          buttons: false,
-          timer: 1000,
+      axios
+        .post("http://localhost:5000/auth/login", loginData)
+        .then((response) => {
+          console.log(response);
+          if (response.status == 200 || response.status == 201) {
+            if (
+              (response.data.userType == "student" ||
+                response.data.userType == "") &&
+              !response.data.confirmed
+            ) {
+              swal("Please check your email to verify your account!", {
+                buttons: false,
+                timer: 1000,
+              });
+            } else {
+              sessionStorage.setItem(
+                "UserDetails",
+                JSON.stringify(response.data)
+              );
+              swal("Logged in Successfully!", {
+                buttons: false,
+                timer: 1000,
+              });
+              if (response.data.userType == "admin") history.push("/adminHome");
+              else if (response.data.userType == "teacher")
+                history.push("/teacherHome");
+              else history.push("/");
+            }
+          } else throw new Error(response.message);
+        })
+        .catch((error) => {
+          console.log(error);
+          // alert("inside error");
+          swal(error.response.data, {
+            buttons: false,
+            timer: 1000,
+          });
+          console.log(error.response.data);
         });
-        console.log(error.response.data);
-      });
     } else {
       swal("Please complete the payment to login!", {
         buttons: false,
@@ -226,7 +240,7 @@ const Auth = () => {
                         onChange={handleRegisterInputChange}
                       />
                     ))}
-                    <select
+                    {/* <select
                       name="userType"
                       value={registerData.userType}
                       onChange={handleRegisterInputChange}
@@ -236,7 +250,22 @@ const Auth = () => {
                     >
                       <option value="student">Student</option>
                       <option value="admin">Admin</option>
-                    </select>
+                    </select> */}
+                    <span style={{paddingRight: "20px" }}>
+                      Select Courses:{" "}
+                    </span>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="Maths"
+                      onChange={handleCheckboxChange}
+                      value="maths"
+                    />
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="Chemistry"
+                      onChange={handleCheckboxChange}
+                      value="chemistry"
+                    />
 
                     <button
                       className="signup"

@@ -27,7 +27,10 @@ const UserSchema = mongoose.Schema(
     },
     subject:{
       type: String,
-    }
+    },
+    courses:{
+      type:[String],
+   }
   },
   { timestamps: true }
 );

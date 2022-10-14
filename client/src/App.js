@@ -17,10 +17,9 @@ import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
 import AdminHome from "./components/AdminPages/AdminHome";
 import Profile from "./components/Profile/Profile";
-import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher"
-import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent"
-import CheckoutSuccess from "./components/Auth/CheckoutSuccess";
-import CheckoutFailure from "./components/Auth/CheckoutFailure";
+import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher";
+import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent";
+import Checkout from "./components/Auth/Checkout/Checkout";
 
 function App() {
   return (
@@ -40,14 +39,13 @@ function App() {
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/TeacherHome" component={TeacherHome} />
           <Route exact path="/adminHome" component={AdminHome} />
-          <Route exact path="/checkout-success" component={CheckoutSuccess} />
-          <Route exact path="/checkout-failure" component={CheckoutFailure} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route
             exact
             path="/studymaterialForm"
             component={StudyMaterialForm}
           />
-          <Route exact path="/profile" component={Profile}/>
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/studymaterial" component={StudyMaterial} />
           <Route exact path="/updateTeacher" component={UpdateTeacher} />
           <Route exact path="/updateStudent" component={UpdateStudent} />

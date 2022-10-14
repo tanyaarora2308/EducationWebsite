@@ -13,7 +13,8 @@ export default function Header() {
   }
   const handleLogout = () => {
     sessionStorage.removeItem("UserDetails");
-    sessionStorage.removeItem("PaymentStatus")
+    sessionStorage.removeItem("PaymentStatus");
+    sessionStorage.removeItem("RegisterData");
   }
 
   const [authenticated, setAuthenticated] = useState(false);

@@ -24,21 +24,11 @@ export const checkout =  async (req, res) => {
     const idempotency_key = uuid();
     const charge = await stripe.charges.create(
       {
-        amount: product.price * 100,
-        currency: "usd",
+        amount: product.price,
+        currency: "inr",
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchased the ${product.name}`,
-        shipping: {
-          name: token.card.name,
-          address: {
-            line1: token.card.address_line1,
-            line2: token.card.address_line2,
-            city: token.card.address_city,
-            country: token.card.address_country,
-            postal_code: token.card.address_zip,
-          },
-        },
+        description: `Purchased the ${product.name}`
       },
       {
         idempotency_key,
@@ -62,7 +52,8 @@ export const checkout =  async (req, res) => {
 
 // Registering a new User
 export const registerUser = async (req, res) => {
-  const { name, email, password, confirmpassword, userType } = req.body;
+  const { name, email, password, confirmpassword, userType,courses } = req.body;
+  console.log(courses);
   try {
     // const enrolledUser = await enrolledStudentModel.findOne({ email });
     // if (!enrolledUser)
@@ -88,6 +79,7 @@ export const registerUser = async (req, res) => {
       confirmpassword,
       userType,
       confirmed: false,
+      courses
     });
 
     if (newUser) await newUser.save();
@@ -143,6 +135,7 @@ export const registerUser = async (req, res) => {
         userType: newUser.userType,
         token: emailToken,
         confirmed: newUser.confirmed,
+        courses:newUser.courses
       });
     } else {
       res.status(400);
