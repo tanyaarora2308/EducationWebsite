@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HeaderTeacher from "./TeacherPages/header/Header";
-import Back from "./CommonComponents/Back";
-import Error from "./CommonComponents/Error/Error";
+import HeaderTeacher from "../TeacherPages/header/Header";
+import Back from "../CommonComponents/Back";
+import Error from "../CommonComponents/Error/Error";
 import "./Profile.css";
-import HeaderStudent from "./CommonComponents/header/Header";
+import HeaderStudent from "../CommonComponents/header/Header";
 
 const Profile = () => {
   const [authenticated, setAuthenticated] = useState(false);

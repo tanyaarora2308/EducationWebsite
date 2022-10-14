@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import FormInput from "../CommonComponents/formInput/formInput";
 import Header from "../CommonComponents/header/Header";
+import StripeCheckout from "react-stripe-checkout";
 import "./Auth.css";
 
 const Auth = () => {
@@ -17,12 +18,31 @@ const Auth = () => {
     });
   }, []);
 
+  let courses = [
+    {
+      name: "chemistry",
+      price: 15000,
+    },
+    {
+      name: "maths",
+      price: 15000,
+    },
+  ];
+
   const registerInitialState = {
     name: "",
     email: "",
     password: "",
     confirmpassword: "",
     userType: "student",
+    // courses:[{
+    //   "name":"chemistry",
+    //   "price":15000
+    // },
+    // {
+    //   "name":"maths",
+    //   "price":15000
+    // }]
   };
   const loginInitialState = {
     email: "",
@@ -57,7 +77,7 @@ const Auth = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
     {
@@ -140,6 +160,44 @@ const Auth = () => {
     // }
   };
 
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/auth/create-checkout-session", {
+        courses,
+        userID: "12345",
+      })
+      .then((res) => {
+        if (res.data.url) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const [product] = useState({
+    name: "Sample Book",
+    price: 120,
+    description: "This is a sample book",
+  });
+
+  async function handleToken(token, addresses) {
+    const response = await axios.post("http://localhost:5000/auth/checkout", {
+      token,
+      product,
+    });
+
+    console.log(response.status);
+
+    if (response.status === 200) {
+      alert("Success! Check email for details");
+      // toast("Success! Check email for details", { type: "success" });
+    } else {
+      alert("Something went wrong");
+    }
+  }
+
   const LoginHandler = (e) => {
     e.preventDefault();
     axios
@@ -214,13 +272,23 @@ const Auth = () => {
                       <option value="student">Student</option>
                       <option value="admin">Admin</option>
                     </select>
-                    <button
+                    {/* <button onClick={handleCheckout}>Pay Now</button> */}
+                    <StripeCheckout
+                    type="button"
+                      stripeKey="pk_test_51Lslh7SBtgHFMVIcORqVL1VHQHxykl4EyfSgdupVBM2WcRax1IdPjhaLTentSaT08L9DBtjpYyL1XS9We8xXLR8d00gfS07dkj"
+                      token={handleToken}
+                      amount={product.price * 100}
+                      name="Sample Book"
+                      billingAddress
+                      shippingAddress
+                    />
+                    {/* <button
                       className="signup"
                       type="submit"
                       onClick={RegisterHandler}
                     >
                       Sign Up
-                    </button>
+                    </button>  */}
                     <a
                       onClick={() => {
                         setContainerActive(false);

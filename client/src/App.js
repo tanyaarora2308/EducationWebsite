@@ -19,6 +19,8 @@ import AdminHome from "./components/AdminPages/AdminHome";
 import Profile from "./components/Profile/Profile";
 import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher"
 import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent"
+import CheckoutSuccess from "./components/Auth/CheckoutSuccess";
+import CheckoutFailure from "./components/Auth/CheckoutFailure";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/feedbackdisplay" component={Feedback} />
           <Route exact path="/TeacherHome" component={TeacherHome} />
           <Route exact path="/adminHome" component={AdminHome} />
+          <Route exact path="/checkout-success" component={CheckoutSuccess} />
+          <Route exact path="/checkout-failure" component={CheckoutFailure} />
           <Route
             exact
             path="/studymaterialForm"

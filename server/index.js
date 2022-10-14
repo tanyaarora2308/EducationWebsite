@@ -25,6 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 dotenv.config();
 
+
 mongoose
   .connect(process.env.MONGO_DB, {
     useNewUrlParser: true,
