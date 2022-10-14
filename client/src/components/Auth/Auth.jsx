@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import FormInput from "../CommonComponents/formInput/formInput";
 import Header from "../CommonComponents/header/Header";
-import StripeCheckout from "react-stripe-checkout";
 import "./Auth.css";
 
 const Auth = () => {
@@ -18,16 +17,6 @@ const Auth = () => {
     });
   }, []);
 
-  let courses = [
-    {
-      name: "chemistry",
-      price: 15000,
-    },
-    {
-      name: "maths",
-      price: 15000,
-    },
-  ];
 
   const registerInitialState = {
     name: "",
@@ -137,19 +126,21 @@ const Auth = () => {
       .then((response) => {
         console.log(response);
         if (response.status == 201)
-          if (registerData.userType === "student")
+          if (registerData.userType === "student") {
             swal("Please check your email to verify your account", {
               buttons: false,
               timer: 1000,
             });
-          else
-            swal("Sign up Successful!", {
-              buttons: false,
-              timer: 1000,
-            });
-        else if (response.status == 400) {
-          throw new Error(response);
-        }
+            history.push("/checkout-success");
+          }
+          // else
+          //   // swal("Sign up Successful!", {
+          //   //   buttons: false,
+          //   //   timer: 1000,
+          //   // });
+          else if (response.status == 400) {
+            throw new Error(response);
+          }
       })
       .catch((error) => {
         swal(error.response.data.message, {
@@ -160,46 +151,12 @@ const Auth = () => {
     // }
   };
 
-  const handleCheckout = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:5000/auth/create-checkout-session", {
-        courses,
-        userID: "12345",
-      })
-      .then((res) => {
-        if (res.data.url) {
-          window.location.href = res.data.url;
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-  const [product] = useState({
-    name: "Sample Book",
-    price: 120,
-    description: "This is a sample book",
-  });
-
-  async function handleToken(token, addresses) {
-    const response = await axios.post("http://localhost:5000/auth/checkout", {
-      token,
-      product,
-    });
-
-    console.log(response.status);
-
-    if (response.status === 200) {
-      alert("Success! Check email for details");
-      // toast("Success! Check email for details", { type: "success" });
-    } else {
-      alert("Something went wrong");
-    }
-  }
 
   const LoginHandler = (e) => {
     e.preventDefault();
+    // alert(sessionStorage.getItem("PaymentStatus"))
+    if (JSON.parse(sessionStorage.getItem("PaymentStatus"))) {
+    //   alert("inside login")
     axios
       .post("http://localhost:5000/auth/login", loginData)
       .then((response) => {
@@ -231,12 +188,20 @@ const Auth = () => {
         } else throw new Error(response.message);
       })
       .catch((error) => {
+        console.log(error);
+        // alert("inside error");
         swal(error.response.data, {
           buttons: false,
           timer: 1000,
         });
         console.log(error.response.data);
       });
+    } else {
+      swal("Please complete the payment to login!", {
+        buttons: false,
+        timer: 1000,
+      });
+    }
   };
 
   return (
@@ -272,23 +237,14 @@ const Auth = () => {
                       <option value="student">Student</option>
                       <option value="admin">Admin</option>
                     </select>
-                    {/* <button onClick={handleCheckout}>Pay Now</button> */}
-                    <StripeCheckout
-                    type="button"
-                      stripeKey="pk_test_51Lslh7SBtgHFMVIcORqVL1VHQHxykl4EyfSgdupVBM2WcRax1IdPjhaLTentSaT08L9DBtjpYyL1XS9We8xXLR8d00gfS07dkj"
-                      token={handleToken}
-                      amount={product.price * 100}
-                      name="Sample Book"
-                      billingAddress
-                      shippingAddress
-                    />
-                    {/* <button
+
+                    <button
                       className="signup"
                       type="submit"
                       onClick={RegisterHandler}
                     >
                       Sign Up
-                    </button>  */}
+                    </button>
                     <a
                       onClick={() => {
                         setContainerActive(false);

@@ -11,6 +11,10 @@ export default function Header() {
     else setTheme("90")
     document.body.style.filter = `hue-rotate(${theme}deg)`;
   }
+  const handleLogout = () => {
+    sessionStorage.removeItem("UserDetails");
+    sessionStorage.removeItem("PaymentStatus")
+  }
 
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
@@ -70,7 +74,7 @@ export default function Header() {
             <Link to="/Auth">
               <button
                 className="button1 ps-button1"
-                onClick={() => sessionStorage.removeItem("UserDetails")}
+                onClick={handleLogout}
               >
                 Logout
               </button>

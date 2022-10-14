@@ -44,14 +44,19 @@ export const checkout =  async (req, res) => {
         idempotency_key,
       }
     );
+    status = "success";
+    console.log("success");
+    res.json({status});
+    return res.redirect("http://localhost:3000/Auth");
     console.log("Charge:", { charge });
     status = "success";
   }catch (error) {
-    console.error("Error:", error);
-    res.json({ error });
-    status = "failure";
+    // console.error("Error:", error);
+    // res.json({ error });
+    // status = "failure";
   }
-  res.json({ error, status });
+  res.json({status });
+  
 };
 
 
@@ -59,11 +64,11 @@ export const checkout =  async (req, res) => {
 export const registerUser = async (req, res) => {
   const { name, email, password, confirmpassword, userType } = req.body;
   try {
-    const enrolledUser = await enrolledStudentModel.findOne({ email });
-    if (!enrolledUser)
-      return res
-        .status(400)
-        .json({ message: "Please enroll offline first to register! 🙁" });
+    // const enrolledUser = await enrolledStudentModel.findOne({ email });
+    // if (!enrolledUser)
+    //   return res
+    //     .status(400)
+    //     .json({ message: "Please enroll offline first to register! 🙁" });
     const oldUser = await UserModel.findOne({ email });
     if (password !== confirmpassword)
       return res
@@ -157,7 +162,7 @@ export const loginUser = async (req, res) => {
     return res.status(400).json("Email or password not entered");
   try {
     const user = await UserModel.findOne({ email: email });
-    const enrolledUser = await enrolledStudentModel.findOne({ email: email });
+    // const enrolledUser = await enrolledStudentModel.findOne({ email: email });
     console.log(user);
     if (user) {
       let validity;
@@ -174,7 +179,7 @@ export const loginUser = async (req, res) => {
             userType: user.userType,
             token: generateToken(user._id),
             confirmed: user.confirmed,
-            courses: enrolledUser.courses,
+            // courses: enrolledUser.courses,
           });
         } else if (user.userType === "teacher") {
           res.status(200).json({
