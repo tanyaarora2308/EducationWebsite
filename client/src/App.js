@@ -16,7 +16,7 @@ import Playlists from "./components/Playlists/Playlists";
 import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
 import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
 import AdminHome from "./components/AdminPages/AdminHome";
-import Profile from "./components/Profile";
+import Profile from "./components/Profile/Profile";
 import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher"
 import UpdateStudent from "./components/AdminPages/UpdateStudent/UpdateStudent"
 
