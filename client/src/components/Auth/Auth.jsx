@@ -25,15 +25,7 @@ const Auth = () => {
     password: "",
     confirmpassword: "",
     userType: "student",
-    courses:[]
-    // courses:[{
-    //   "name":"chemistry",
-    //   "price":15000
-    // },
-    // {
-    //   "name":"maths",
-    //   "price":15000
-    // }]
+    courses: [],
   };
   const loginInitialState = {
     email: "",
@@ -41,11 +33,11 @@ const Auth = () => {
   };
   const [courses, setCourses] = useState([]);
 
-  const handleCheckboxChange = event => {
+  const handleCheckboxChange = (event) => {
     let newArray = [...courses, event.target.value];
     if (courses.includes(event.target.value)) {
-      newArray = newArray.filter(c => c !== event.target.value);
-    } 
+      newArray = newArray.filter((c) => c !== event.target.value);
+    }
     setCourses(newArray);
   };
   const [registerData, setRegisterData] = useState(registerInitialState);
@@ -169,23 +161,27 @@ const Auth = () => {
 
   const LoginHandler = (e) => {
     e.preventDefault();
-    // alert(sessionStorage.getItem("PaymentStatus"))
-    if (JSON.parse(sessionStorage.getItem("PaymentStatus"))) {
-      axios
-        .post("http://localhost:5000/auth/login", loginData)
-        .then((response) => {
-          console.log(response);
-          if (response.status == 200 || response.status == 201) {
-            if (
-              (response.data.userType == "student" ||
-                response.data.userType == "") &&
-              !response.data.confirmed
-            ) {
+    axios
+      .post("http://localhost:5000/auth/login", loginData)
+      .then((response) => {
+        console.log("responseLogin", response);
+        if (response.status == 200 || response.status == 201) {
+          console.log("response.data.enrolled", response.data.enrolled);
+          if (response.data.userType == "student") {
+            if (!response.data.enrolled){
+              // alert("Please complete the payment to login!")
+              swal("Please complete the payment to login!", {
+                buttons: false,
+                timer: 1000,
+              });
+            }
+            else if (!response.data.confirmed) {
               swal("Please check your email to verify your account!", {
                 buttons: false,
                 timer: 1000,
               });
-            } else {
+            }
+            else {
               sessionStorage.setItem(
                 "UserDetails",
                 JSON.stringify(response.data)
@@ -194,28 +190,32 @@ const Auth = () => {
                 buttons: false,
                 timer: 1000,
               });
-              if (response.data.userType == "admin") history.push("/adminHome");
-              else if (response.data.userType == "teacher")
-                history.push("/teacherHome");
-              else history.push("/");
-            }
-          } else throw new Error(response.message);
-        })
-        .catch((error) => {
-          console.log(error);
-          // alert("inside error");
-          swal(error.response.data, {
-            buttons: false,
-            timer: 1000,
-          });
-          console.log(error.response.data);
+              history.push("/");
+          }
+         } else {
+            sessionStorage.setItem(
+              "UserDetails",
+              JSON.stringify(response.data)
+            );
+            swal("Logged in Successfully!", {
+              buttons: false,
+              timer: 1000,
+            });
+          }
+          if (response.data.userType == "admin") history.push("/adminHome");
+          else if (response.data.userType == "teacher")
+            history.push("/teacherHome");
+        } else throw new Error(response.message);
+      })
+      .catch((error) => {
+        console.log(error);
+        // alert("inside error");
+        swal(error.response.data, {
+          buttons: false,
+          timer: 1000,
         });
-    } else {
-      swal("Please complete the payment to login!", {
-        buttons: false,
-        timer: 1000,
+        console.log(error.response.data);
       });
-    }
   };
 
   return (
@@ -251,21 +251,30 @@ const Auth = () => {
                       <option value="student">Student</option>
                       <option value="admin">Admin</option>
                     </select> */}
-                    <span style={{paddingRight: "20px" }}>
-                      Select Courses:{" "}
-                    </span>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="Maths"
-                      onChange={handleCheckboxChange}
-                      value="maths"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="Chemistry"
-                      onChange={handleCheckboxChange}
-                      value="chemistry"
-                    />
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <span
+                        style={{
+                          color: " rgba(92, 93, 94, 0.959)",
+                          paddingRight: "1em",
+                        }}
+                      >
+                        Select Courses:{" "}
+                      </span>
+                      <FormControlLabel
+                        control={<Checkbox />}
+                        style={{ display: "inline-block", float: "left" }}
+                        label="Maths"
+                        onChange={handleCheckboxChange}
+                        value="maths"
+                      />
+                      <FormControlLabel
+                        control={<Checkbox />}
+                        style={{ display: "inline-block", float: "left" }}
+                        label="Chemistry"
+                        onChange={handleCheckboxChange}
+                        value="chemistry"
+                      />
+                    </div>
 
                     <button
                       className="signup"

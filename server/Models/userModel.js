@@ -19,23 +19,25 @@ const UserSchema = mongoose.Schema(
     },
     userType: {
       type: String,
-      default:"student"
+      default: "student",
     },
     confirmed: {
       type: Boolean,
       defaultValue: false,
     },
-    subject:{
+    subject: {
       type: String,
     },
-    courses:{
-      type:[String],
-   }
+    courses: {
+      type: [String],
+    },
+    enrolled: {
+      type: Boolean,
+      defaultValue: false,
+    },
   },
   { timestamps: true }
 );
-
-
 
 const UserModel = mongoose.model("Users", UserSchema);
 export default UserModel;

@@ -6,7 +6,6 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 import Stripe from "stripe";
 
-
 const stripe = Stripe(process.env.stripeSecretKey)
 export const checkout =  async (req, res) => {
   console.log("Request:", req.body);
@@ -36,17 +35,28 @@ export const checkout =  async (req, res) => {
     );
     status = "success";
     console.log("success");
-    res.json({status});
-    return res.redirect("http://localhost:3000/Auth");
-    console.log("Charge:", { charge });
+    
+    
     status = "success";
   }catch (error) {
     // console.error("Error:", error);
     // res.json({ error });
     // status = "failure";
   }
-  res.json({status });
-  
+  res.json({status});
+};
+
+export const updateEnrollment = async (req, res) => {
+  const { email } = req.body;
+  try {
+    await UserModel.updateOne(
+      { email: email },
+      { $set: { enrolled: true } }
+    );
+      res.status(200).json("Student enrollment Updated");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 
@@ -79,7 +89,8 @@ export const registerUser = async (req, res) => {
       confirmpassword,
       userType,
       confirmed: false,
-      courses
+      courses,
+      enrolled: false
     });
 
     if (newUser) await newUser.save();
@@ -135,7 +146,9 @@ export const registerUser = async (req, res) => {
         userType: newUser.userType,
         token: emailToken,
         confirmed: newUser.confirmed,
-        courses:newUser.courses
+        courses:newUser.courses,
+        enrolled:newUser.enrolled
+
       });
     } else {
       res.status(400);
@@ -172,7 +185,9 @@ export const loginUser = async (req, res) => {
             userType: user.userType,
             token: generateToken(user._id),
             confirmed: user.confirmed,
-            // courses: enrolledUser.courses,
+            courses: user.courses,
+            enrolled:user.enrolled
+
           });
         } else if (user.userType === "teacher") {
           res.status(200).json({

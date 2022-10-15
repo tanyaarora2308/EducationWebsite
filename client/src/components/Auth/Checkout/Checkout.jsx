@@ -10,14 +10,13 @@ import { Link, useHistory } from "react-router-dom";
 const Checkout = () => {
   const history = useHistory();
   let price;
-  if(JSON.parse(sessionStorage.getItem("RegisterData"))?.courses.size === 2){
-    price = 30000;
-  }else price = 15000;
+  if(JSON.parse(sessionStorage.getItem("RegisterData"))?.courses.length == 2) price = 30000;
+  else price = 15000;
   const [product] = useState({
     name: "Enrollment Payment",
     price: price,
   });
-  async function handleToken(token, addresses) {
+  async function handleToken(token) {
     const response = await axios.post("http://localhost:5000/auth/checkout", {
       token,
       product,
@@ -26,10 +25,20 @@ const Checkout = () => {
     console.log(response.status);
 
     if (response.status === 200 || response.status === 201) {
-      sessionStorage.setItem("PaymentStatus", true);
+      // sessionStorage.setItem("PaymentStatus", true);
       swal("Payment Successful!", {
+        icon: "success",
         buttons: false,
-        timer: 1000,
+        timer: 3000,
+      });
+      const emailData = {
+        email: token.email
+      };
+      axios.put("http://localhost:5000/auth/updateEnrollment", emailData).then((res) => {
+        console.log("response, user enrollment", res);
+        console.log("User updated");
+      }).catch((err) => {
+        console.log("error during updating enrollment", err);
       });
     } else {
       swal("Something went wrong!", {

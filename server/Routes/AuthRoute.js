@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, loginUser, registerUser,updateConfirmedPassword,deleteUser , checkout} from "../Controllers/AuthController.js";
+import { getAllUsers, loginUser, registerUser,updateConfirmedPassword,deleteUser , checkout,updateEnrollment} from "../Controllers/AuthController.js";
 const router = express.Router()
   
 router.post('/register', registerUser)
@@ -9,4 +9,5 @@ router.post('/checkout', checkout)
 router.get('/users', getAllUsers)
 router.get('/confirmation/:token',updateConfirmedPassword);
 router.delete("/:id", deleteUser);
+router.put('/updateEnrollment', updateEnrollment)
 export default router
