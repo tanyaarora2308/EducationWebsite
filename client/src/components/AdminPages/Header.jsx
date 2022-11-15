@@ -37,9 +37,9 @@ export default function Header() {
           <li>
             <Link to="/updateTeacher">Update Teacher</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/updateStudent">Update Student</Link>
-          </li>
+          </li> */}
           {authenticated && (
             <li>
               <Link to="/Auth">

@@ -33,13 +33,15 @@ const Auth = () => {
   };
   const [courses, setCourses] = useState([]);
 
-  const handleCheckboxChange = (event) => {
+  //function to handle courses
+  const handleCoursesChange = (event) => {
     let newArray = [...courses, event.target.value];
     if (courses.includes(event.target.value)) {
       newArray = newArray.filter((c) => c !== event.target.value);
     }
     setCourses(newArray);
   };
+
   const [registerData, setRegisterData] = useState(registerInitialState);
   const [loginData, setLoginData] = useState(loginInitialState);
 
@@ -264,14 +266,14 @@ const Auth = () => {
                         control={<Checkbox />}
                         style={{ display: "inline-block", float: "left" }}
                         label="Maths"
-                        onChange={handleCheckboxChange}
+                        onChange={handleCoursesChange}
                         value="maths"
                       />
                       <FormControlLabel
                         control={<Checkbox />}
                         style={{ display: "inline-block", float: "left" }}
                         label="Chemistry"
-                        onChange={handleCheckboxChange}
+                        onChange={handleCoursesChange}
                         value="chemistry"
                       />
                     </div>
