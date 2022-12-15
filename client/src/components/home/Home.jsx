@@ -6,6 +6,7 @@ import HMain from "./HMain/HMain";
 import HTestimonal from "./HTestimonal/HTestimonal";
 
 const Home = () => {
+  
   //Disables back arrow key in browser
   useEffect(() => {
     window.history.pushState(null, document.title, window.location.href);

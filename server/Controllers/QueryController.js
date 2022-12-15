@@ -71,11 +71,8 @@ export const showAllQueries = async (req, res) => {
 // Answer a query
 export const answerQuery = async (req, res) => {
   try {
-    const { answer, quesID, userId} = req.body;
-    const newAnswer = {
-      userId,
-      answer
-    };
+    const { answer, quesID, userId, name} = req.body;
+    const newAnswer = { userId, answer, name };
     // console.log(newAnswer);
     let question = await QueryModel.findById(quesID);
     // console.log(question);

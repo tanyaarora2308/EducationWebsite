@@ -8,7 +8,8 @@ const UploadQues = () => {
   const initialState = {
     userId: JSON.parse(sessionStorage.getItem("UserDetails"))?._id,
     desc: "",
-    subject:""
+    subject:"",
+    name:JSON.parse(sessionStorage.getItem("UserDetails"))?.name
   };
   const [data, setData] = useState(initialState);
 

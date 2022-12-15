@@ -53,7 +53,7 @@ export default function Header() {
             <Link to="/announcements">Announcements</Link>
           </li>
           <li>
-            <Link to="/playlists">Playlists</Link>
+            <Link to="/playlists">Lecture Recordings</Link>
           </li>
           <li>
             <Link to="/blog">Journal</Link>

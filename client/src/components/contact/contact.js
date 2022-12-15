@@ -53,7 +53,7 @@ const Contact = () => {
       {authenticated ? (
         <>
           <div className="background">
-            <Back title="Feedback" />
+            <Back title="FEEDBACK" />
             <div className="container">
               <div className="screen">
                 <div className="screen-header">

@@ -80,7 +80,7 @@ const ChemistryPlaylists = () => {
                 ></iframe>
                 <figcaption>
                   <p>{val.title}</p>
-                  {userType == "admin" && (
+                  {userType == "teacher" && (
                     <p
                       onClick={() => {
                         deleteAssignments(val._id);

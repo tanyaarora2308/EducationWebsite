@@ -71,7 +71,7 @@ const Auth = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
     {
@@ -170,20 +170,18 @@ const Auth = () => {
         if (response.status == 200 || response.status == 201) {
           console.log("response.data.enrolled", response.data.enrolled);
           if (response.data.userType == "student") {
-            if (!response.data.enrolled){
+            if (!response.data.enrolled) {
               // alert("Please complete the payment to login!")
               swal("Please complete the payment to login!", {
                 buttons: false,
                 timer: 1000,
               });
-            }
-            else if (!response.data.confirmed) {
+            } else if (!response.data.confirmed) {
               swal("Please check your email to verify your account!", {
                 buttons: false,
                 timer: 1000,
               });
-            }
-            else {
+            } else {
               sessionStorage.setItem(
                 "UserDetails",
                 JSON.stringify(response.data)
@@ -193,8 +191,8 @@ const Auth = () => {
                 timer: 1000,
               });
               history.push("/");
-          }
-         } else {
+            }
+          } else {
             sessionStorage.setItem(
               "UserDetails",
               JSON.stringify(response.data)
@@ -291,7 +289,9 @@ const Auth = () => {
                       }}
                       className="mobile-auth"
                     >
-                      Account already exists? Login!
+                      <b style={{ color: "#1eb2a6" }}>
+                        Account already exists? Login!{" "}
+                      </b>
                     </a>
                   </form>
                 </div>
@@ -324,7 +324,7 @@ const Auth = () => {
                     onClick={() => setContainerActive(!containerActive)}
                     className="mobile-auth"
                   >
-                    New user? Register!
+                    <b style={{ color: "#1eb2a6" }}>New user? Register!</b>
                   </a>
                 </form>
               </div>

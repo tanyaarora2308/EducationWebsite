@@ -27,7 +27,7 @@ function Playlists() {
       {authenticated ? (
         <>
           <Router>
-            <Back title="YOUTUBE PLAYLISTS" />
+            <Back title="LECTURE RECORDINGS" />
             <div style={{ backgroundColor: "#f8f8f8", padding: "2rem 1rem" }}>
               <Nav />
               <Switch>

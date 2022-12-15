@@ -14,6 +14,7 @@ const Question = ({ data }) => {
   const addComment = () => {
     const comment = {
       quesID: data._id,
+      name:JSON.parse(sessionStorage.getItem("UserDetails"))?.name,
       userId: JSON.parse(sessionStorage.getItem("UserDetails"))?._id,
       answer: `${commentwriting}`,
     };
@@ -74,7 +75,7 @@ const Question = ({ data }) => {
           {/* <span className="date">Posted on: {data.createdAt.slice(0, 10)}</span> */}
           <br />
           <br />
-          <b>Question by user #{data.userId}: </b>
+          <b>Question by {data.name}: </b>
         </span>
         <br />
         <br />
@@ -115,7 +116,7 @@ const Question = ({ data }) => {
             {data.answers.map((item) => (
               <div className="answer">
                 {/* <div style={{display:"flex" , alignItems:"center"}}>  */}
-                  <span className="username">{item.userId}: </span>
+                  <span className="username">{item.name}: </span>
                 {/* </div> */}
                 <span style={{ marginLeft: "15px" , textAlign:'start' , marginTop:-16 }}>{item.answer}</span>
                 

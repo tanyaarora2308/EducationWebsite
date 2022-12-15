@@ -1,12 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Announcements from "./components/Announcements/Announcements";
-import Queries from "./components/Queries/Queries";
-import Contact from "./components/Contact/contact";
+import Announcements from "./components/announcements/Announcements";
+import Queries from "./components/queries/Queries";
+import Contact from "./components/contact/contact";
 import Footer from "./components/CommonComponents/footer/footer";
-import Home from "./components/Home/Home";
+import Home from "./components/home/Home";
 import Auth from "./components/Auth/Auth";
-import Blog from "./components/Blog/Blog";
+import Blog from "./components/blog/Blog";
 import AnnouncementForm from "./components/TeacherPages/AnnouncementForm";
 import PlaylistForm from "./components/TeacherPages/PlaylistForm";
 import Feedback from "./components/TeacherPages/FeedbackDisplay/Feedback";
@@ -14,7 +14,7 @@ import TeacherHome from "./components/TeacherPages/TeacherHome";
 import BlogForm from "./components/TeacherPages/BlogForm";
 import Playlists from "./components/Playlists/Playlists";
 import StudyMaterialForm from "./components/TeacherPages/StudyMaterialForm";
-import StudyMaterial from "./components/StudyMaterial/StudyMaterial";
+import StudyMaterial from "./components/studyMaterial/StudyMaterial";
 import AdminHome from "./components/AdminPages/AdminHome";
 import Profile from "./components/Profile/Profile";
 import UpdateTeacher from "./components/AdminPages/UpdateTeacher/UpdateTeacher";
@@ -40,11 +40,7 @@ function App() {
           <Route exact path="/TeacherHome" component={TeacherHome} />
           <Route exact path="/adminHome" component={AdminHome} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route
-            exact
-            path="/studymaterialForm"
-            component={StudyMaterialForm}
-          />
+          <Route exact path="/studymaterialForm" component={StudyMaterialForm}/>
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/studymaterial" component={StudyMaterial} />
           <Route exact path="/updateTeacher" component={UpdateTeacher} />

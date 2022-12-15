@@ -82,7 +82,7 @@ const ChemistryResources = () => {
                           />}
                           {val.fileType.slice(0,5) !== "image" &&
                           <img
-                            src="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-files-for-testing-300x300.png"
+                            src="https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
                             alt= {`PDF of ${val.title}`}
                             className="card-img-top img-responsive"
                           />}

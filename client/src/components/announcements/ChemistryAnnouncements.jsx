@@ -51,7 +51,7 @@ const ChemistryAnnouncements = () => {
                       <h4>{a.title}</h4>
                       <div className="seperator"></div>
                       <p>{a.description}</p>
-                      {userType == "admin" && (
+                      {userType == "teacher" && (
                         <i
                           class="fa fa-trash"
                           aria-hidden="true"
